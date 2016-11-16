@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/CalloutLayout"
+        android:layout_margin="8dp"
+        android:background="@drawable/image_callout">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ContentLayout"
+            android:layout_centerInParent="true"
+            android:layout_margin="4dp"
+            android:padding="4dp">
+            <ImageView
+                android:src="@drawable/image_gear"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:id="@+id/GearImage"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
+            <RelativeLayout
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativeLayout1"
+                android:layout_toRightOf="@+id/GearImage"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp">
+                <TextView
+                    android:text="This is the gimmick name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/NameLabel"
+                    android:textColor="@color/Jet"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textSize="20dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:scrollHorizontally="false"
+                    android:ellipsize="end"
+                    android:singleLine="true" />
+                <TextView
+                    android:text="owner:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/NameLabel"
+                    android:id="@+id/OfLabel"
+                    android:textColor="@color/AndroidGreen"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textSize="14dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:scrollHorizontally="false"
+                    android:ellipsize="none"
+                    android:singleLine="true"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="2dp" />
+                <TextView
+                    android:text="Name of the owner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/NameLabel"
+                    android:id="@+id/OwnerLabel"
+                    android:textColor="@color/Jet"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:layout_toRightOf="@+id/OfLabel"
+                    android:textSize="14dp"
+                    android:fontFamily="sans-serif-light"
+                    android:scrollHorizontally="false"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_alignTop="@+id/OfLabel" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

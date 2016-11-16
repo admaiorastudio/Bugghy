@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:id="@+id/FilterLayout"
+        android:background="@color/PapayaWhip">
+        <Button
+            android:text="A L L"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/FilterOpenedButton"
+            android:background="@color/Jet"
+            android:textColor="@color/PapayaWhip"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-light" />
+        <Button
+            android:text="O P E N E D"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/FilterWorkingButton"
+            android:background="@color/Jet"
+            android:textColor="@color/PapayaWhip"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:fontFamily="sans-serif-light" />
+        <Button
+            android:text="C L O S E D"
+            android:id="@+id/FilterClosedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@color/Jet"
+            android:textColor="@color/PapayaWhip"
+            android:layout_weight="1"
+            android:layout_marginLeft="1dp"
+            android:fontFamily="sans-serif-light" />
+    </LinearLayout>
+    <admaiora.appkit.ui.ItemRecyclerView
+        android:id="@+id/IssueList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:choiceMode="singleChoice"
+        android:divider="#00000000"
+        android:dividerHeight="0dp"
+        android:background="@color/Jet"
+        android:layout_below="@+id/FilterLayout" />
+</RelativeLayout>

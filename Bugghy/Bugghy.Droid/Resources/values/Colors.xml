@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  <color name="TartOrange">#FE4A49</color>
+  <color name="GargoyleGas">#FDE74C</color>
+  <color name="Jet">#3A3335</color>
+  <color name="PapayaWhip">#FDF0D5</color>
+  <color name="AndroidGreen">#9BC53D</color>
+  <color name="Black">#000000</color>
+  <color name="White">#FFFFFF</color>
+</resources>

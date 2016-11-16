@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:appkit="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Jet">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/DetailsLayout"
+        android:layout_centerInParent="true">
+        <RelativeLayout
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ThumbLayout">
+            <admaiora.appkit.ui.RoundedImageView
+                android:id="@+id/ThumbImage"
+                android:adjustViewBounds="true"
+                android:src="@drawable/image_empty_thumb"
+                android:scaleType="centerCrop"
+                appkit:cornerRadius="64dp"
+                appkit:borderWidth="1dip"
+                appkit:borderColor="@color/AndroidGreen"
+                appkit:mutateBackground="true"
+                appkit:tileMode="clamp"
+                appkit:oval="true"
+                android:layout_width="128dp"
+                android:layout_height="128dp" />
+        </RelativeLayout>
+        <TextView
+            android:text="Gimmick Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NameLabel"
+            android:layout_below="@+id/ThumbLayout"
+            android:textSize="24dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-light"
+            android:textColor="@color/PapayaWhip" />
+        <TextView
+            android:text="(owner)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/OwnerLabel"
+            android:layout_below="@+id/NameLabel"
+            android:textSize="18dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/AndroidGreen" />
+        <View
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:id="@+id/LineView"
+            android:background="@color/PapayaWhip"
+            android:layout_below="@+id/OwnerLabel"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="64dp" />
+        <RelativeLayout
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/IssuesLayout"
+            android:layout_below="@+id/LineView">
+            <RelativeLayout
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/OpenedLayout">
+                <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/OpenedNumberLabel"
+                    android:textSize="54dp"
+                    android:textColor="@color/AndroidGreen"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="sans-serif-light" />
+                <TextView
+                    android:text="opened"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/OpenedLabel"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/OpenedNumberLabel"
+                    android:textColor="@color/PapayaWhip"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/WorkingLayout"
+                android:layout_toRightOf="@+id/OpenedLayout">
+                <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/WorkingNumberLabel"
+                    android:textSize="54dp"
+                    android:textColor="@color/AndroidGreen"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="sans-serif-light" />
+                <TextView
+                    android:text="working"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/WorkingLabel"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/WorkingNumberLabel"
+                    android:textColor="@color/PapayaWhip"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/ClosedLayout"
+                android:layout_toRightOf="@+id/WorkingLayout">
+                <TextView
+                    android:text="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ClosedNumberLabel"
+                    android:textSize="54dp"
+                    android:textColor="@color/AndroidGreen"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="sans-serif-light" />
+                <TextView
+                    android:text="closed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ClosedLabel"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/ClosedNumberLabel"
+                    android:textColor="@color/PapayaWhip"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="20dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

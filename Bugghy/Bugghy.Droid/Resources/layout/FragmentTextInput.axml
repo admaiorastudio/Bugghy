@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Jet">
+    <EditText
+        android:inputType="textMultiLine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/InputText"
+        android:layout_below="@+id/TitleLabel"
+        android:background="@color/PapayaWhip"
+        android:layout_marginTop="1dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="top"
+        android:saveEnabled="false"
+        android:padding="4dp"
+        android:textColor="@color/Jet" />
+</RelativeLayout>
