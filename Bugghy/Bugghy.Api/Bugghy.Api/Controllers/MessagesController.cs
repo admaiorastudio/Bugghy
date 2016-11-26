@@ -35,7 +35,7 @@
         #region Gimmicks Endpoint Methods
 
         [Authorize]
-        [HttpPost, Route("messages/post")]
+        [HttpPut, Route("messages/post")]
         public IHttpActionResult Post(Poco.Message item)
         {
             if(item.IssueId <= 0)
@@ -51,10 +51,22 @@
             {
                 using (var ctx = new BugghyDbContext())
                 {
+                    User user = ctx.Users.SingleOrDefault(x => x.UserId == item.UserId);
+                    if (user == null)
+                        throw new InvalidOperationException("Unable to find an user with the ID specified!");
+
+                    Issue issue = ctx.Issues.SingleOrDefault(x => x.IssueId == item.IssueId);
+                    if(issue == null)
+                        throw new InvalidOperationException("Unable to find an issue with the ID specified!");
+
+                    // Update reply date
+                    issue.ReplyDate = DateTime.Now.ToUniversalTime();
+
                     Message me = new Message
                     {
                         IssueId = item.IssueId,
                         UserId = item.UserId,
+                        Sender = user.Email,
                         Content = item.Content,
                         PostDate = DateTime.Now.ToUniversalTime()
                     };
@@ -68,6 +80,7 @@
                         MessageId = me.MessageId,
                         IssueId = me.IssueId,
                         UserId = me.UserId,
+                        Sender = me.Sender,
                         Content = me.Content,
                         PostDate = me.PostDate
                     }));
@@ -80,28 +93,7 @@
         }
 
         [Authorize]
-        [HttpPost, Route("messages/upload")]
-        public async Task<IHttpActionResult> Upload(int messageId)
-        {
-            if (!Request.Content.IsMimeMultipartContent())
-                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-
-            var provider = new MultipartMemoryStreamProvider();
-            await Request.Content.ReadAsMultipartAsync(provider);
-            foreach (var file in provider.Contents)
-            {
-                var filename = file.Headers.ContentDisposition.FileName.Trim('\"');
-                var buffer = await file.ReadAsByteArrayAsync();
-
-                //Do whatever you want with filename and its binaray data.
-            }
-
-            return Ok();
-        }
-
-
-        [Authorize]
-        [HttpGet, Route("issues/list")]
+        [HttpGet, Route("messages/list")]
         public IHttpActionResult GetMessages(int issueId = 0, int userId = 0)
         {
             if (issueId < 0)
@@ -128,6 +120,7 @@
                                 MessageId = x.MessageId,
                                 IssueId = x.IssueId,
                                 UserId = x.UserId,
+                                Sender = x.Sender,
                                 Content = x.Content,
                                 PostDate = x.PostDate
                             })

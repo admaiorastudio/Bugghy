@@ -189,6 +189,15 @@
     <Compile Include="DataObjects\Issue.cs" />
     <Compile Include="DataObjects\Gimmick.cs" />
     <Compile Include="DataObjects\User.cs" />
+    <Compile Include="Migrations\201611171850594_InitialCreate.cs" />
+    <Compile Include="Migrations\201611171850594_InitialCreate.Designer.cs">
+      <DependentUpon>201611171850594_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611181523110_VariousChanges.cs" />
+    <Compile Include="Migrations\201611181523110_VariousChanges.Designer.cs">
+      <DependentUpon>201611181523110_VariousChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BugghyDbContext.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -210,6 +219,18 @@
       <Project>{5e73840e-3efa-42d5-bd68-c4ac6e7da1c6}</Project>
       <Name>Bugghy.Api.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Bugghy-Api - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\Bugghy-Api - Web Deploy.pubxml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611171850594_InitialCreate.resx">
+      <DependentUpon>201611171850594_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611181523110_VariousChanges.resx">
+      <DependentUpon>201611181523110_VariousChanges.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

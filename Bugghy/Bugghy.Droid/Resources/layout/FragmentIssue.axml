@@ -2,4 +2,112 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Jet" />
+    android:background="@color/Jet">
+    <ImageView
+        android:src="@drawable/image_issue_nblocking"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:id="@+id/TypeImage"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+    <TextView
+        android:text="TAP TO CHANGE"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/TapToChangeTypeLabel"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:alpha="0.7"
+        android:layout_alignTop="@+id/TypeImage"
+        android:layout_alignBottom="@+id/TypeImage" />
+    <TextView
+        android:text="#no_code_assigned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/CodeLabel"
+        android:layout_below="@+id/TypeImage"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/AndroidGreen"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="18dp"
+        android:layout_marginTop="4dp" />
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/TitleText"
+        android:background="@null"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/CodeLabel"
+        android:layout_marginTop="16dp"
+        android:hint="short describe the issue here"
+        android:textColorHint="#d1d1d1"
+        android:gravity="center"
+        android:fontFamily="sans-serif-light"
+        android:textSize="20dp"
+        android:textColor="@color/White"
+        android:lines="1"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:saveEnabled="false"
+        android:imeOptions="actionDone" />
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:id="@+id/TitleLineView"
+        android:layout_below="@+id/TitleText"
+        android:layout_alignLeft="@+id/TitleText"
+        android:layout_alignRight="@+id/TitleText"
+        android:background="@color/AndroidGreen"
+        android:layout_marginTop="2dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/DescriptionLayout"
+        android:background="@color/White"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/TitleLineView"
+        android:layout_marginTop="16dp">
+        <EditText
+            android:inputType="none"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/DescriptionText"
+            android:textColor="@color/Jet"
+            android:fontFamily="sans-serif-light"
+            android:editable="false"
+            android:gravity="fill_horizontal|top"
+            android:saveEnabled="false"
+            android:background="@color/White"
+            android:padding="4dp" />
+        <ImageView
+            android:src="@drawable/image_shadowtop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ShadowTopImage"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY" />
+        <ImageView
+            android:src="@drawable/image_shadowdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ShadowBottomImage"
+            android:adjustViewBounds="true"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitXY" />
+        <ImageButton
+            android:src="@drawable/button_edit"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:id="@+id/EditButton"
+            android:background="@null"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp" />
+    </RelativeLayout>
+</RelativeLayout>

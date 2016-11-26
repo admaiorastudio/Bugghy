@@ -35,14 +35,14 @@
         #region Issues Endpoint Methods
 
         [Authorize]
-        [HttpPost, Route("issues/addnew")]
+        [HttpPut, Route("issues/addnew")]
         public IHttpActionResult AddNew(Poco.Issue item)
         {
             if (item.GimmickId <= 0)
                 return BadRequest("Gimmick ID is not valid!");
 
             if (item.UserId <= 0)
-                return BadRequest("UserId ID is not valid!");
+                return BadRequest("User ID is not valid!");
 
             if (String.IsNullOrWhiteSpace(item.Title))
                 return BadRequest("Title is not valid!");
@@ -54,10 +54,15 @@
             {
                 using (var ctx = new BugghyDbContext())
                 {
+                    User user = ctx.Users.SingleOrDefault(x => x.UserId == item.UserId);
+                    if (user == null)
+                        throw new InvalidOperationException("Unable to find an user with the ID specified!");
+
                     Issue ix = new Issue
                     {
                         GimmickId = item.GimmickId,
                         UserId = item.UserId,                              
+                        Sender = user.Email,
                         Title = item.Title,
                         Description = item.Description,
                         Type = item.Type,
@@ -70,14 +75,15 @@
 
                     // Updating code
                     ix.Code = String.Concat(
-                        ix.Type.ToString().Substring(1), ix.IssueId.ToString());
+                        ix.Type.ToString().Substring(0, 1), "-", ix.IssueId.ToString());
                     ctx.SaveChanges();
 
                     return Ok(Dto.Wrap(new Poco.Issue
                     {
                         IssueId = ix.IssueId,
-                        UserId = ix.UserId,
                         GimmickId = ix.GimmickId,
+                        UserId = ix.UserId,      
+                        Sender = ix.Sender,                  
                         Code = ix.Code,
                         Title = ix.Title,
                         Description = ix.Description,
@@ -126,6 +132,7 @@
                         IssueId = ix.IssueId,                        
                         GimmickId = ix.GimmickId,
                         UserId = ix.UserId,
+                        Sender = ix.Sender,
                         Code = ix.Code,
                         Title = ix.Title,
                         Description = ix.Description,
@@ -145,17 +152,17 @@
         }
 
         [Authorize]
-        [HttpPost, Route("issues/delete")]
-        public IHttpActionResult Delete([FromBody]int itemId)
+        [HttpDelete, Route("issues/delete")]
+        public IHttpActionResult Delete(int issueId)
         {
-            if (itemId <= 0)
+            if (issueId <= 0)
                 return BadRequest("Gimmick ID is not valid!");
 
             try
             {
                 using (var ctx = new BugghyDbContext())
                 {
-                    Issue ix = ctx.Issues.SingleOrDefault(x => x.IssueId == itemId);
+                    Issue ix = ctx.Issues.SingleOrDefault(x => x.IssueId == issueId);
                     if (ix == null)
                         return InternalServerError(new InvalidOperationException("Invalid Issue ID!"));
 
@@ -205,6 +212,7 @@
                                 IssueId = x.IssueId,                                
                                 GimmickId = x.GimmickId,
                                 UserId = x.UserId,
+                                Sender = x.Sender,
                                 Code = x.Code,
                                 Title = x.Title,
                                 Description = x.Description,

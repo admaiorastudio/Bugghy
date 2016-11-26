@@ -9,11 +9,11 @@
         android:layout_height="match_parent"
         android:id="@+id/InputText"
         android:layout_below="@+id/TitleLabel"
-        android:background="@color/PapayaWhip"
+        android:background="@color/Jet"
         android:layout_marginTop="1dp"
         android:fontFamily="sans-serif-light"
         android:gravity="top"
         android:saveEnabled="false"
         android:padding="4dp"
-        android:textColor="@color/Jet" />
+        android:textColor="@color/White" />
 </RelativeLayout>

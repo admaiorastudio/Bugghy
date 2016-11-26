@@ -61,20 +61,20 @@
     <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AdMaiora.AppKit.Core, Version=1.0.6159.29760, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdMaiora.AppKit.1.0.7\lib\Xamarin.iOS10\AdMaiora.AppKit.Core.dll</HintPath>
+    <Reference Include="AdMaiora.AppKit.Core, Version=1.0.6170.30919, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AdMaiora.AppKit.1.0.8\lib\Xamarin.iOS10\AdMaiora.AppKit.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="AdMaiora.AppKit.Core.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdMaiora.AppKit.1.0.7\lib\Xamarin.iOS10\AdMaiora.AppKit.Core.iOS.dll</HintPath>
+      <HintPath>..\..\packages\AdMaiora.AppKit.1.0.8\lib\Xamarin.iOS10\AdMaiora.AppKit.Core.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AdMaiora.AppKit.UI, Version=1.0.6159.21983, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.5\lib\Xamarin.iOS10\AdMaiora.AppKit.UI.dll</HintPath>
+    <Reference Include="AdMaiora.AppKit.UI, Version=1.0.6171.27890, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.9\lib\Xamarin.iOS10\AdMaiora.AppKit.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="AdMaiora.AppKit.UI.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.5\lib\Xamarin.iOS10\AdMaiora.AppKit.UI.iOS.dll</HintPath>
+      <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.9\lib\Xamarin.iOS10\AdMaiora.AppKit.UI.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

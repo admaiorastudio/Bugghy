@@ -1,4 +1,4 @@
-namespace AdMaiora.Listy
+namespace AdMaiora.Bugghy
 {
     using System;
     using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace AdMaiora.Listy
     
     #pragma warning disable CS4014
     [Activity(
-        Label = "Listy",
+        Label = "Bugghy",
         MainLauncher = true,        
         Theme = "@style/AppTheme.Splash",
         ScreenOrientation = ScreenOrientation.Portrait,
@@ -134,8 +134,7 @@ namespace AdMaiora.Listy
                 (data) =>
                 {
                     Bundle b = new Bundle();
-                    b.PutBoolean("UserRestored", true);
-                    b.PutInt("UserId", data.UserId);                    
+                    b.PutBoolean("UserRestored", true);                    
                     MakeRoot(typeof(MainActivity), b);
                 },
                 // Service call error

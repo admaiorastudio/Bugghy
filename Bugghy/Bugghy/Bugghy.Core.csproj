@@ -31,18 +31,23 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AppController.cs" />
+    <Compile Include="Model\Attachment.cs" />
+    <Compile Include="Model\Gimmick.cs" />
+    <Compile Include="Model\Issue.cs" />
+    <Compile Include="Model\Message.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AdMaiora.AppKit.Core, Version=1.0.6159.29760, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdMaiora.AppKit.1.0.7\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\AdMaiora.AppKit.Core.dll</HintPath>
+    <Reference Include="AdMaiora.AppKit.Core, Version=1.0.6170.30919, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AdMaiora.AppKit.1.0.8\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\AdMaiora.AppKit.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AdMaiora.AppKit.UI, Version=1.0.6159.21983, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.5\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\AdMaiora.AppKit.UI.dll</HintPath>
+    <Reference Include="AdMaiora.AppKit.UI, Version=1.0.6171.27890, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.9\lib\portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10\AdMaiora.AppKit.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -82,6 +87,13 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bugghy.Api\Bugghy.Api.Core\Bugghy.Api.Core.csproj">
+      <Project>{5e73840e-3efa-42d5-bd68-c4ac6e7da1c6}</Project>
+      <Name>Bugghy.Api.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

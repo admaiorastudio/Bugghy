@@ -7,23 +7,23 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:id="@+id/FilterLayout"
-        android:background="@color/PapayaWhip">
-        <Button
-            android:text="A L L"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/FilterOpenedButton"
-            android:background="@color/Jet"
-            android:textColor="@color/PapayaWhip"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-light" />
+        android:background="@color/White">
         <Button
             android:text="O P E N E D"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:id="@+id/FilterOpenedButton"
+            android:background="@color/Jet"
+            android:textColor="@color/White"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-light" />
+        <Button
+            android:text="W O R K I N G"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:id="@+id/FilterWorkingButton"
             android:background="@color/Jet"
-            android:textColor="@color/PapayaWhip"
+            android:textColor="@color/White"
             android:layout_weight="1"
             android:layout_marginLeft="1dp"
             android:fontFamily="sans-serif-light" />
@@ -33,11 +33,22 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@color/Jet"
-            android:textColor="@color/PapayaWhip"
+            android:textColor="@color/White"
             android:layout_weight="1"
             android:layout_marginLeft="1dp"
             android:fontFamily="sans-serif-light" />
     </LinearLayout>
+    <TextView
+        android:text="No available items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/NoItemsLabel"
+        android:layout_below="@+id/FilterLayout"
+        android:background="#515151"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/White" />
     <admaiora.appkit.ui.ItemRecyclerView
         android:id="@+id/IssueList"
         android:layout_width="match_parent"
@@ -45,6 +56,7 @@
         android:choiceMode="singleChoice"
         android:divider="#00000000"
         android:dividerHeight="0dp"
-        android:background="@color/Jet"
-        android:layout_below="@+id/FilterLayout" />
+        android:background="@color/DarkLiver"
+        android:layout_below="@+id/FilterLayout"
+        android:visibility="gone" />
 </RelativeLayout>

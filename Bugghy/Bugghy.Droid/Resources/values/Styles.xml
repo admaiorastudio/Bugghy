@@ -7,8 +7,8 @@
 
   <!-- Application splash theme -->
   <style name="AppTheme.Toolbar" parent="AppTheme.Base">
-    <item name="android:textColorPrimary">@color/Jet</item>
-    <item name="android:textColorSecondary">@color/Jet</item>
+    <item name="android:textColorPrimary">@color/White</item>
+    <item name="android:textColorSecondary">@color/White</item>
     <item name="actionMenuTextColor">@color/Jet</item>
     <!-- Set theme colors from http://www.google.com/design/spec/style/color.html#color-color-palette-->
     <!-- colorPrimary is used for the default action bar background -->

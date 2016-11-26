@@ -1,4 +1,4 @@
-namespace AdMaiora.Chatty
+namespace AdMaiora.Bugghy
 {
     using System;
     using System.Collections.Generic;
@@ -19,14 +19,15 @@ namespace AdMaiora.Chatty
     using AdMaiora.AppKit.UI;
     using AdMaiora.AppKit.UI.App;
 
-    using AdMaiora.Chatty.Api;
+    using AdMaiora.Bugghy.Api;
+    using AdMaiora.Bugghy.Model;
 
-    #pragma warning disable CS4014
+#pragma warning disable CS4014
     public class ChatFragment : AdMaiora.AppKit.UI.App.Fragment
     {
         #region Inner Classes
 
-        class ChatAdapter : ItemRecyclerAdapter<ChatAdapter.ChatViewHolder, Message>
+        class ChatAdapter : ItemRecyclerAdapter<ChatAdapter.ChatViewHolder, Model.Message>
         {
             #region Inner Classes
 
@@ -44,7 +45,6 @@ namespace AdMaiora.Chatty
                 [Widget]
                 public TextView DateLabel;
 
-
                 public ChatViewHolder(View itemView)
                     : base(itemView)
                 {                    
@@ -55,63 +55,56 @@ namespace AdMaiora.Chatty
 
             #region Costants and Fields
 
-            private Random _rnd;
-
-            private List<string> _palette;
-            private Dictionary<string, string> _colors;
+            private string _currentUser;
 
             #endregion
 
             #region Constructors
 
-            public ChatAdapter(AdMaiora.AppKit.UI.App.Fragment context, IEnumerable<Message> source) 
+            public ChatAdapter(AdMaiora.AppKit.UI.App.Fragment context, IEnumerable<Model.Message> source) 
                 : base(context, Resource.Layout.CellChat, source)
             {
-                _rnd = new Random(DateTime.Now.Second);
-
-                _palette = new List<string>
-                {
-                    "C3BEF7", "8A4FFF", "273C2C", "626868", "80727B", "62929E",
-                    "F79256", "66101F", "DB995A", "654236", "6369D1", "22181C ",
-                    "998FC7", "5B2333", "564D4A"
-
-                };
-
-                _colors = new Dictionary<string, string>();
+                _currentUser = AppController.Settings.LastLoginUsernameUsed;
             }
 
             #endregion
 
             #region Public Methods
 
-            public override void GetView(int postion, ChatViewHolder holder, View view, Message item)
+            public override void GetView(int postion, ChatViewHolder holder, View view, Model.Message item)
             {
-                bool isYours = String.IsNullOrWhiteSpace(item.Sender);
-                bool isSending = item.SendDate == DateTime.MinValue;                
-                bool isSent = item.SendDate != DateTime.MinValue && item.SendDate != DateTime.MaxValue;
-                bool isLost = item.SendDate == DateTime.MaxValue;
-
-                if (!isYours && !_colors.ContainsKey(item.Sender))
-                    _colors.Add(item.Sender, _palette[_rnd.Next(_palette.Count)]);
+                bool isYours = _currentUser == item.Sender;
+                bool isSending = item.PostDate == null;
+                bool isSent = item.PostDate.GetValueOrDefault() != DateTime.MinValue;
 
                 ((RelativeLayout)view).SetGravity(isYours ? GravityFlags.Right : GravityFlags.Left);
 
-                holder.SenderLabel.Text = String.Concat(isYours ? "YOU" : item.Sender.Split('@')[0], "   ");
-
                 holder.CalloutLayout.Background.SetColorFilter(
-                    ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.PictonBlue : _colors[item.Sender]),
+                    ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.PapayaWhip : AppController.Colors.AndroidGreen),
                     PorterDuff.Mode.SrcIn);
 
-                holder.CalloutLayout.Alpha =  isSent ? 1 : .35f;
+                holder.CalloutLayout.Alpha = isSent ? 1 : .35f;
+
+                holder.SenderLabel.Text = String.Concat(isYours ? "YOU" : item.Sender.Split('@')[0], "   ");
+                holder.SenderLabel.SetTextColor(ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.Jet : AppController.Colors.White));                
 
                 holder.MessageLabel.Text = String.Concat(item.Content, "   ");
+                holder.MessageLabel.SetTextColor(ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.Jet : AppController.Colors.White));
 
-                holder.DateLabel.Text = isSent ? String.Format("  sent @ {0:G}", item.SendDate) : String.Empty;
+                holder.DateLabel.Text = isSent ? String.Format("  sent @ {0:G}", item.PostDate) : String.Empty;
+                holder.DateLabel.SetTextColor(ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.Jet : AppController.Colors.White));
             }
 
-            public bool HasMessage(int messageId)
+            public void Insert(Model.Message message)
             {
-                return this.SourceItems.Count(x => x.MessageId == messageId) > 0;
+                this.SourceItems.Add(message);
+                this.SourceItems = this.SourceItems.OrderBy(x => x.PostDate).ToList();
+            }
+
+            public void Refresh(IEnumerable<Model.Message> items)
+            {
+                this.SourceItems.Clear();
+                this.SourceItems.AddRange(items);
             }
 
             #endregion
@@ -121,32 +114,38 @@ namespace AdMaiora.Chatty
 
         #region Constants and Fields
 
-        private const string ReceiverLock = "ReceiverLock";
+        private int _gimmickId;        
+        private int _userId;
 
-        private string _email;
-        private string _username;
-        
-        private int _lastMessageId;
+        private Issue _issue;
 
         private ChatAdapter _adapter;
 
-        // This cancellation token is used to cancel the UI blocking until connection is done
-        private CancellationTokenSource _cts0;
-
-        // This flag check if we are already calling the login REST service
+        // This flag check if we are already calling the send message REST service
         private bool _isSendingMessage;
         // This cancellation token is used to cancel the rest send message request
-        private CancellationTokenSource _cts1;
-        
-        // This cancellation token is used to cancel the rest refresh messages request
-        private CancellationTokenSource _cts2;
+        private CancellationTokenSource _cts0;
 
-        private SoundPool _sp;
-        private int _dingSoundId;
+        // This flag check if we are already calling the refersh message REST service
+        private bool _isRefreshingMessage;
+        // This cancellation token is used to cancel the rest refresh messages request
+        private CancellationTokenSource _cts1;
 
         #endregion
 
         #region Widgets
+
+        [Widget]
+        private RelativeLayout HeaderLayout;
+
+        [Widget]
+        private ImageView TypeImage;
+
+        [Widget]
+        private TextView TitleLabel;
+
+        [Widget]
+        private TextView StatusLabel;
 
         [Widget]
         private ItemRecyclerView MessageList;
@@ -179,10 +178,11 @@ namespace AdMaiora.Chatty
         {
             base.OnCreate(savedInstanceState);
 
-            _email = this.Arguments.GetString("Email");
-            _username = _email.Split('@')[0];            
+            _gimmickId = this.Arguments.GetInt("GimmickId");            
+            _userId = AppController.Settings.LastLoginUsernameId;
+            _issue = this.Arguments.GetObject<Issue>("Issue");
 
-            _adapter = new ChatAdapter(this, new Message[0]);            
+            _adapter = new ChatAdapter(this, new Model.Message[0]);            
         }
 
         public override void OnCreateView(LayoutInflater inflater, ViewGroup container)
@@ -199,40 +199,53 @@ namespace AdMaiora.Chatty
 
             #endregion
 
-            ((ChattyApplication)this.Activity.Application).PushNotificationReceived += Application_PushNotificationReceived;
-
-            this.Title = "Chatty";
+            this.Title = "Chat";
 
             this.ActionBar.Show();
+
+            this.HeaderLayout.Clickable = true;
+            this.HeaderLayout.SetOnTouchListener(GestureListener.ForSingleTapUp(this.Activity,
+                (e) =>
+                {
+                    var f = new IssueFragment();
+                    f.Arguments = new Bundle();
+                    f.Arguments.PutInt("GimmickId", _gimmickId);
+                    f.Arguments.PutObject<Issue>("Issue", _issue);
+                    this.FragmentManager.BeginTransaction()
+                        .AddToBackStack("BeforeIssueFragment")
+                        .Replace(Resource.Id.ContentLayout, f, "IssueFragment")
+                        .Commit();
+                }));
 
             this.MessageList.SetAdapter(_adapter);
 
             this.SendButton.Click += SendButton_Click;
 
-            InitSound();
+            if(_issue != null)
+                LoadIssue();
 
             RefreshMessages();
+        }
 
-            WaitConnection();
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
+        {
+            base.OnCreateOptionsMenu(menu, inflater);
+
+            menu.Clear();
+            menu.Add(0, 1, 0, "Refresh").SetShowAsAction(ShowAsAction.Always);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch(item.ItemId)
             {
-                case Android.Resource.Id.Home:
-                    QuitChat();
-                    return true;
+                case 1:
+                    RefreshMessages();
+                    return true;                   
 
                 default:
                     return base.OnOptionsItemSelected(item);
             }            
-        }
-
-        public override bool OnBackButton()
-        {
-            QuitChat();
-            return true;
         }
 
         public override void OnDestroyView()
@@ -245,18 +258,7 @@ namespace AdMaiora.Chatty
             if (_cts1 != null)
                 _cts1.Cancel();
 
-            if (_cts2 != null)
-                _cts2.Cancel();
-
-            if(_sp != null)
-            {
-                _sp.Release();
-                _sp.Dispose();
-            }
-
             this.SendButton.Click -= SendButton_Click;
-
-            ((ChattyApplication)this.Activity.Application).PushNotificationReceived -= Application_PushNotificationReceived;
         }
 
         #endregion
@@ -266,196 +268,155 @@ namespace AdMaiora.Chatty
 
         #region Methods        
 
-        private void SendMessage()
+        private void LoadIssue()
         {
-            string content = this.MessageText.Text;
-            if (!String.IsNullOrWhiteSpace(content))
+            this.TitleLabel.Text = _issue.Title;
+
+            DateTime? statusDate = null;
+            switch(_issue.Status)
             {
-                if (_isSendingMessage)
-                    return;
+                case IssueStatus.Opened:
+                    statusDate = _issue.CreationDate;
+                    break;
 
-                _isSendingMessage = true;
+                case IssueStatus.Evaluating:
+                case IssueStatus.Working:
+                    statusDate = _issue.ReplyDate;
+                    break;
 
-                // Add message to the message list 
-                Message message = new Message { Sender = null, Content = content, SendDate = DateTime.MinValue };
-                _adapter.AddItem(message);
-                this.MessageList.ReloadData();
-                this.MessageList.SmoothScrollToPosition(_adapter.ItemCount);
-
-                _cts1 = new CancellationTokenSource();
-                AppController.SendMessage(_cts1,
-                    _email,
-                    content,
-                    (data) =>
-                    {
-                        message.MessageId = data.MessageId;
-                        message.SendDate = data.SendDate.GetValueOrDefault();
-                        this.MessageList.ReloadData();
-                    },
-                    (error) =>
-                    {
-                        message.SendDate = DateTime.MaxValue;
-                        this.MessageList.ReloadData();
-
-                        Toast.MakeText(this.Activity.Application, error, ToastLength.Long).Show();
-                    },
-                    () =>
-                    {
-                        _isSendingMessage = false;
-                    });
-
-                // Ready to send new message
-                this.MessageText.Text = String.Empty;
+                case IssueStatus.Resolved:
+                case IssueStatus.Rejected:
+                case IssueStatus.Closed:
+                    statusDate = _issue.ClosedDate;
+                    break;
+                    
             }
+
+            this.StatusLabel.Text = String.Format("{0} @ {1:G}",
+                _issue.Status.ToString(),
+                statusDate.GetValueOrDefault());
+        }
+
+        private void PostMessage()
+        {
+            if (_isSendingMessage)
+                return;
+
+            string content = this.MessageText.Text;
+            if (String.IsNullOrWhiteSpace(content))
+                return;
+
+            _isSendingMessage = true;
+            ((MainActivity)this.Activity).BlockUI();
+
+            _cts0 = new CancellationTokenSource();
+            AppController.PostMessage(_cts0,
+                _issue.IssueId,
+                _userId,
+                content,
+                (message) =>
+                {
+                    if (_adapter != null)
+                    {
+                        _adapter.Insert(message);
+                        this.MessageList.ReloadData();
+                        this.MessageList.Visibility = ViewStates.Visible;
+                        this.MessageText.Text = String.Empty;
+                    }
+                },
+                (error) =>
+                {
+                    Toast.MakeText(this.Activity.ApplicationContext, error, ToastLength.Long).Show();
+                },
+                () =>
+                {
+                    _isSendingMessage = false;
+                    ((MainActivity)this.Activity).UnblockUI();
+                });
         }        
 
         private void RefreshMessages()
         {
-            lock (ReceiverLock)
-            {
-                if (_lastMessageId == 0)
-                {
-                    if (AppController.Settings.LastMessageId == 0)
-                        return;
+            if (_isRefreshingMessage)
+                return;
 
-                    _lastMessageId = AppController.Settings.LastMessageId;
-                    AppController.Settings.LastMessageId = 0;                                        
-                }
+            this.MessageList.Visibility = ViewStates.Gone;
 
-                if (_cts2 != null && !_cts2.IsCancellationRequested)
-                    _cts2.Cancel();
-
-                _cts2 = new CancellationTokenSource();
-
-                var cts = _cts2;
-                Poco.Message[] newMessages = null;
-                AppController.RefreshMessages(
-                    _cts2,
-                    _lastMessageId,
-                    _email,
-                    (data) =>
-                    {
-                        if (cts.IsCancellationRequested)
-                            return;
-
-                        lock (ReceiverLock)
-                        {                            
-                            newMessages = data.Messages?.ToArray();
-                            _lastMessageId = (newMessages?.Last().MessageId).GetValueOrDefault(0);
-                        }
-                    },
-                    (error) =>
-                    {
-                        // Do Nothing
-                    },
-                    () =>
-                    {
-                        if (cts.IsCancellationRequested)
-                            return;
-
-                        lock (ReceiverLock)
-                        {
-                            bool playSound = false;
-                            if (newMessages != null)
-                            {
-                                foreach (var m in newMessages)
-                                {
-                                    if (!_adapter.HasMessage(m.MessageId))
-                                    {
-                                        playSound = true;
-                                                               
-                                        // Add message to the message list 
-                                        Message message = new Message
-                                        {
-                                            MessageId = m.MessageId,
-                                            Sender = m.Sender,
-                                            Content = m.Content,
-                                            SendDate = m.SendDate.GetValueOrDefault()
-                                        };
-
-                                        _adapter.AddItem(message);
-                                    }
-                                }
-                            }                            
-
-                            this.MessageList.ReloadData();
-                            this.MessageList.SmoothScrollToPosition(_adapter.ItemCount);
-
-                            if(playSound)
-                                PlaySound();
-                        }
-                    });
-            }
-        }
-
-        private void QuitChat()
-        {
-            (new AlertDialog.Builder(this.Activity))
-                .SetTitle("Leave the chat?")
-                .SetMessage("Press ok to leave the chat now!")
-                .SetPositiveButton("Ok",
-                    (s, ea) =>
-                    {
-                        AppController.Settings.AuthAccessToken = null;
-                        AppController.Settings.AuthExpirationDate = null;
-
-                        this.DismissKeyboard();
-                        this.FragmentManager.PopBackStack();
-                    })
-                .SetNegativeButton("Take me back",
-                    (s, ea) =>
-                    {
-                    })
-                .Show();
-        }
-
-        private void WaitConnection()
-        {
+            _isRefreshingMessage = true;
             ((MainActivity)this.Activity).BlockUI();
-            _cts0 = new CancellationTokenSource();
-            AppController.Utility.ExecuteOnAsyncTask(_cts0.Token,
-                () =>
+
+            Model.Message[] messages = null;
+
+            _cts1 = new CancellationTokenSource();
+            AppController.RefreshMessages(_cts1,
+                _issue.IssueId,
+                (newMessages) =>
                 {
-                    while (!_cts0.IsCancellationRequested)
-                    {
-                        System.Threading.Tasks.Task.Delay(100, _cts0.Token).Wait();
-                        if (((ChattyApplication)this.Activity.Application).IsNotificationHubConnected)
-                            break;
-                    }
+                    messages = newMessages;
+                },
+                (error) =>
+                {
+                    Toast.MakeText(this.Activity.ApplicationContext, error, ToastLength.Long).Show();
                 },
                 () =>
                 {
-                    ((MainActivity)this.Activity).UnblockUI();
+                    if (messages != null)
+                    {
+                        LoadMessages(messages);
 
+                        if (_adapter?.ItemCount > 0)
+                            this.MessageList.Visibility = ViewStates.Visible;
+
+                        _isRefreshingMessage = false;
+                        ((MainActivity)this.Activity).UnblockUI();
+                    }
+                    else
+                    {
+                        AppController.Utility.ExecuteOnAsyncTask(_cts1.Token,
+                            () =>
+                            {
+                                messages = AppController.GetMessages(_issue.IssueId);
+                            },
+                            () =>
+                            {
+                                LoadMessages(messages);
+
+                                if (_adapter?.ItemCount > 0)
+                                    this.MessageList.Visibility = ViewStates.Visible;
+
+                                _isRefreshingMessage = false;
+                                ((MainActivity)this.Activity).UnblockUI();
+
+                            });
+                    }
                 });
         }
 
-        private void InitSound()
+        private void LoadMessages(IEnumerable<Model.Message> messages)
         {
-            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
-            {
-                AudioAttributes aa = new AudioAttributes.Builder()
-                    .SetUsage(AudioUsageKind.Game)
-                    .SetContentType(AudioContentType.Sonification)
-                    .Build();
+            if (messages == null)
+                return;
 
-                _sp = new SoundPool.Builder()
-                    .SetAudioAttributes(aa)
-                    .Build();
+            // Sort desc by creation date
+            messages = messages.OrderBy(x => x.PostDate);
+
+            if (_adapter == null)
+            {
+                _adapter = new ChatAdapter(this, messages);
+                this.MessageList.SetAdapter(_adapter);
             }
             else
             {
-                _sp = new SoundPool(5, Stream.Music, 0);
+                _adapter.Refresh(messages);
+                this.MessageList.ReloadData();
             }
-
-            _dingSoundId = _sp.Load(this.Activity, Resource.Raw.sound_ding, 1);            
         }
 
-        private void PlaySound()
-        {
-            if(((ChattyApplication)this.Activity.Application).IsApplicationInForeground)
-                _sp.Play(_dingSoundId, 1f, 1f, 1, 0, 1f);
-        }
+        private void SetIssueTypeImage(IssueType type)
+        {            
+            string[] typeImages = new[] { "image_gear", "image_issue_crash", "image_issue_blocking", "image_issue_nblocking" };
+            this.TypeImage.SetImageResource(typeImages[(int)type]);
+        }   
 
         #endregion
 
@@ -465,37 +426,7 @@ namespace AdMaiora.Chatty
         {
             DismissKeyboard();            
 
-            SendMessage();
-        }
-
-        private void Application_PushNotificationReceived(object sender, PushEventArgs e)
-        {
-            AppController.Utility.ExecuteOnMainThread(
-                () =>
-                {
-                    switch(e.Action)
-                    {
-                        case 1:
-
-                            _lastMessageId = Int32.Parse(e.Payload);
-                            RefreshMessages();
-
-                            break;
-
-                        case 2:
-
-                            if (e.Payload != _email.Split('@')[0])
-                            {
-                                PlaySound();
-
-                                Toast
-                                    .MakeText(this.Activity.Application, String.Format("Say welocome to '{0}'", e.Payload), ToastLength.Long)
-                                    .Show();
-                            }
-
-                            break;
-                    }
-                });            
+            PostMessage();
         }
 
         #endregion

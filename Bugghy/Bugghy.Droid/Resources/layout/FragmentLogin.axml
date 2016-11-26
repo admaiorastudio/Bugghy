@@ -48,7 +48,7 @@
                 android:layout_width="300dp"
                 android:layout_height="32dp"
                 android:id="@+id/EmailText"
-                android:background="@color/PapayaWhip"
+                android:background="@color/White"
                 android:textColor="@color/Black"
                 android:textColorHint="#515151"
                 android:hint="Enter your email"
@@ -69,8 +69,8 @@
                 android:id="@+id/PasswordText"
                 android:layout_below="@+id/EmailText"
                 android:layout_marginTop="4dp"
-                android:background="@color/PapayaWhip"
-                android:textColor="@color/White"
+                android:background="@color/White"
+                android:textColor="@color/Black"
                 android:textColorHint="#515151"
                 android:hint="Enter your password"
                 android:paddingLeft="4dp"
@@ -91,10 +91,10 @@
                 android:layout_below="@+id/PasswordText"
                 android:layout_marginTop="24dp"
                 android:layout_centerHorizontal="true"
-                android:textColor="@color/PapayaWhip"
+                android:textColor="@color/White"
                 android:textSize="20dp"
-                android:background="@drawable/image_button1"
-                android:fontFamily="sans-serif-light" />
+                android:fontFamily="sans-serif-light"
+                android:background="@color/AndroidGreen" />
             <Button
                 android:text="I'm not registered!"
                 android:layout_width="300dp"
@@ -103,9 +103,8 @@
                 android:background="@null"
                 android:textSize="20dp"
                 android:fontFamily="sans-serif-light"
-                android:layout_marginTop="24dp"
-                android:textColor="@color/color_gargoylegas"
-                android:layout_above="@+id/VerifyButton" />
+                android:textColor="@color/GargoyleGas"
+                android:layout_alignParentBottom="true" />
             <Button
                 android:text="Resend confirmation email"
                 android:layout_width="300dp"
@@ -114,9 +113,8 @@
                 android:background="@null"
                 android:textSize="20dp"
                 android:fontFamily="sans-serif-light"
-                android:layout_marginTop="8dp"
-                android:textColor="@color/color_gargoylegas"
-                android:layout_alignParentBottom="true" />
+                android:textColor="@color/GargoyleGas"
+                android:layout_above="@+id/RegisterButton" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

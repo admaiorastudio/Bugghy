@@ -1,4 +1,4 @@
-namespace AdMaiora.Listy
+namespace AdMaiora.Bugghy
 {
     using System;
     using System.Collections.Generic;
@@ -96,14 +96,14 @@ namespace AdMaiora.Listy
             base.OnCreateOptionsMenu(menu, inflater);
 
             menu.Clear();
-            menu.Add(Menu.None, 2, Menu.None, "Ok").SetShowAsAction(ShowAsAction.Always);
+            menu.Add(Menu.None, 1, Menu.None, "Ok").SetShowAsAction(ShowAsAction.Always);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
-            {                
-                case 2:
+            {            
+                case 1:
 
                     this.DismissKeyboard();
 

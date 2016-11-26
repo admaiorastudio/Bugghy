@@ -2,6 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:text="No available items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/NoItemsLabel"        
+        android:background="@color/DarkLiver"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/White" />  
     <admaiora.appkit.ui.ItemRecyclerView
         android:id="@+id/GimmickList"
         android:layout_width="match_parent"

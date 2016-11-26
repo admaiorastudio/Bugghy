@@ -1,4 +1,4 @@
-namespace AdMaiora.Listy
+namespace AdMaiora.Bugghy
 {
     using System;
     using System.Collections.Generic;

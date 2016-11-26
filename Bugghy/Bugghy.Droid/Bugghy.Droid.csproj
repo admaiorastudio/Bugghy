@@ -40,20 +40,20 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AdMaiora.AppKit.Core, Version=1.0.6159.29760, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdMaiora.AppKit.1.0.7\lib\MonoAndroid10\AdMaiora.AppKit.Core.dll</HintPath>
+    <Reference Include="AdMaiora.AppKit.Core, Version=1.0.6170.30919, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AdMaiora.AppKit.1.0.8\lib\MonoAndroid10\AdMaiora.AppKit.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="AdMaiora.AppKit.Core.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdMaiora.AppKit.1.0.7\lib\MonoAndroid10\AdMaiora.AppKit.Core.Android.dll</HintPath>
+      <HintPath>..\..\packages\AdMaiora.AppKit.1.0.8\lib\MonoAndroid10\AdMaiora.AppKit.Core.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AdMaiora.AppKit.UI, Version=1.0.6159.21983, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.5\lib\MonoAndroid10\AdMaiora.AppKit.UI.dll</HintPath>
+    <Reference Include="AdMaiora.AppKit.UI, Version=1.0.6171.27890, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.9\lib\MonoAndroid10\AdMaiora.AppKit.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="AdMaiora.AppKit.UI.Android, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.5\lib\MonoAndroid10\AdMaiora.AppKit.UI.Android.dll</HintPath>
+      <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.9\lib\MonoAndroid10\AdMaiora.AppKit.UI.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -133,14 +133,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bugghy.Api\Bugghy.Api.Core\Bugghy.Api.Core.csproj">
+      <Project>{5e73840e-3efa-42d5-bd68-c4ac6e7da1c6}</Project>
+      <Name>Bugghy.Api.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bugghy\Bugghy.Core.csproj">
       <Name>Bugghy.Core</Name>
       <Project>{9CC0F797-1C13-4AE1-8AEE-AAAE79D2BFDB}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BugghyApplication.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Activities\%40Activity.cs" />
+    <Compile Include="UI\Activities\MainActivity.cs" />
+    <Compile Include="UI\Activities\SplashActivity.cs" />
+    <Compile Include="UI\Fragments\IssueFragment.cs" />
+    <Compile Include="UI\Fragments\IssuesFragment.cs" />
+    <Compile Include="UI\Fragments\GimmickFragment.cs" />
+    <Compile Include="UI\Fragments\GimmicksFragment.cs" />
+    <Compile Include="UI\Fragments\%40Fragment.cs" />
+    <Compile Include="UI\Fragments\ChatFragment.cs" />
+    <Compile Include="UI\Fragments\LoginFragment.cs" />
+    <Compile Include="UI\Fragments\Registration0Fragment.cs" />
+    <Compile Include="UI\Fragments\Registration1Fragment.cs" />
+    <Compile Include="UI\Fragments\RegistrationDoneFragment.cs" />
+    <Compile Include="UI\Fragments\TextInputFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -163,6 +182,8 @@
     <AndroidResource Include="Resources\layout\FragmentIssue.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\CellChat.axml" />
+    <AndroidResource Include="Resources\raw\sound_ding.ogg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\FragmentLogin.axml" />
@@ -177,7 +198,6 @@
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
-    <Folder Include="UI\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Colors.xml" />
@@ -190,25 +210,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\image_bug1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\image_button0.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\image_button1.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\color\color_androidgreen.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\color\color_gargoylegas.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\color\color_papayawhip.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\icon_user.png" />
@@ -269,6 +270,39 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\button_send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\image_shadowDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\image_shadowTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\button_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\image_panel.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\image_right_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\button_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.4.0.1\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

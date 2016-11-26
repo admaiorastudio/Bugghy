@@ -35,7 +35,7 @@
         #region Gimmicks Endpoint Methods
 
         [Authorize]
-        [HttpPost, Route("gimmicks/addnew")]
+        [HttpPut, Route("gimmicks/addnew")]
         public IHttpActionResult AddNew(Poco.Gimmick item)
         {
             if (String.IsNullOrWhiteSpace(item.Name))
@@ -122,17 +122,17 @@
         }
 
         [Authorize]
-        [HttpPost, Route("gimmicks/delete")]
-        public IHttpActionResult Delete([FromBody]int itemId)
+        [HttpDelete, Route("gimmicks/delete")]
+        public IHttpActionResult Delete(int gimmickId)
         {
-            if (itemId <= 0)
-                return BadRequest("TodoItem ID is not valid!");
+            if (gimmickId <= 0)
+                return BadRequest("Gimmick ID is not valid!");
 
             try
             {
                 using (var ctx = new BugghyDbContext())
                 {
-                    Gimmick gi = ctx.Gimmicks.SingleOrDefault(x => x.GimmickId == itemId);
+                    Gimmick gi = ctx.Gimmicks.SingleOrDefault(x => x.GimmickId == gimmickId);
                     if (gi == null)
                         return InternalServerError(new InvalidOperationException("Invalid Gimmick ID!"));
 
@@ -170,6 +170,38 @@
                                 CreationDate = x.CreationDate
                             })
                             .ToArray()
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [Authorize]
+        [HttpGet, Route("gimmicks/stats")]
+        public IHttpActionResult GetGimmickStats(int gimmickId)
+        {
+            if (gimmickId <= 0)
+                return BadRequest("Gimmick ID is not valid!");
+
+            try
+            {
+                using (var ctx = new BugghyDbContext())
+                {
+
+                    Gimmick gi = ctx.Gimmicks.SingleOrDefault(x => x.GimmickId == gimmickId);
+                    if (gi == null)
+                        return InternalServerError(new InvalidOperationException("Invalid Gimmick ID!"));
+
+                    var query = ctx.Issues.Where(x => x.GimmickId == gimmickId);
+
+                    return Ok(Dto.Wrap(new Poco.Stats
+                    {
+                        Opened = query.Count(x => x.Status == IssueStatus.Opened),
+                        Working = query.Count(x => x.Status == IssueStatus.Evaluating || x.Status == IssueStatus.Working),
+                        Closed = query.Count(x => x.Status == IssueStatus.Resolved || x.Status == IssueStatus.Rejected || x.Status == IssueStatus.Closed)
                     }));
                 }
             }

@@ -4,17 +4,73 @@
     android:layout_height="match_parent"
     android:background="@color/Jet">
     <RelativeLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout2" />
-    <RelativeLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/HeaderLayout" />
+        android:id="@+id/HeaderLayout"
+        android:background="@color/Jet">
+        <ImageView
+            android:src="@drawable/image_issue_blocking"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:id="@+id/TypeImage"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="8dp"
+            android:layout_centerVertical="true" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/DetailsLayout"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/TypeImage"
+            android:background="@color/Jet"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_toLeftOf="@+id/ArrowImage">
+            <TextView
+                android:text="Issue title will be shown here"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/TitleLabel"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/AndroidGreen"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:textSize="16dp" />
+            <TextView
+                android:text="Created @ 01/01/2016 00:00:00"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/StatusLabel"
+                android:fontFamily="sans-serif-medium"
+                android:textSize="12dp"
+                android:textColor="@color/White"
+                android:layout_below="@+id/TitleLabel" />
+        </RelativeLayout>
+        <ImageView
+            android:src="@drawable/image_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ArrowImage"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="4dp" />
+    </RelativeLayout>
+    <TextView
+        android:text="No chat messages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/NoMessagesLabel"
+        android:layout_below="@+id/HeaderLayout"
+        android:background="#515151"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/White" />
     <admaiora.appkit.ui.ItemRecyclerView
         android:id="@+id/MessageList"
         android:layout_width="match_parent"
@@ -23,7 +79,7 @@
         android:divider="#00000000"
         android:dividerHeight="0dp"
         android:layout_above="@+id/InputLayout"
-        android:background="@color/Jet"
+        android:background="@color/DarkLiver"
         android:layout_below="@+id/HeaderLayout" />
     <RelativeLayout
         android:layout_width="match_parent"

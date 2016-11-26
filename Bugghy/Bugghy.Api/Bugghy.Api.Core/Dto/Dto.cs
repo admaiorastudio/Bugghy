@@ -6,8 +6,7 @@
     {
         public class User
         {
-            public int UserId;
-            public int FacebookId;
+            public int UserId;            
             public string Email;
             public string Password;
             public DateTime? LoginDate;
@@ -25,11 +24,19 @@
             public DateTime? CreationDate;
         }
 
+        public class Stats
+        {
+            public int Opened;
+            public int Working;
+            public int Closed;
+        }
+
         public class Issue
         {
             public int IssueId;
             public int GimmickId;
             public int UserId;
+            public string Sender;
             public string Code;        
             public string Title;
             public string Description;
@@ -45,7 +52,8 @@
         {
             public int MessageId;
             public int IssueId;
-            public int UserId;            
+            public int UserId;
+            public string Sender;      
             public string Content;
             public DateTime? PostDate;            
         }

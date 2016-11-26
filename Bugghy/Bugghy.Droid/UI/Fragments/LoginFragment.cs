@@ -1,4 +1,4 @@
-namespace AdMaiora.Listy
+namespace AdMaiora.Bugghy
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +21,10 @@ namespace AdMaiora.Listy
 
     using AdMaiora.AppKit.UI;
 
-    #pragma warning disable CS4014
+    using Android.Graphics;
+    using Android.Graphics.Drawables;
+
+#pragma warning disable CS4014
     public class LoginFragment : AdMaiora.AppKit.UI.App.Fragment
     {
         #region Inner Classes
@@ -93,14 +96,11 @@ namespace AdMaiora.Listy
             base.OnCreateView(inflater, container);
 
             #region Desinger Stuff
-
-            // Use this to return your custom view for this Fragment
+            
             SetContentView(Resource.Layout.FragmentLogin, inflater, container);
 
             SlideUpToShowKeyboard();
-
-            StartNotifyKeyboardStatus();
-
+            
             #endregion            
 
             this.ActionBar.Hide();
@@ -118,60 +118,6 @@ namespace AdMaiora.Listy
             this.VerifyButton.Click += VerifyButton_Click;
         }
 
-        public override void OnKeyboardShow()
-        {
-            base.OnKeyboardShow();
-
-            long duration = 500;
-
-            AnimatorSet set1 = new AnimatorSet();
-            set1.SetInterpolator(new AccelerateDecelerateInterpolator());
-            set1.SetTarget(this.LogoImage);
-            set1.SetDuration(duration);
-            set1.PlayTogether(new[] {
-                ObjectAnimator.OfFloat(this.LogoImage, "scaleX", .45f),
-                ObjectAnimator.OfFloat(this.LogoImage, "scaleY", .45f),
-                ObjectAnimator.OfFloat(this.LogoImage, "translationY", ViewBuilder.AsPixels(-58f))
-            });
-            set1.Start();
-
-            AnimatorSet set2 = new AnimatorSet();
-            set2.SetInterpolator(new AccelerateDecelerateInterpolator());
-            set2.SetTarget(this.InputLayout);
-            set2.SetDuration(duration);
-            set2.PlayTogether(new[] {
-                ObjectAnimator.OfFloat(this.InputLayout, "translationY", ViewBuilder.AsPixels(-130f))
-            });
-            set2.Start();
-        }
-
-        public override void OnKeyboardHide()
-        {
-            base.OnKeyboardHide();
-
-            long duration = 300;
-
-            AnimatorSet set = new AnimatorSet();
-            set.SetInterpolator(new AccelerateDecelerateInterpolator());
-            set.SetTarget(this.LogoImage);
-            set.SetDuration(duration);
-            set.PlayTogether(new[] {
-                ObjectAnimator.OfFloat(this.LogoImage, "scaleX", 1f),
-                ObjectAnimator.OfFloat(this.LogoImage, "scaleY", 1f),
-                ObjectAnimator.OfFloat(this.LogoImage, "translationY", 0f)
-            });
-            set.Start();
-
-            AnimatorSet set2 = new AnimatorSet();
-            set2.SetInterpolator(new AccelerateDecelerateInterpolator());
-            set2.SetTarget(this.InputLayout);
-            set2.SetDuration(duration);
-            set2.PlayTogether(new[] {
-                ObjectAnimator.OfFloat(this.InputLayout, "translationY", 0f)
-            });
-            set2.Start();
-        }
-
         public override void OnDestroyView()
         {
             base.OnDestroyView();
@@ -181,9 +127,7 @@ namespace AdMaiora.Listy
 
             if (_cts1 != null)
                 _cts1.Cancel();
-
-            StopNotifyKeyboardStatus();
-
+            
             this.PasswordText.EditorAction -= PasswordText_EditorAction;
             this.LoginButton.Click -= LoginButton_Click;            
             this.RegisterButton.Click -= RegisterButton_Click;
@@ -217,17 +161,16 @@ namespace AdMaiora.Listy
                 AppController.LoginUser(_cts0, _email, _password,
                     // Service call success                 
                     (data) =>
-                    {                        
+                    {
+                        AppController.Settings.LastLoginUsernameId = data.UserId;
                         AppController.Settings.LastLoginUsernameUsed = _email;
                         AppController.Settings.AuthAccessToken = data.AuthAccessToken;
                         AppController.Settings.AuthExpirationDate = data.AuthExpirationDate.GetValueOrDefault().ToLocalTime();
 
-                        var f = new AgendaFragment();
-                        f.Arguments = new Bundle();
-                        f.Arguments.PutInt("UserId", data.UserId);
+                        var f = new GimmicksFragment();
                         this.FragmentManager.BeginTransaction()
-                            .AddToBackStack("BeforeAgendaFragment")
-                            .Replace(Resource.Id.ContentLayout, f, "AgendaFragment")
+                            .AddToBackStack("BeforeGimmicksFragment")
+                            .Replace(Resource.Id.ContentLayout, f, "GimmicksFragment")
                             .Commit();
                     },
                     // Service call error

@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/CalloutLayout"
         android:layout_margin="8dp"
-        android:background="@drawable/image_callout">
+        android:background="@drawable/image_panel">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
                 android:src="@drawable/image_issue_crash"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:id="@+id/IssueImage"
+                android:id="@+id/TypeImage"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 android:layout_marginTop="8dp" />
@@ -30,13 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/DetailsLayout"
-                android:layout_toRightOf="@+id/IssueImage"
+                android:layout_toRightOf="@+id/TypeImage"
                 android:layout_marginLeft="8dp">
-                <TextView
-                    android:text="Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView2" />
                 <TextView
                     android:text="code: #00000"
                     android:layout_width="wrap_content"
@@ -51,15 +46,11 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/TitleLabel"
                     android:textColor="@color/Jet"
-                    android:lines="1"
-                    android:maxLines="1"
                     android:textSize="20dp"
                     android:fontFamily="sans-serif-medium"
                     android:scrollHorizontally="false"
                     android:ellipsize="end"
-                    android:singleLine="true"
-                    android:layout_below="@+id/CodeLabel"
-                    android:layout_marginTop="4dp" />
+                    android:layout_below="@+id/CodeLabel" />
                 <TextView
                     android:text="sender:"
                     android:layout_width="wrap_content"
@@ -74,8 +65,7 @@
                     android:scrollHorizontally="false"
                     android:ellipsize="none"
                     android:singleLine="true"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="2dp" />
+                    android:layout_marginTop="4dp" />
                 <TextView
                     android:text="Name of the sender"
                     android:layout_width="match_parent"
@@ -97,7 +87,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/DescriptionText"
+                android:id="@+id/DescriptionLabel"
                 android:layout_alignLeft="@+id/DetailsLayout"
                 android:layout_below="@+id/DetailsLayout"
                 android:layout_marginTop="8dp"
@@ -114,7 +104,7 @@
                 android:id="@+id/CreatedLabel"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@color/AndroidGreen"
-                android:layout_below="@+id/DescriptionText"
+                android:layout_below="@+id/DescriptionLabel"
                 android:layout_alignLeft="@+id/DetailsLayout"
                 android:textSize="12dp"
                 android:layout_marginTop="8dp" />
@@ -125,7 +115,7 @@
                 android:id="@+id/CreatedDateLabel"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@color/Jet"
-                android:layout_below="@+id/DescriptionText"
+                android:layout_below="@+id/DescriptionLabel"
                 android:layout_toRightOf="@+id/CreatedLabel"
                 android:textSize="12dp"
                 android:layout_marginTop="8dp"
@@ -137,7 +127,7 @@
                 android:id="@+id/StatusLabel"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@color/AndroidGreen"
-                android:layout_below="@+id/DescriptionText"
+                android:layout_below="@+id/DescriptionLabel"
                 android:layout_toRightOf="@+id/CreatedDateLabel"
                 android:textSize="12dp"
                 android:layout_marginTop="8dp"
@@ -149,7 +139,7 @@
                 android:id="@+id/StatusDescriptionLabel"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@color/Jet"
-                android:layout_below="@+id/DescriptionText"
+                android:layout_below="@+id/DescriptionLabel"
                 android:layout_toRightOf="@+id/StatusLabel"
                 android:textSize="12dp"
                 android:layout_marginTop="8dp"

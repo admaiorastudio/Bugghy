@@ -53,24 +53,36 @@
             android:gravity="center"
             android:fontFamily="sans-serif-medium"
             android:textColor="@color/AndroidGreen" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/AddButton"
+            android:layout_below="@+id/OwnerLabel"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@drawable/button_add" />
         <View
             android:layout_width="100dp"
             android:layout_height="1dp"
             android:id="@+id/LineView"
             android:background="@color/PapayaWhip"
-            android:layout_below="@+id/OwnerLabel"
+            android:layout_below="@+id/AddButton"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="64dp"
-            android:layout_marginBottom="64dp" />
+            android:layout_marginTop="32dp"
+            android:visibility="gone" />
         <RelativeLayout
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/IssuesLayout"
-            android:layout_below="@+id/LineView">
+            android:layout_below="@+id/AddButton"
+            android:layout_marginTop="40dp">
             <RelativeLayout
                 android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_height="90dp"
                 android:id="@+id/OpenedLayout">
                 <TextView
                     android:text="0"
@@ -78,23 +90,23 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/OpenedNumberLabel"
                     android:textSize="54dp"
-                    android:textColor="@color/AndroidGreen"
                     android:layout_centerHorizontal="true"
-                    android:fontFamily="sans-serif-light" />
-                <TextView
-                    android:text="opened"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/OpenedLabel"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/OpenedNumberLabel"
-                    android:textColor="@color/PapayaWhip"
                     android:fontFamily="sans-serif-light"
-                    android:textSize="20dp" />
+                    android:textColor="@color/DarkLiver" />
+                <Button
+                    android:text="opened"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ViewOpenedButton"
+                    android:background="@null"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="bottom|center"
+                    android:textColor="@color/AndroidGreen"
+                    android:textSize="16dp" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_height="90dp"
                 android:id="@+id/WorkingLayout"
                 android:layout_toRightOf="@+id/OpenedLayout">
                 <TextView
@@ -103,23 +115,23 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/WorkingNumberLabel"
                     android:textSize="54dp"
-                    android:textColor="@color/AndroidGreen"
+                    android:textColor="@color/DarkLiver"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="sans-serif-light" />
-                <TextView
+                <Button
                     android:text="working"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/WorkingLabel"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/WorkingNumberLabel"
-                    android:textColor="@color/PapayaWhip"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ViewWorkingButton"
+                    android:background="@null"
                     android:fontFamily="sans-serif-light"
-                    android:textSize="20dp" />
+                    android:gravity="bottom|center"
+                    android:textColor="@color/AndroidGreen"
+                    android:textSize="16dp" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_height="90dp"
                 android:id="@+id/ClosedLayout"
                 android:layout_toRightOf="@+id/WorkingLayout">
                 <TextView
@@ -128,19 +140,19 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/ClosedNumberLabel"
                     android:textSize="54dp"
-                    android:textColor="@color/AndroidGreen"
+                    android:textColor="@color/DarkLiver"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="sans-serif-light" />
-                <TextView
+                <Button
                     android:text="closed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/ClosedLabel"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/ClosedNumberLabel"
-                    android:textColor="@color/PapayaWhip"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/ViewClosedButton"
+                    android:background="@null"
                     android:fontFamily="sans-serif-light"
-                    android:textSize="20dp" />
+                    android:gravity="bottom|center"
+                    android:textColor="@color/AndroidGreen"
+                    android:textSize="16dp" />
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>

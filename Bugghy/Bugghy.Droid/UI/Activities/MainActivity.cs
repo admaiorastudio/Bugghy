@@ -1,4 +1,4 @@
-﻿namespace AdMaiora.Listy
+﻿namespace AdMaiora.Bugghy
 {
     using System;
 
@@ -14,7 +14,7 @@
     using AdMaiora.AppKit.UI.App;
 
     [Activity(
-        Label = "Listy",
+        Label = "Bugghy",
         Theme = "@style/AppTheme",        
         LaunchMode = LaunchMode.SingleTask,       
         WindowSoftInputMode = SoftInput.AdjustNothing,             
@@ -26,8 +26,7 @@
 
         #region Constants and Fields
 
-        private bool _userRestored;
-        private int _userId;
+        private bool _userRestored;        
 
         #endregion
 
@@ -80,15 +79,12 @@
                                 
                 _userRestored = this.Arguments.GetBoolean("UserRestored", false);
                 if (_userRestored)
-                {
-                    _userId = this.Arguments.GetInt("UserId");
-
-                    var f = new AgendaFragment();
-                    f.Arguments = new Bundle();
-                    f.Arguments.PutInt("UserId", _userId);
+                {                    
+                    var f = new GimmicksFragment();
+                    f.Arguments = new Bundle();                             
                     this.SupportFragmentManager.BeginTransaction()
-                        .AddToBackStack("BeforeAgendaFragment")
-                        .Replace(Resource.Id.ContentLayout, f, "AgendaFragment")
+                        .AddToBackStack("BeforeGimmicksFragment")
+                        .Replace(Resource.Id.ContentLayout, f, "GimmicksFragment")
                         .Commit();
                 }
             }
