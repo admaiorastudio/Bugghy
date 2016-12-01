@@ -118,6 +118,10 @@
       <Name>Bugghy.Core</Name>
       <Project>{9CC0F797-1C13-4AE1-8AEE-AAAE79D2BFDB}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Bugghy.Api\Bugghy.Api.Core\Bugghy.Api.Core.csproj">
+      <Project>{5E73840E-3EFA-42D5-BD68-C4AC6E7DA1C6}</Project>
+      <Name>Bugghy.Api.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
@@ -186,6 +190,95 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\MainControllers\%40ViewController.cs" />
+    <Compile Include="UI\MainControllers\MainViewController.cs" />
+    <Compile Include="UI\MainControllers\MainViewController.designer.cs" />
+    <Compile Include="UI\MainControllers\SplashViewController.cs" />
+    <Compile Include="UI\MainControllers\SplashViewController.designer.cs" />
+    <Compile Include="UI\SubControllers\%40SubController.cs" />
+    <Compile Include="UI\SubControllers\LoginViewController.cs" />
+    <Compile Include="UI\SubControllers\LoginViewController.designer.cs" />
+    <Compile Include="UI\SubControllers\Registration0ViewController.cs" />
+    <Compile Include="UI\SubControllers\Registration0ViewController.designer.cs" />
+    <Compile Include="UI\SubControllers\Registration1ViewController.cs" />
+    <Compile Include="UI\SubControllers\Registration1ViewController.designer.cs" />
+    <Compile Include="UI\SubControllers\RegistrationDoneViewController.cs" />
+    <Compile Include="UI\SubControllers\RegistrationDoneViewController.designer.cs" />
+    <Compile Include="UI\SubControllers\TextInputViewController.cs" />
+    <Compile Include="UI\SubControllers\TextInputViewController.designer.cs" />
+    <Compile Include="UI\SubControllers\ChatViewController.cs" />
+    <Compile Include="UI\SubControllers\ChatViewController.designer.cs" />
+    <Compile Include="UI\SubControllers\GimmickViewController.cs" />
+    <Compile Include="UI\SubControllers\GimmickViewController.designer.cs">
+      <DependentUpon>GimmickViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SubControllers\GimmicksViewController.cs" />
+    <Compile Include="UI\SubControllers\GimmicksViewController.designer.cs">
+      <DependentUpon>GimmicksViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SubControllers\IssueViewController.cs" />
+    <Compile Include="UI\SubControllers\IssueViewController.designer.cs">
+      <DependentUpon>IssueViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SubControllers\IssuesViewController.cs" />
+    <Compile Include="UI\SubControllers\IssuesViewController.designer.cs">
+      <DependentUpon>IssuesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layouts\Cells\ChatViewCell.cs" />
+    <Compile Include="Resources\Layouts\Cells\ChatViewCell.designer.cs" />
+    <Compile Include="Resources\Layouts\Cells\GimmickViewCell.cs" />
+    <Compile Include="Resources\Layouts\Cells\GimmickViewCell.designer.cs">
+      <DependentUpon>GimmickViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Layouts\Cells\IssueViewCell.cs" />
+    <Compile Include="Resources\Layouts\Cells\IssueViewCell.designer.cs">
+      <DependentUpon>IssueViewCell.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\Layouts\LoginViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\MainViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\Registration0ViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\Registration1ViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\RegistrationDoneViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\SplashViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\TextInputViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\Cells\ChatViewCell.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\ChatViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\GimmicksViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\GimmickViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\IssuesViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\IssueViewController.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\Cells\GimmickViewCell.xib" />
+    <InterfaceDefinition Include="Resources\Layouts\Cells\IssueViewCell.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\button_add.png" />
+    <BundleResource Include="Resources\button_edit.png" />
+    <BundleResource Include="Resources\button_send.png" />
+    <BundleResource Include="Resources\icon_locker.png" />
+    <BundleResource Include="Resources\icon_user.png" />
+    <BundleResource Include="Resources\image_back1.png" />
+    <BundleResource Include="Resources\image_bug.png" />
+    <BundleResource Include="Resources\image_bug1.png" />
+    <BundleResource Include="Resources\image_callout_lb.png" />
+    <BundleResource Include="Resources\image_callout_lm.png" />
+    <BundleResource Include="Resources\image_callout_lt.png" />
+    <BundleResource Include="Resources\image_callout_mb.png" />
+    <BundleResource Include="Resources\image_callout_mm.png" />
+    <BundleResource Include="Resources\image_callout_mt.png" />
+    <BundleResource Include="Resources\image_callout_rb.png" />
+    <BundleResource Include="Resources\image_callout_rm.png" />
+    <BundleResource Include="Resources\image_callout_rt.png" />
+    <BundleResource Include="Resources\image_callout_v.png" />
+    <BundleResource Include="Resources\image_empty_thumb.png" />
+    <BundleResource Include="Resources\image_gear.png" />
+    <BundleResource Include="Resources\image_issue_blocking.png" />
+    <BundleResource Include="Resources\image_issue_crash.png" />
+    <BundleResource Include="Resources\image_issue_nblocking.png" />
+    <BundleResource Include="Resources\image_right_arrow.png" />
+    <BundleResource Include="Resources\image_shadowDown.png" />
+    <BundleResource Include="Resources\image_shadowTop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
