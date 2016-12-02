@@ -177,7 +177,15 @@
                 <outlet property="CalloutLayout" destination="ZXT-mt-bkj" id="DSQ-3h-TQ9"/>
                 <outlet property="CodeLabel" destination="74f-Fz-Or0" id="66H-xz-5A8"/>
                 <outlet property="ContentLayout" destination="jSc-m4-ykc" id="HL6-tw-Io3"/>
+                <outlet property="CreatedDateLabel" destination="H4m-Qm-tRz" id="mue-H0-3SF"/>
+                <outlet property="CreatedLabel" destination="Mrj-Cw-c4N" id="uzH-De-qNW"/>
+                <outlet property="DescriptionLabel" destination="jtv-E2-54i" id="42X-Me-ole"/>
                 <outlet property="DetailsLayout" destination="ZwL-Bb-fFR" id="he9-eG-pfu"/>
+                <outlet property="OfLabel" destination="qq4-U5-4TI" id="bB1-Pj-Ny5"/>
+                <outlet property="SenderLabel" destination="j4Z-GX-rRl" id="Ofe-6L-bIr"/>
+                <outlet property="StatusDescriptionLabel" destination="ADS-iO-Q8Q" id="LA0-N5-2Nf"/>
+                <outlet property="StatusLabel" destination="Hp3-l3-1GL" id="xBg-8M-8Vx"/>
+                <outlet property="TitleLabel" destination="UOB-eE-fvc" id="RpJ-FG-3B7"/>
                 <outlet property="TypeImage" destination="YNb-T2-KUL" id="5PO-Gq-Oew"/>
             </connections>
             <point key="canvasLocation" x="-111" y="36"/>

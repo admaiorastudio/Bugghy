@@ -13,19 +13,43 @@ namespace AdMaiora.Bugghy
 	partial class IssueViewCell
 	{
 		[Outlet]
-        public UIKit.UIView CalloutLayout { get; set; }
+		UIKit.UIView CalloutLayout { get; set; }
 
 		[Outlet]
-        public UIKit.UILabel CodeLabel { get; set; }
+		UIKit.UILabel CodeLabel { get; set; }
 
 		[Outlet]
-        public UIKit.UIView ContentLayout { get; set; }
+		UIKit.UIView ContentLayout { get; set; }
 
 		[Outlet]
-        public UIKit.UIView DetailsLayout { get; set; }
+		UIKit.UILabel CreatedDateLabel { get; set; }
 
 		[Outlet]
-        public UIKit.UIImageView TypeImage { get; set; }
+		UIKit.UILabel CreatedLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel DescriptionLabel { get; set; }
+
+		[Outlet]
+		UIKit.UIView DetailsLayout { get; set; }
+
+		[Outlet]
+		UIKit.UILabel OfLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel SenderLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel StatusDescriptionLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel StatusLabel { get; set; }
+
+		[Outlet]
+		UIKit.UILabel TitleLabel { get; set; }
+
+		[Outlet]
+		UIKit.UIImageView TypeImage { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -52,6 +76,46 @@ namespace AdMaiora.Bugghy
 			if (CodeLabel != null) {
 				CodeLabel.Dispose ();
 				CodeLabel = null;
+			}
+
+			if (TitleLabel != null) {
+				TitleLabel.Dispose ();
+				TitleLabel = null;
+			}
+
+			if (OfLabel != null) {
+				OfLabel.Dispose ();
+				OfLabel = null;
+			}
+
+			if (SenderLabel != null) {
+				SenderLabel.Dispose ();
+				SenderLabel = null;
+			}
+
+			if (DescriptionLabel != null) {
+				DescriptionLabel.Dispose ();
+				DescriptionLabel = null;
+			}
+
+			if (CreatedLabel != null) {
+				CreatedLabel.Dispose ();
+				CreatedLabel = null;
+			}
+
+			if (CreatedDateLabel != null) {
+				CreatedDateLabel.Dispose ();
+				CreatedDateLabel = null;
+			}
+
+			if (StatusLabel != null) {
+				StatusLabel.Dispose ();
+				StatusLabel = null;
+			}
+
+			if (StatusDescriptionLabel != null) {
+				StatusDescriptionLabel.Dispose ();
+				StatusDescriptionLabel = null;
 			}
 		}
 	}
