@@ -16,7 +16,16 @@ namespace AdMaiora.Bugghy
 		UIKit.UIView CalloutLayout { get; set; }
 
 		[Outlet]
+		UIKit.UILabel CodeLabel { get; set; }
+
+		[Outlet]
 		UIKit.UIView ContentLayout { get; set; }
+
+		[Outlet]
+		UIKit.UIView DetailsLayout { get; set; }
+
+		[Outlet]
+		UIKit.UIImageView TypeImage { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -28,6 +37,21 @@ namespace AdMaiora.Bugghy
 			if (ContentLayout != null) {
 				ContentLayout.Dispose ();
 				ContentLayout = null;
+			}
+
+			if (TypeImage != null) {
+				TypeImage.Dispose ();
+				TypeImage = null;
+			}
+
+			if (DetailsLayout != null) {
+				DetailsLayout.Dispose ();
+				DetailsLayout = null;
+			}
+
+			if (CodeLabel != null) {
+				CodeLabel.Dispose ();
+				CodeLabel = null;
 			}
 		}
 	}
