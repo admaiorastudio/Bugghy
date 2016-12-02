@@ -80,8 +80,7 @@
                 _userRestored = this.Arguments.GetBoolean("UserRestored", false);
                 if (_userRestored)
                 {                    
-                    var f = new GimmicksFragment();
-                    f.Arguments = new Bundle();                             
+                    var f = new GimmicksFragment();                    
                     this.SupportFragmentManager.BeginTransaction()
                         .AddToBackStack("BeforeGimmicksFragment")
                         .Replace(Resource.Id.ContentLayout, f, "GimmicksFragment")

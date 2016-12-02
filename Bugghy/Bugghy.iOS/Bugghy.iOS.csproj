@@ -190,24 +190,40 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Layouts\Cells\ChatViewCell.designer.cs">
+      <DependentUpon>ChatViewCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\MainControllers\%40ViewController.cs" />
     <Compile Include="UI\MainControllers\MainViewController.cs" />
-    <Compile Include="UI\MainControllers\MainViewController.designer.cs" />
+    <Compile Include="UI\MainControllers\MainViewController.designer.cs">
+      <DependentUpon>MainViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\MainControllers\SplashViewController.cs" />
-    <Compile Include="UI\MainControllers\SplashViewController.designer.cs" />
+    <Compile Include="UI\MainControllers\SplashViewController.designer.cs">
+      <DependentUpon>SplashViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SubControllers\%40SubController.cs" />
+    <Compile Include="UI\SubControllers\ChatViewController.designer.cs">
+      <DependentUpon>ChatViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SubControllers\LoginViewController.cs" />
-    <Compile Include="UI\SubControllers\LoginViewController.designer.cs" />
+    <Compile Include="UI\SubControllers\LoginViewController.designer.cs">
+      <DependentUpon>LoginViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SubControllers\Registration0ViewController.cs" />
-    <Compile Include="UI\SubControllers\Registration0ViewController.designer.cs" />
+    <Compile Include="UI\SubControllers\Registration0ViewController.designer.cs">
+      <DependentUpon>Registration0ViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SubControllers\Registration1ViewController.cs" />
-    <Compile Include="UI\SubControllers\Registration1ViewController.designer.cs" />
+    <Compile Include="UI\SubControllers\Registration1ViewController.designer.cs">
+      <DependentUpon>Registration1ViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SubControllers\RegistrationDoneViewController.cs" />
-    <Compile Include="UI\SubControllers\RegistrationDoneViewController.designer.cs" />
+    <Compile Include="UI\SubControllers\RegistrationDoneViewController.designer.cs">
+      <DependentUpon>RegistrationDoneViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SubControllers\TextInputViewController.cs" />
-    <Compile Include="UI\SubControllers\TextInputViewController.designer.cs" />
     <Compile Include="UI\SubControllers\ChatViewController.cs" />
-    <Compile Include="UI\SubControllers\ChatViewController.designer.cs" />
     <Compile Include="UI\SubControllers\GimmickViewController.cs" />
     <Compile Include="UI\SubControllers\GimmickViewController.designer.cs">
       <DependentUpon>GimmickViewController.cs</DependentUpon>
@@ -225,7 +241,6 @@
       <DependentUpon>IssuesViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Resources\Layouts\Cells\ChatViewCell.cs" />
-    <Compile Include="Resources\Layouts\Cells\ChatViewCell.designer.cs" />
     <Compile Include="Resources\Layouts\Cells\GimmickViewCell.cs" />
     <Compile Include="Resources\Layouts\Cells\GimmickViewCell.designer.cs">
       <DependentUpon>GimmickViewCell.cs</DependentUpon>
@@ -233,6 +248,9 @@
     <Compile Include="Resources\Layouts\Cells\IssueViewCell.cs" />
     <Compile Include="Resources\Layouts\Cells\IssueViewCell.designer.cs">
       <DependentUpon>IssueViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SubControllers\TextInputViewController.designer.cs">
+      <DependentUpon>TextInputViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

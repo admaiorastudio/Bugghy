@@ -24,6 +24,7 @@ namespace AdMaiora.Bugghy
         Theme = "@style/AppTheme.Splash",
         ScreenOrientation = ScreenOrientation.Portrait,
         NoHistory = true,
+        LaunchMode = LaunchMode.SingleTask,
         ConfigurationChanges =
             ConfigChanges.Orientation | ConfigChanges.ScreenSize |
             ConfigChanges.KeyboardHidden | ConfigChanges.Keyboard

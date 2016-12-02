@@ -54,8 +54,8 @@
             android:fontFamily="sans-serif-medium"
             android:textColor="@color/AndroidGreen" />
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:id="@+id/AddButton"
             android:layout_below="@+id/OwnerLabel"
             android:layout_centerHorizontal="true"
@@ -64,15 +64,6 @@
             android:scaleType="fitCenter"
             android:background="@null"
             android:src="@drawable/button_add" />
-        <View
-            android:layout_width="100dp"
-            android:layout_height="1dp"
-            android:id="@+id/LineView"
-            android:background="@color/PapayaWhip"
-            android:layout_below="@+id/AddButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="32dp"
-            android:visibility="gone" />
         <RelativeLayout
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"

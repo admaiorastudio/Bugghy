@@ -107,8 +107,7 @@
                 (data) =>
                 {                    
                     UIBundle b = new UIBundle();
-                    b.PutBoolean("UserRestored", true);
-                    b.PutInt("UserId", data.UserId);
+                    b.PutBoolean("UserRestored", true);                    
                     MakeRoot(typeof(MainViewController), b);
                 },
                 // Service call error

@@ -1,26 +1,62 @@
-﻿using System;
-
-using UIKit;
-
-namespace AdMaiora.Bugghy
+﻿namespace AdMaiora.Bugghy
 {
-    public partial class IssueViewController : UIViewController
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
+    using Foundation;
+    using UIKit;
+
+    public partial class IssueViewController : AdMaiora.AppKit.UI.App.UISubViewController
     {
-        public IssueViewController () : base ("IssueViewController", null)
+        #region Inner Classes
+        #endregion
+
+        #region Constants and Fields
+        #endregion
+
+        #region Constructors
+
+        public IssueViewController()
+            : base("IssueViewController", null)
         {
         }
 
-        public override void ViewDidLoad ()
+        #endregion
+
+        #region Properties
+        #endregion
+
+        #region ViewController Methods
+
+        public override void ViewDidLoad()
         {
-            base.ViewDidLoad ();
-            // Perform any additional setup after loading the view, typically from a nib.
+            base.ViewDidLoad();
         }
 
-        public override void DidReceiveMemoryWarning ()
+        public override void ViewWillAppear(bool animated)
         {
-            base.DidReceiveMemoryWarning ();
-            // Release any cached data, images, etc that aren't in use.
+            base.ViewWillAppear(animated);
+
+            #region Designer Stuff
+            #endregion
         }
+
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+        }
+
+        #endregion
+
+        #region Public Methods
+        #endregion
+
+        #region Methods
+        #endregion
+
+        #region Event Handlers
+        #endregion
     }
 }
-

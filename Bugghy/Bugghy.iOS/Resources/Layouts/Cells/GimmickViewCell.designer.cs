@@ -13,25 +13,25 @@ namespace AdMaiora.Bugghy
 	partial class GimmickViewCell
 	{
 		[Outlet]
-		UIKit.UIView CalloutLayout { get; set; }
+		public UIKit.UIView CalloutLayout { get; set; }
 
 		[Outlet]
-		UIKit.UIView ContentLayout { get; set; }
+        public UIKit.UIView ContentLayout { get; set; }
 
 		[Outlet]
-		UIKit.UIView DetailsLayout { get; set; }
+        public UIKit.UIView DetailsLayout { get; set; }
 
 		[Outlet]
-		UIKit.UILabel NameLabel { get; set; }
+        public UIKit.UILabel NameLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel OfLabel { get; set; }
+        public UIKit.UILabel OfLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel OwnerLabel { get; set; }
+        public UIKit.UILabel OwnerLabel { get; set; }
 
 		[Outlet]
-		UIKit.UIImageView ThumbImage { get; set; }
+        public UIKit.UIImageView ThumbImage { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

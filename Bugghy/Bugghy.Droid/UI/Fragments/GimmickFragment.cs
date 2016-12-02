@@ -163,6 +163,7 @@ namespace AdMaiora.Bugghy
         #endregion
 
         #region Methods
+
         private void RefreshThumb()
         {
             if (_gimmick.ImageUrl != null)
@@ -242,15 +243,13 @@ namespace AdMaiora.Bugghy
             this.ViewOpenedButton.Enabled = opened > 0;            
             this.ViewOpenedButton.SetTextUnderline(opened > 0);            
 
-            int working = stats["Working"];
-            this.WorkingLayout.Clickable = opened > 0;
+            int working = stats["Working"];            
             this.WorkingNumberLabel.Text = working.ToString();
             this.WorkingNumberLabel.SetTextColor(ViewBuilder.ColorFromARGB(working > 0 ? AppController.Colors.AndroidGreen : AppController.Colors.DarkLiver));
             this.ViewWorkingButton.Enabled = working > 0;            
             this.ViewWorkingButton.SetTextUnderline(working > 0);
 
-            int closed = stats["Closed"];
-            this.ClosedLayout.Clickable = opened > 0;
+            int closed = stats["Closed"];            
             this.ClosedNumberLabel.Text = closed.ToString();
             this.ClosedNumberLabel.SetTextColor(ViewBuilder.ColorFromARGB(closed > 0 ? AppController.Colors.AndroidGreen : AppController.Colors.DarkLiver));
             this.ViewClosedButton.Enabled = closed > 0;            

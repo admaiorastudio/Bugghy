@@ -13,19 +13,19 @@ namespace AdMaiora.Bugghy
 	partial class IssueViewCell
 	{
 		[Outlet]
-		UIKit.UIView CalloutLayout { get; set; }
+        public UIKit.UIView CalloutLayout { get; set; }
 
 		[Outlet]
-		UIKit.UILabel CodeLabel { get; set; }
+        public UIKit.UILabel CodeLabel { get; set; }
 
 		[Outlet]
-		UIKit.UIView ContentLayout { get; set; }
+        public UIKit.UIView ContentLayout { get; set; }
 
 		[Outlet]
-		UIKit.UIView DetailsLayout { get; set; }
+        public UIKit.UIView DetailsLayout { get; set; }
 
 		[Outlet]
-		UIKit.UIImageView TypeImage { get; set; }
+        public UIKit.UIImageView TypeImage { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
