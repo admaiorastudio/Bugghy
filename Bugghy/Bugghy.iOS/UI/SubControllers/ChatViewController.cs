@@ -52,8 +52,8 @@ namespace AdMaiora.Bugghy
                 bool isSent = item.PostDate.GetValueOrDefault() != DateTime.MinValue;
 
                 var margins = cell.ContentView.LayoutMarginsGuide;
-                cell.CalloutLayout.LeadingAnchor.ConstraintEqualTo(margins.LeadingAnchor, 4).Active = !isYours;
-                cell.CalloutLayout.TrailingAnchor.ConstraintEqualTo(margins.TrailingAnchor, 4).Active = isYours;                
+                cell.CalloutLayout.LeadingAnchor.ConstraintEqualTo(margins.LeadingAnchor, 0).Active = !isYours;
+                cell.CalloutLayout.TrailingAnchor.ConstraintEqualTo(margins.TrailingAnchor, 0).Active = isYours;                
                 cell.CalloutLayout.BackgroundColor = 
                     ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.PapayaWhip : AppController.Colors.AndroidGreen);
                 cell.CalloutLayout.Alpha = isSent ? 1 : .35f;
