@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cxk-wN-pdQ" id="YTl-1W-gDM">
-                <frame key="frameInset" width="320" height="87"/>
+                <frame key="frameInset" width="320" height="88"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jqs-AY-Yxy">
@@ -25,6 +25,12 @@
                                             <constraint firstAttribute="width" constant="48" id="56u-B4-Dsp"/>
                                             <constraint firstAttribute="height" constant="48" id="6mf-iH-0lq"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="24"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d35-E4-fKX">
                                         <subviews>
@@ -68,6 +74,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" red="0.2274509804" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="d35-E4-fKX" firstAttribute="top" secondItem="jCS-mC-Gji" secondAttribute="top" constant="8" id="6eD-8e-KuL"/>
                                     <constraint firstItem="yzd-Ue-J3F" firstAttribute="centerY" secondItem="jCS-mC-Gji" secondAttribute="centerY" id="BpP-Mp-N63"/>
@@ -85,7 +92,7 @@
                             <constraint firstItem="jCS-mC-Gji" firstAttribute="top" secondItem="Jqs-AY-Yxy" secondAttribute="top" constant="8" id="iDi-kq-ZxZ"/>
                             <constraint firstAttribute="trailing" secondItem="jCS-mC-Gji" secondAttribute="trailing" constant="4" id="pvX-jt-bM3"/>
                             <constraint firstItem="jCS-mC-Gji" firstAttribute="leading" secondItem="Jqs-AY-Yxy" secondAttribute="leading" constant="4" id="sdO-id-6VH"/>
-                            <constraint firstAttribute="bottom" secondItem="jCS-mC-Gji" secondAttribute="bottom" constant="9" id="skR-Yr-7dG"/>
+                            <constraint firstAttribute="bottom" secondItem="jCS-mC-Gji" secondAttribute="bottom" constant="8" id="skR-Yr-7dG"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -99,10 +106,10 @@
                 </subviews>
                 <color key="backgroundColor" red="0.2274509804" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="Jqs-AY-Yxy" secondAttribute="trailing" constant="-4" id="Dd0-QS-je2"/>
-                    <constraint firstItem="Jqs-AY-Yxy" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="topMargin" constant="-5" id="boc-O3-Mc1"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Jqs-AY-Yxy" secondAttribute="bottom" constant="-5" id="g88-pO-ViY"/>
-                    <constraint firstItem="Jqs-AY-Yxy" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" constant="-4" id="jqI-XN-Cv9"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Jqs-AY-Yxy" secondAttribute="trailing" id="Dd0-QS-je2"/>
+                    <constraint firstItem="Jqs-AY-Yxy" firstAttribute="top" secondItem="YTl-1W-gDM" secondAttribute="topMargin" id="boc-O3-Mc1"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Jqs-AY-Yxy" secondAttribute="bottom" constant="-8" id="drH-hh-A7W"/>
+                    <constraint firstItem="Jqs-AY-Yxy" firstAttribute="leading" secondItem="YTl-1W-gDM" secondAttribute="leadingMargin" id="jqI-XN-Cv9"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
