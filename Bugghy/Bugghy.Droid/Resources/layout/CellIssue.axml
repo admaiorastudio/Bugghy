@@ -96,7 +96,8 @@
                 android:ellipsize="end"
                 android:maxLines="5"
                 android:lines="5"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec nulla ex. Ut condimentum, lacus nec scelerisque pellentesque, velit turpis iaculis neque, in faucibus est est at leo. Mauris sagittis eleifend rhoncus. Nullam finibus, ligula a commodo venenatis, diam sapien tristique magna, vel lobortis felis quam nec ipsum. Aenean a congue augue. Quisque consequat sit amet elit vitae eleifend. Suspendisse eget eros pretium, tempus leo nec, blandit neque." />
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec nulla ex. Ut condimentum, lacus nec scelerisque pellentesque, velit turpis iaculis neque, in faucibus est est at leo. Mauris sagittis eleifend rhoncus. Nullam finibus, ligula a commodo venenatis, diam sapien tristique magna, vel lobortis felis quam nec ipsum. Aenean a congue augue. Quisque consequat sit amet elit vitae eleifend. Suspendisse eget eros pretium, tempus leo nec, blandit neque."
+                android:textSize="14dp" />
             <TextView
                 android:text="created:"
                 android:layout_width="wrap_content"

@@ -22,7 +22,7 @@ namespace AdMaiora.Bugghy
     using AdMaiora.Bugghy.Api;
     using AdMaiora.Bugghy.Model;
 
-#pragma warning disable CS4014
+    #pragma warning disable CS4014
     public class ChatFragment : AdMaiora.AppKit.UI.App.Fragment
     {
         #region Inner Classes
@@ -78,11 +78,9 @@ namespace AdMaiora.Bugghy
                 bool isSent = item.PostDate.GetValueOrDefault() != DateTime.MinValue;
 
                 ((RelativeLayout)view).SetGravity(isYours ? GravityFlags.Right : GravityFlags.Left);
-
                 holder.CalloutLayout.Background.SetColorFilter(
                     ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.PapayaWhip : AppController.Colors.AndroidGreen),
                     PorterDuff.Mode.SrcIn);
-
                 holder.CalloutLayout.Alpha = isSent ? 1 : .35f;
 
                 holder.SenderLabel.Text = String.Concat(isYours ? "YOU" : item.Sender.Split('@')[0], "   ");
@@ -288,8 +286,7 @@ namespace AdMaiora.Bugghy
                 case IssueStatus.Rejected:
                 case IssueStatus.Closed:
                     statusDate = _issue.ClosedDate;
-                    break;
-                    
+                    break;                    
             }
 
             this.StatusLabel.Text = String.Format("{0} @ {1:G}",

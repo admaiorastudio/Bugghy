@@ -15,111 +15,72 @@ namespace AdMaiora.Bugghy
     using AdMaiora.AppKit.UI.App;
 
     using AdMaiora.Bugghy.Api;
+    using AdMaiora.Bugghy.Model;    
 
     #pragma warning disable CS4014
     public partial class ChatViewController : AdMaiora.AppKit.UI.App.UISubViewController
     {
         #region Inner Classes
 
-        class Message
-        {
-            #region Properties
-
-            public int MessageId
-            {
-                get;
-                set;
-            }
-
-            public string Content
-            {
-                get;
-                set;
-            }
-
-            public DateTime SendDate
-            {
-                get;
-                set;
-            }
-
-            public string Sender
-            {
-                get;
-                set;
-            }
-
-            #endregion
-        }
-
-        private class ChatViewSource : UIItemListViewSource<Message>
+        private class ChatViewSource : UIItemListViewSource<Model.Message>
         {
             #region Constants and Fields
 
-            private Random _rnd;
-
-            private List<string> _palette;
-            private Dictionary<string, string> _colors;
+            private string _currentUser;
 
             #endregion
 
             #region Constructors
 
-            public ChatViewSource(UIViewController controller, IEnumerable<Message> source)
+            public ChatViewSource(UIViewController controller, IEnumerable<Model.Message> source)
                 : base(controller, "ChatViewCell", source)
             {
-                _rnd = new Random(DateTime.Now.Second);
-
-                _palette = new List<string>
-                {
-                    "C3BEF7", "8A4FFF", "273C2C", "626868", "80727B", "62929E",
-                    "F79256", "66101F", "DB995A", "654236", "6369D1", "22181C ",
-                    "998FC7", "5B2333", "564D4A"
-
-                };
-
-                _colors = new Dictionary<string, string>();
+                _currentUser = AppController.Settings.LastLoginUsernameUsed;
             }
 
             #endregion
 
             #region Public Methods
 
-            public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath, UITableViewCell cellView, Message item)
+            public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath, UITableViewCell cellView, Model.Message item)
             {
                 var cell = cellView as ChatViewCell;
 
                 cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 
-                bool isYours = String.IsNullOrWhiteSpace(item.Sender);
-                bool isSending = item.SendDate == DateTime.MinValue;
-                bool isSent = item.SendDate != DateTime.MinValue && item.SendDate != DateTime.MaxValue;
-                bool isLost = item.SendDate == DateTime.MaxValue;
-
-                if (!isYours && !_colors.ContainsKey(item.Sender))
-                    _colors.Add(item.Sender, _palette[_rnd.Next(_palette.Count)]);
+                bool isYours = _currentUser == item.Sender;
+                bool isSending = item.PostDate == null;
+                bool isSent = item.PostDate.GetValueOrDefault() != DateTime.MinValue;
 
                 var margins = cell.ContentView.LayoutMarginsGuide;
                 cell.CalloutLayout.LeadingAnchor.ConstraintEqualTo(margins.LeadingAnchor, 4).Active = !isYours;
-                cell.CalloutLayout.TrailingAnchor.ConstraintEqualTo(margins.TrailingAnchor, 4).Active = isYours;
-
-                cell.SenderLabel.Text = String.Concat(isYours ? "YOU" : item.Sender.Split('@')[0], "   ");
-
+                cell.CalloutLayout.TrailingAnchor.ConstraintEqualTo(margins.TrailingAnchor, 4).Active = isYours;                
                 cell.CalloutLayout.BackgroundColor = 
-                    ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.PictonBlue : _colors[item.Sender]);
-
+                    ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.PapayaWhip : AppController.Colors.AndroidGreen);
                 cell.CalloutLayout.Alpha = isSent ? 1 : .35f;
 
-                cell.MessageLabel.Text = String.Concat(item.Content, "   ");
+                cell.SenderLabel.Text = String.Concat(isYours ? "YOU" : item.Sender.Split('@')[0], "   ");                
+                cell.SenderLabel.TextColor = ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.Jet : AppController.Colors.White);
 
-                cell.DateLabel.Text = isSent ? String.Format("  sent @ {0:G}", item.SendDate) : String.Empty;
+                cell.MessageLabel.Text = String.Concat(item.Content, "   ");
+                cell.MessageLabel.TextColor = ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.Jet : AppController.Colors.White);
+
+                cell.DateLabel.Text = isSent ? String.Format("  sent @ {0:G}", item.PostDate) : String.Empty;
+                cell.DateLabel.TextColor = ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.Jet : AppController.Colors.White);
 
                 return cell;
             }
 
-            public bool HasMessage(int messageId)
+            public void Insert(Model.Message message)
             {
-                return this.SourceItems.Count(x => x.MessageId == messageId) > 0;
+                this.SourceItems.Add(message);
+                this.SourceItems = this.SourceItems.OrderBy(x => x.PostDate).ToList();
+            }
+
+            public void Refresh(IEnumerable<Model.Message> items)
+            {
+                this.SourceItems.Clear();
+                this.SourceItems.AddRange(items);
             }
 
             #endregion
@@ -131,26 +92,23 @@ namespace AdMaiora.Bugghy
 
         private const string ReceiverLock = "ReceiverLock";
 
-        private string _email;
-        private string _username;
+        private int _gimmickId;
+        private int _userId;
 
-        private int _lastMessageId;
+        private Issue _issue;
 
         private ChatViewSource _source;
-            
-        // This cancellation token is used to cancel the UI blocking until connection is done
-        private CancellationTokenSource _cts0;
 
-        // This flag check if we are already calling the login REST service
+        // This flag check if we are already calling the send message REST service
         private bool _isSendingMessage;
         // This cancellation token is used to cancel the rest send message request
-        private CancellationTokenSource _cts1;
+        private CancellationTokenSource _cts0;
 
+        // This flag check if we are already calling the refersh message REST service
+        private bool _isRefreshingMessage;
         // This cancellation token is used to cancel the rest refresh messages request
-        private CancellationTokenSource _cts2;
-
-        private SystemSound _sound; 
-
+        private CancellationTokenSource _cts1;
+        
         #endregion
 
         #region Constructors
@@ -171,10 +129,11 @@ namespace AdMaiora.Bugghy
         {
             base.ViewDidLoad();
 
-            _email = this.Arguments.GetString("Email");
-            _username = (_email?.Split('@')[0]);
+            _gimmickId = this.Arguments.GetInt("GimmickId");
+            _userId = AppController.Settings.LastLoginUsernameId;
+            _issue = this.Arguments.GetObject<Issue>("Issue");
 
-            _source = new ChatViewSource(this, new Message[0]);
+            _source = new ChatViewSource(this, new Model.Message[0]);
         }
 
         public override void ViewWillAppear(bool animated)
@@ -185,46 +144,62 @@ namespace AdMaiora.Bugghy
 
             ResizeToShowKeyboard();
 
+            this.HasBarButtonItems = true;
+
             #endregion
-
-            ((AppDelegate)UIApplication.SharedApplication.Delegate).PushNotificationReceived += Application_PushNotificationReceived;
-
-            this.Title = "Chatty";
+            
+            this.Title = "Chat";
 
             this.NavigationController.SetNavigationBarHidden(false, true);
 
+            this.HeaderLayout.UserInteractionEnabled = true;
+            this.HeaderLayout.AddGestureRecognizer(new UITapGestureRecognizer(
+                () =>
+                {
+                    var c = new IssuesViewController();
+                    c.Arguments = new UIBundle();
+                    c.Arguments.PutInt("GimmickId", _gimmickId);
+                    c.Arguments.PutObject<Issue>("Issue", _issue);
+                    this.NavigationController.PushViewController(c, true);
+                }));
+
             this.MessageList.Source = _source;
-
-            this.SendButton.TouchUpInside += SendButton_TouchUpInside;
-
-            this.MessageText.Constraints.Single(x => x.GetIdentifier() == "Height").Constant = 30f;                       
-            this.MessageText.Changed += MessageText_Changed;
-
             this.MessageList.RowHeight = UITableView.AutomaticDimension;
             this.MessageList.EstimatedRowHeight = 74;            
             this.MessageList.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-            this.MessageList.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.Snow);
-            this.MessageList.TableFooterView = new UIView(CoreGraphics.CGRect.Empty);            
+            this.MessageList.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.Jet);
+            this.MessageList.TableFooterView = new UIView(CoreGraphics.CGRect.Empty);
 
-            InitSound();
+            this.SendButton.TouchUpInside += SendButton_TouchUpInside;
+
+            this.MessageText.Constraints.Single(x => x.GetIdentifier() == "Height").Constant = 30f;
+            this.MessageText.Changed += MessageText_Changed;
+
+            if (_issue != null)
+                LoadIssue();
 
             RefreshMessages();
+        }
 
-            WaitConnection();
+        public override bool CreateBarButtonItems(UIBarButtonCreator items)
+        {
+            base.CreateBarButtonItems(items);
+
+            items.AddItem("Refresh", UIBarButtonItemStyle.Plain);
+            return true;
         }
 
         public override bool BarButtonItemSelected(int index)
         {
             switch(index)
             {
-                case UISubViewController.BarButtonBack:
-                    QuitChat();
+                case 0:
+                    RefreshMessages();                    
                     return true;
 
                 default:
                     return base.BarButtonItemSelected(index);
-            }
-            
+            }            
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -236,19 +211,7 @@ namespace AdMaiora.Bugghy
 
             if (_cts1 != null)
                 _cts1.Cancel();
-
-            if (_cts2 != null)
-                _cts2.Cancel();
-
-            if(_sound != null)
-            {
-                _sound.Dispose();
-                _sound = null;
-            }
-
             this.SendButton.TouchUpInside -= SendButton_TouchUpInside;
-
-            ((AppDelegate)UIApplication.SharedApplication.Delegate).PushNotificationReceived -= Application_PushNotificationReceived;
         }
 
         #endregion
@@ -258,190 +221,153 @@ namespace AdMaiora.Bugghy
 
         #region Methods
 
-        private void SendMessage()
+        private void LoadIssue()
         {
+            this.TitleLabel.Text = _issue.Title;
+
+            DateTime? statusDate = null;
+            switch (_issue.Status)
+            {
+                case IssueStatus.Opened:
+                    statusDate = _issue.CreationDate;
+                    break;
+
+                case IssueStatus.Evaluating:
+                case IssueStatus.Working:
+                    statusDate = _issue.ReplyDate;
+                    break;
+
+                case IssueStatus.Resolved:
+                case IssueStatus.Rejected:
+                case IssueStatus.Closed:
+                    statusDate = _issue.ClosedDate;
+                    break;
+            }
+
+            this.StatusLabel.Text = String.Format("{0} @ {1:G}",
+                _issue.Status.ToString(),
+                statusDate.GetValueOrDefault());
+        }
+
+        private void PostMessage()
+        {
+            if (_isSendingMessage)
+                return;
+
             string content = this.MessageText.Text;
-            if (!String.IsNullOrWhiteSpace(content))
-            {
-                if (_isSendingMessage)
-                    return;
+            if (String.IsNullOrWhiteSpace(content))
+                return;
 
-                _isSendingMessage = true;
-
-                // Add message to the message list 
-                Message message = new Message { Sender = null, Content = content, SendDate = DateTime.MinValue };
-                _source.AddItem(message);
-                this.MessageList.ReloadData();
-                this.MessageList.ScrollToRow(
-                    NSIndexPath.FromItemSection((nint)(_source.Count - 1), 0),
-                        UITableViewScrollPosition.Bottom,
-                        false);
-
-                _cts1 = new CancellationTokenSource();
-                AppController.SendMessage(_cts1,
-                    _email,
-                    content,
-                    (data) =>
-                    {
-                        message.MessageId = data.MessageId;
-                        message.SendDate = data.SendDate.GetValueOrDefault();
-                        this.MessageList.ReloadData();
-                    },
-                    (error) =>
-                    {
-                        message.SendDate = DateTime.MaxValue;
-                        this.MessageList.ReloadData();
-
-                        UIToast.MakeText(error, UIToastLength.Long).Show();
-                    },
-                    () =>
-                    {
-                        _isSendingMessage = false;
-                    });
-
-                // Ready to send new message
-                this.MessageText.Text = String.Empty;
-                AdjustMessageTextHeight();                
-            }
-        }
-
-        private void RefreshMessages()
-        {
-            lock (ReceiverLock)
-            {
-                if (_lastMessageId == 0)
-                {
-                    if (AppController.Settings.LastMessageId == 0)
-                        return;
-
-                    _lastMessageId = AppController.Settings.LastMessageId;
-                    AppController.Settings.LastMessageId = 0;
-                }
-
-                if (_cts2 != null && !_cts2.IsCancellationRequested)
-                    _cts2.Cancel();
-
-                _cts2 = new CancellationTokenSource();
-
-                var cts = _cts2;
-                Poco.Message[] newMessages = null;
-                AppController.RefreshMessages(
-                    _cts2,
-                    _lastMessageId,
-                    _email,
-                    (data) =>
-                    {
-                        if ((cts?.IsCancellationRequested).GetValueOrDefault(true))
-                            return;
-
-                        lock (ReceiverLock)
-                        {
-                            newMessages = data?.Messages?.ToArray();
-                            if(newMessages?.Length > 0) 
-                            {
-                                var lm = newMessages.Last();
-                                _lastMessageId = lm.MessageId;
-                            }
-                        }
-                    },
-                    (error) =>
-                    {
-                        // Do Nothing
-                    },
-                    () =>
-                    {
-                        if ((cts?.IsCancellationRequested).GetValueOrDefault(true))
-                            return;
-
-                        lock (ReceiverLock)
-                        {
-                            bool playSound = false;
-                            if (newMessages != null)
-                            {
-                                foreach (var m in newMessages)
-                                {
-                                    if (!_source.HasMessage(m.MessageId))
-                                    {
-                                        playSound = true;
-
-                                        // Add message to the message list 
-                                        Message message = new Message
-                                        {
-                                            MessageId = m.MessageId,
-                                            Sender = m.Sender,
-                                            Content = m.Content,
-                                            SendDate = m.SendDate.GetValueOrDefault()
-                                        };
-
-                                        _source.AddItem(message);
-                                    }
-                                }
-                            }
-
-                            this.MessageList.ReloadData();
-                            this.MessageList.ScrollToRow(
-                                NSIndexPath.FromItemSection((nint)(_source.Count - 1), 0),
-                                    UITableViewScrollPosition.Bottom,
-                                    false);
-
-                            if (playSound)
-                                PlaySound();
-                        }
-                    });
-            }
-        }
-
-        private void QuitChat()
-        {            
-            (new UIAlertViewBuilder(new UIAlertView()))
-                .SetTitle("Leave the chat?")
-                .SetMessage("Press ok to leave the chat now!")
-                .AddButton("Ok",
-                    (s, ea) =>
-                    {
-                        AppController.Settings.AuthAccessToken = null;
-                        AppController.Settings.AuthExpirationDate = null;
-
-                        this.DismissKeyboard();
-                        this.NavigationController.PopViewController(true);
-                    })
-                .AddButton("Take me back",
-                    (s, ea) =>
-                    {
-                    })
-                .Show();
-        }
-
-        private void WaitConnection()
-        {
+            _isSendingMessage = true;
             ((MainViewController)this.MainViewController).BlockUI();
+
             _cts0 = new CancellationTokenSource();
-            AppController.Utility.ExecuteOnAsyncTask(_cts0.Token,
-                () =>
+            AppController.PostMessage(_cts0,
+                _issue.IssueId,
+                _userId,
+                content,
+                (message) =>
                 {
-                    while (!_cts0.IsCancellationRequested)
+                    if (_source != null)
                     {
-                        System.Threading.Tasks.Task.Delay(100, _cts0.Token).Wait();
-                        if (((AppDelegate)UIApplication.SharedApplication.Delegate).IsNotificationHubConnected)
-                            break;
+                        _source.Insert(message);
+                        this.MessageList.ReloadData();
+                        this.MessageList.Hidden = false;
+                        this.MessageText.Text = String.Empty;
                     }
+                },
+                (error) =>
+                {
+                    UIToast.MakeText(error, UIToastLength.Long).Show();
                 },
                 () =>
                 {
+                    _isSendingMessage = false;
                     ((MainViewController)this.MainViewController).UnblockUI();
                 });
         }
 
-        private void InitSound()
+        private void RefreshMessages()
         {
-            AVAudioSession.SharedInstance().SetCategory(AVAudioSessionCategory.PlayAndRecord);
-            _sound = SystemSound.FromFile(NSUrl.FromString(NSBundle.MainBundle.PathForResource("Raws/sound_ding", "wav")));
+            if (_isRefreshingMessage)
+                return;
+
+            this.MessageList.Hidden = true;
+
+            _isRefreshingMessage = true;
+            ((MainViewController)this.MainViewController).BlockUI();
+
+            Model.Message[] messages = null;
+
+            _cts1 = new CancellationTokenSource();
+            AppController.RefreshMessages(_cts1,
+                _issue.IssueId,
+                (newMessages) =>
+                {
+                    messages = newMessages;
+                },
+                (error) =>
+                {
+                    UIToast.MakeText(error, UIToastLength.Long).Show();
+                },
+                () =>
+                {
+                    if (messages != null)
+                    {
+                        LoadMessages(messages);
+
+                        if (_source?.Count > 0)
+                            this.MessageList.Hidden = false;
+
+                        _isRefreshingMessage = false;
+                        ((MainViewController)this.MainViewController).UnblockUI();
+                    }
+                    else
+                    {
+                        AppController.Utility.ExecuteOnAsyncTask(_cts1.Token,
+                            () =>
+                            {
+                                messages = AppController.GetMessages(_issue.IssueId);
+                            },
+                            () =>
+                            {
+                                LoadMessages(messages);
+
+                                if (_source?.Count > 0)
+                                    this.MessageList.Hidden = false;
+
+                                _isRefreshingMessage = false;
+                                ((MainViewController)this.MainViewController).UnblockUI();
+
+                            });
+                    }
+                });
         }
 
-        private void PlaySound()
+        private void LoadMessages(IEnumerable<Model.Message> messages)
         {
-            if (_sound != null)
-                _sound.PlayAlertSoundAsync();
+            if (messages == null)
+                return;
+
+            // Sort desc by creation date
+            messages = messages.OrderBy(x => x.PostDate);
+
+            if (_source == null)
+            {
+                _source = new ChatViewSource(this, messages);
+                this.MessageList.Source = _source;
+            }
+            else
+            {
+                _source.Refresh(messages);
+                this.MessageList.ReloadData();
+            }
+        }
+
+        private void SetIssueTypeImage(IssueType type)
+        {
+            string[] typeImages = new[] { "image_gear", "image_issue_crash", "image_issue_blocking", "image_issue_nblocking" };
+            this.TypeImage.Image = UIImage.FromBundle(typeImages[(int)type]);
         }
 
         private void AdjustMessageTextHeight()
@@ -483,37 +409,7 @@ namespace AdMaiora.Bugghy
         {
             DismissKeyboard();
 
-            SendMessage();
-        }
-
-        private void Application_PushNotificationReceived(object sender, PushEventArgs e)
-        {
-            AppController.Utility.ExecuteOnMainThread(
-                () =>
-                {
-                    switch (e.Action)
-                    {
-                        case 1:
-
-                            _lastMessageId = Int32.Parse(e.Payload);
-                            RefreshMessages();
-
-                            break;
-
-                        case 2:
-
-                            if (e.Payload != _email.Split('@')[0])
-                            {
-                                PlaySound();
-
-                                UIToast
-                                    .MakeText(String.Format("Say welocome to '{0}'", e.Payload), UIToastLength.Long)
-                                    .Show();
-                            }
-
-                            break;
-                    }
-                });
+            PostMessage();
         }
 
         #endregion

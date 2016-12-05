@@ -18,8 +18,7 @@
 
         #region Constants and Fields
 
-        private bool _userRestored;
-        private int _userId;
+        private bool _userRestored;        
 
         #endregion
 
@@ -66,12 +65,8 @@
 
                 _userRestored = this.Arguments.GetBoolean("UserRestored");
                 if (_userRestored)
-                {
-                    _userId = this.Arguments.GetInt("UserId");
-
-                    var c = new AgendaViewController();
-                    c.Arguments = new UIBundle();
-                    c.Arguments.PutInt("UserId", _userId);
+                {                    
+                    var c = new GimmicksViewController();                    
                     this.ContentController.PushViewController(c, false);
                 }
             }

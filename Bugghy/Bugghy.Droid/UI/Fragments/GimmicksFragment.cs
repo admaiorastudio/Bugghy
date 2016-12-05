@@ -123,7 +123,6 @@ namespace AdMaiora.Bugghy
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
         }
 
         public override void OnCreateView(LayoutInflater inflater, ViewGroup container)
@@ -287,7 +286,6 @@ namespace AdMaiora.Bugghy
                     })
                 .Show();
         }
-
 
         #endregion
 
