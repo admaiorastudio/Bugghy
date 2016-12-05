@@ -42,6 +42,10 @@
             public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath, UITableViewCell cellView, Gimmick item)
             {
                 var cell = cellView as GimmickViewCell;
+                cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+
+                cell.CalloutLayout.Layer.BorderColor = ViewBuilder.ColorFromARGB(AppController.Colors.AndroidGreen).CGColor;
+                cell.ContentLayout.BackgroundColor = UIColor.White;
 
                 AppController.Images.SetImageForView(
                     new Uri(item.ImageUrl), "image_gear", cell.ThumbImage);
@@ -112,6 +116,11 @@
 
             this.NavigationController.SetNavigationBarHidden(false, true);
 
+            this.GimmickList.RowHeight = UITableView.AutomaticDimension;
+            this.GimmickList.EstimatedRowHeight = 88;
+            this.GimmickList.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+            this.GimmickList.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.Jet);
+            this.GimmickList.TableFooterView = new UIView(CoreGraphics.CGRect.Empty);
             this.GimmickList.ItemSelected += GimmickList_ItemSelected;
 
             RefreshGimmicks();
@@ -142,7 +151,7 @@
             if (_cts0 != null)
                 _cts0.Cancel();
 
-            this.GimmickList.ItemSelected += GimmickList_ItemSelected;
+            this.GimmickList.ItemSelected -= GimmickList_ItemSelected;
         }
 
         #endregion

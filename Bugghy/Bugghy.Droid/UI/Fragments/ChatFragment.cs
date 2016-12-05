@@ -177,7 +177,7 @@ namespace AdMaiora.Bugghy
             base.OnCreate(savedInstanceState);
 
             _gimmickId = this.Arguments.GetInt("GimmickId");            
-            _userId = AppController.Settings.LastLoginUsernameId;
+            _userId = AppController.Settings.LastLoginUserIdUsed;
             _issue = this.Arguments.GetObject<Issue>("Issue");
 
             _adapter = new ChatAdapter(this, new Model.Message[0]);            

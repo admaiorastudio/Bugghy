@@ -45,7 +45,6 @@ namespace AdMaiora.Bugghy
             public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath, UITableViewCell cellView, Model.Message item)
             {
                 var cell = cellView as ChatViewCell;
-
                 cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 
                 bool isYours = _currentUser == item.Sender;
@@ -130,7 +129,7 @@ namespace AdMaiora.Bugghy
             base.ViewDidLoad();
 
             _gimmickId = this.Arguments.GetInt("GimmickId");
-            _userId = AppController.Settings.LastLoginUsernameId;
+            _userId = AppController.Settings.LastLoginUserIdUsed;
             _issue = this.Arguments.GetObject<Issue>("Issue");
 
             _source = new ChatViewSource(this, new Model.Message[0]);

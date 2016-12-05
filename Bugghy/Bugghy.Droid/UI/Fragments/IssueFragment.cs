@@ -81,7 +81,7 @@ namespace AdMaiora.Bugghy
             base.OnCreate(savedInstanceState);
 
             _gimmickId = this.Arguments.GetInt("GimmickId");
-            _userId = AppController.Settings.LastLoginUsernameId;
+            _userId = AppController.Settings.LastLoginUserIdUsed;
             _issue = this.Arguments.GetObject<Issue>("Issue");
             _currentIssueType = _issue != null ? _issue.Type : IssueType.Crash;
         }
@@ -141,20 +141,6 @@ namespace AdMaiora.Bugghy
         {
             switch(item.ItemId)
             {
-
-                case Android.Resource.Id.Home:
-
-                    DismissKeyboard();
-
-                    (new Handler()).PostDelayed(
-                        () =>
-                        {
-                            this.FragmentManager.PopBackStack();
-
-                        }, 100);
-
-                    return true;
-
                 case 1:
 
                     if (_issue == null)
@@ -312,14 +298,6 @@ namespace AdMaiora.Bugghy
                 this.DismissKeyboard();
         }
 
-        private void TextInputFragment_TextInputDone(object sender, TextInputDoneEventArgs e)
-        {
-            if (_issue != null)
-                _issue.Description = e.Text;
-            else
-                this.DescriptionText.Text = e.Text;
-        }
-
         private void EditButton_Click(object sender, EventArgs e)
         {
             var f = new TextInputFragment();
@@ -329,6 +307,14 @@ namespace AdMaiora.Bugghy
                 .AddToBackStack("BeforeTextInputFragment")
                 .Replace(Resource.Id.ContentLayout, f, "TextInputFragment")
                 .Commit();
+        }
+
+        private void TextInputFragment_TextInputDone(object sender, TextInputDoneEventArgs e)
+        {
+            if (_issue != null)
+                _issue.Description = e.Text;
+            else
+                this.DescriptionText.Text = e.Text;
         }
 
         #endregion

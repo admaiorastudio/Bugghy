@@ -49,7 +49,7 @@
 
             SetContentView(this.ContentLayout);
 
-            UINavigationBar.Appearance.BarTintColor = ViewBuilder.ColorFromARGB(AppController.Colors.OrangeYellow);
+            UINavigationBar.Appearance.BarTintColor = ViewBuilder.ColorFromARGB(AppController.Colors.AndroidGreen);
             UINavigationBar.Appearance.TintColor = ViewBuilder.ColorFromARGB(AppController.Colors.White);
             UINavigationBar.Appearance.SetTitleTextAttributes(new UITextAttributes { TextColor = ViewBuilder.ColorFromARGB(AppController.Colors.White) });
 

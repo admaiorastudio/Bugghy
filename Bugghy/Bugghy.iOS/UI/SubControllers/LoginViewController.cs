@@ -65,16 +65,14 @@
             AutoShouldReturnTextFields(new[] { this.EmailText, this.PasswordText });
 
             SlideUpToShowKeyboard();
-
-            StartNotifyKeyboardStatus();
-
+            
             #endregion
 
             this.NavigationController.SetNavigationBarHidden(true, true);            
 
             this.EmailText.Text = AppController.Settings.LastLoginUsernameUsed;
-            this.PasswordText.Text = String.Empty;
 
+            this.PasswordText.Text = String.Empty;
             this.PasswordText.ShouldReturn += PasswordText_ShouldReturn;
 
             this.LoginButton.TouchUpInside += LoginButton_TouchUpInside;
@@ -83,50 +81,6 @@
 
             this.VerifyButton.Hidden = true;
             this.VerifyButton.TouchUpInside += VerifyButton_TouchUpInside;
-        }
-
-        public override void KeyboardWillShow()
-        {
-            base.KeyboardWillShow();
-
-            double duration = .5f;
-
-            UIView.Animate(duration, 0f,
-                UIViewAnimationOptions.CurveEaseInOut, 
-                () =>
-                {
-                    this.LogoImage.Transform =
-                        CGAffineTransform.MakeScale(.45f, .45f) *
-                        CGAffineTransform.MakeTranslation(0f, -38);
-
-                    this.InputLayout.Transform =
-                        CGAffineTransform.MakeTranslation(0f, -84f);
-                },
-                () =>
-                {
-                });
-        }
-
-        public override void KeyboardWillHide()
-        {
-            base.KeyboardWillHide();
-
-            double duration = .3f;
-
-            UIView.Animate(duration, 0f,
-                UIViewAnimationOptions.CurveEaseInOut,
-                () =>
-                {
-                    this.LogoImage.Transform =
-                        CGAffineTransform.MakeScale(1f, 1f) *
-                        CGAffineTransform.MakeTranslation(0f, 0f);
-
-                    this.InputLayout.Transform =
-                        CGAffineTransform.MakeTranslation(0f, 0f);
-                },
-                () =>
-                {
-                });
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -138,9 +92,7 @@
 
             if (_cts1 != null)
                 _cts1.Cancel();
-           
-            StopNotifyKeyboardStatus();
-
+                       
             this.PasswordText.ShouldReturn -= PasswordText_ShouldReturn;
             this.LoginButton.TouchUpInside -= LoginButton_TouchUpInside;
             this.RegisterButton.TouchUpInside -= RegisterButton_TouchUpInside;                       
@@ -174,14 +126,13 @@
                 AppController.LoginUser(_cts1, _email, _password,
                     // Service call success                 
                     (data) =>
-                    {     
-                        AppController.Settings.LastLoginUsernameUsed = _email;
+                    {
+                        AppController.Settings.LastLoginUserIdUsed = data.UserId;
+                        AppController.Settings.LastLoginUsernameUsed = _email;                        
                         AppController.Settings.AuthAccessToken = data.AuthAccessToken;
                         AppController.Settings.AuthExpirationDate = data.AuthExpirationDate.GetValueOrDefault().ToLocalTime();
 
-                        var c = new AgendaViewController();
-                        c.Arguments = new UIBundle();
-                        c.Arguments.PutInt("UserId", data.UserId);
+                        var c = new GimmicksViewController();
                         this.NavigationController.PushViewController(c, true);
                     },
                     // Service call error

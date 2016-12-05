@@ -162,7 +162,7 @@ namespace AdMaiora.Bugghy
                     // Service call success                 
                     (data) =>
                     {
-                        AppController.Settings.LastLoginUsernameId = data.UserId;
+                        AppController.Settings.LastLoginUserIdUsed = data.UserId;
                         AppController.Settings.LastLoginUsernameUsed = _email;
                         AppController.Settings.AuthAccessToken = data.AuthAccessToken;
                         AppController.Settings.AuthExpirationDate = data.AuthExpirationDate.GetValueOrDefault().ToLocalTime();

@@ -13,43 +13,43 @@ namespace AdMaiora.Bugghy
 	partial class IssueViewCell
 	{
 		[Outlet]
-		UIKit.UIView CalloutLayout { get; set; }
+		public UIKit.UIView CalloutLayout { get; set; }
 
 		[Outlet]
-		UIKit.UILabel CodeLabel { get; set; }
+        public UIKit.UILabel CodeLabel { get; set; }
 
 		[Outlet]
-		UIKit.UIView ContentLayout { get; set; }
+        public UIKit.UIView ContentLayout { get; set; }
 
 		[Outlet]
-		UIKit.UILabel CreatedDateLabel { get; set; }
+        public UIKit.UILabel CreatedDateLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel CreatedLabel { get; set; }
+        public UIKit.UILabel CreatedLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel DescriptionLabel { get; set; }
+        public UIKit.UILabel DescriptionLabel { get; set; }
 
 		[Outlet]
-		UIKit.UIView DetailsLayout { get; set; }
+        public UIKit.UIView DetailsLayout { get; set; }
 
 		[Outlet]
-		UIKit.UILabel OfLabel { get; set; }
+        public UIKit.UILabel OfLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel SenderLabel { get; set; }
+        public UIKit.UILabel SenderLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel StatusDescriptionLabel { get; set; }
+        public UIKit.UILabel StatusDescriptionLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel StatusLabel { get; set; }
+        public UIKit.UILabel StatusLabel { get; set; }
 
 		[Outlet]
-		UIKit.UILabel TitleLabel { get; set; }
+        public UIKit.UILabel TitleLabel { get; set; }
 
 		[Outlet]
-		UIKit.UIImageView TypeImage { get; set; }
+        public UIKit.UIImageView TypeImage { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

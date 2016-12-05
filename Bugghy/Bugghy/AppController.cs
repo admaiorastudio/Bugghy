@@ -81,15 +81,15 @@
 
         #region Properties
 
-        public int LastLoginUsernameId
+        public int LastLoginUserIdUsed
         {
             get
             {
-                return _settings.GetIntValue("LastLoginUsernameId");
+                return _settings.GetIntValue("LastLoginUserIdUsed");
             }
             set
             {
-                _settings.SetIntValue("LastLoginUsernameId", value);
+                _settings.SetIntValue("LastLoginUserIdUsed", value);
             }
         }
 
