@@ -6,7 +6,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:id="@+id/HeaderLayout"
-        android:layout_height="wrap_content">
+        android:layout_height="178dp">
         <ImageView
             android:src="@drawable/image_issue_nblocking"
             android:layout_width="72dp"

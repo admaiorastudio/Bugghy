@@ -18,7 +18,7 @@
                 android:id="@+id/ThumbImage"
                 android:adjustViewBounds="true"
                 android:src="@drawable/image_empty_thumb"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 appkit:cornerRadius="64dp"
                 appkit:borderWidth="1dip"
                 appkit:borderColor="@color/AndroidGreen"

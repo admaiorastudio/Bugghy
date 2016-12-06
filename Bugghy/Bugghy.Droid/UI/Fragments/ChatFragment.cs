@@ -57,6 +57,11 @@ namespace AdMaiora.Bugghy
 
             private string _currentUser;
 
+            private Random _rnd;
+
+            private List<string> _palette;
+            private Dictionary<string, string> _colors;
+
             #endregion
 
             #region Constructors
@@ -65,6 +70,18 @@ namespace AdMaiora.Bugghy
                 : base(context, Resource.Layout.CellChat, source)
             {
                 _currentUser = AppController.Settings.LastLoginUsernameUsed;
+
+                _rnd = new Random(DateTime.Now.Second);
+
+                _palette = new List<string>
+                {
+                    "C3BEF7", "8A4FFF", "273C2C", "626868", "80727B", "62929E",
+                    "F79256", "66101F", "DB995A", "654236", "6369D1", "22181C ",
+                    "998FC7", "5B2333", "564D4A"
+
+                };
+
+                _colors = new Dictionary<string, string>();
             }
 
             #endregion
@@ -77,9 +94,12 @@ namespace AdMaiora.Bugghy
                 bool isSending = item.PostDate == null;
                 bool isSent = item.PostDate.GetValueOrDefault() != DateTime.MinValue;
 
+                if (!isYours && !_colors.ContainsKey(item.Sender))
+                    _colors.Add(item.Sender, _palette[_rnd.Next(_palette.Count)]);
+
                 ((RelativeLayout)view).SetGravity(isYours ? GravityFlags.Right : GravityFlags.Left);
                 holder.CalloutLayout.Background.SetColorFilter(
-                    ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.PapayaWhip : AppController.Colors.AndroidGreen),
+                    ViewBuilder.ColorFromARGB(isYours ? AppController.Colors.PapayaWhip : _colors[item.Sender]),
                     PorterDuff.Mode.SrcIn);
                 holder.CalloutLayout.Alpha = isSent ? 1 : .35f;
 
