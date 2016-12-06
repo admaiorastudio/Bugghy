@@ -212,7 +212,7 @@
             c.Arguments.PutInt("GimmickId", _gimmick.GimmickId);
             c.Arguments.PutInt("Filter", addNew ? 0 : filter);
             c.Arguments.PutBoolean("AddNew", addNew);
-            this.NavigationController.PushViewController(c, true);
+            this.NavigationController.PushViewController(c, !addNew);
         }
 
         #endregion

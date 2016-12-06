@@ -43,6 +43,7 @@
             {
                 var cell = cellView as IssueViewCell;
                 cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+                cell.ContentView.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.DarkLiver);
 
                 cell.CalloutLayout.Layer.BorderColor = ViewBuilder.ColorFromARGB(AppController.Colors.AndroidGreen).CGColor;
 
@@ -137,6 +138,8 @@
             this.FilterWorkingButton.TouchUpInside += FilterOpenedButton_TouchUpInside;
             this.FilterClosedButton.TouchUpInside += FilterOpenedButton_TouchUpInside;
 
+            _source = new IssueViewSource(this, new Issue[0]);
+            this.IssueList.Source = _source;
             this.IssueList.RowHeight = UITableView.AutomaticDimension;
             this.IssueList.EstimatedRowHeight = 130;
             this.IssueList.SeparatorStyle = UITableViewCellSeparatorStyle.None;
@@ -300,16 +303,8 @@
             // Sort desc by creation date
             issues = issues.OrderByDescending(x => x.CreationDate);
 
-            if (_source == null)
-            {
-                _source = new IssueViewSource(this, issues);
-                this.IssueList.Source = _source;
-            }
-            else
-            {
-                _source.Refresh(issues);
-                this.IssueList.ReloadData();
-            }
+            _source.Refresh(issues);
+            this.IssueList.ReloadData();
         }
 
         private void HilightFilterButton(int filter)

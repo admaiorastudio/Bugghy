@@ -43,6 +43,7 @@
             {
                 var cell = cellView as GimmickViewCell;
                 cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+                cell.ContentView.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.DarkLiver);
 
                 cell.CalloutLayout.Layer.BorderColor = ViewBuilder.ColorFromARGB(AppController.Colors.AndroidGreen).CGColor;
                 cell.ContentLayout.BackgroundColor = UIColor.White;
@@ -116,6 +117,8 @@
 
             this.NavigationController.SetNavigationBarHidden(false, true);
 
+            _source = new GimmickViewSource(this, new Gimmick[0]);
+            this.GimmickList.Source = _source;
             this.GimmickList.RowHeight = UITableView.AutomaticDimension;
             this.GimmickList.EstimatedRowHeight = 88;
             this.GimmickList.SeparatorStyle = UITableViewCellSeparatorStyle.None;
@@ -226,16 +229,8 @@
                 .OrderBy(x => x.Name)
                 .ToArray();
 
-            if (_source == null)
-            {
-                _source = new GimmickViewSource(this, gimmicks);
-                this.GimmickList.Source = _source;
-            }
-            else
-            {
-                _source.Refresh(gimmicks);
-                this.GimmickList.ReloadData();
-            }
+            _source.Refresh(gimmicks);
+            this.GimmickList.ReloadData();
         }
 
         private void Logout()

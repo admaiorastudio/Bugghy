@@ -69,6 +69,8 @@
 
             this.TitleText.SetPlaceholderColor(ViewBuilder.ColorFromARGB("FFd1d1d1"));
 
+            AutoShouldReturnTextFields(new[] { this.TitleText });
+
             SlideUpToShowKeyboard();
 
             this.HasBarButtonItems = true;
@@ -266,7 +268,7 @@
             var c = new TextInputViewController();
             c.ContentText = this.DescriptionText.Text;
             c.TextInputDone += TextInputViewController_TextInputDone;
-            this.NavigationController.PushViewController(c, true);
+            this.NavigationController.PushViewController(c, false);
         }
 
         private void TextInputViewController_TextInputDone(object sender, TextInputDoneEventArgs e)

@@ -141,6 +141,8 @@ namespace AdMaiora.Bugghy
 
             this.ActionBar.Show();
 
+            _adapter = new GimmickAdapter(this, new Gimmick[0]);
+            this.GimmickList.SetAdapter(_adapter);
             this.GimmickList.ItemSelected += GimmickList_ItemSelected;
 
             RefreshGimmicks();
@@ -254,16 +256,8 @@ namespace AdMaiora.Bugghy
                 .OrderBy(x => x.Name)
                 .ToArray();
 
-            if (_adapter == null)
-            {
-                _adapter = new GimmickAdapter(this, gimmicks);
-                this.GimmickList.SetAdapter(_adapter);
-            }
-            else
-            {
-                _adapter.Refresh(gimmicks);
-                this.GimmickList.ReloadData();
-            }
+            _adapter.Refresh(gimmicks);
+            this.GimmickList.ReloadData();
         }
 
         private void Logout()

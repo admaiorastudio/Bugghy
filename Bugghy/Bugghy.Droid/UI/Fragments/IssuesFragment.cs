@@ -180,6 +180,8 @@ namespace AdMaiora.Bugghy
             this.FilterWorkingButton.Click += FilterButton_Click;
             this.FilterClosedButton.Click += FilterButton_Click;
 
+            _adapter = new IssueAdapter(this, new Issue[0]);
+            this.IssueList.SetAdapter(_adapter);
             this.IssueList.ItemSelected += IssueList_ItemSelected;
 
             if (_addNew)
@@ -344,16 +346,8 @@ namespace AdMaiora.Bugghy
             // Sort desc by creation date
             issues = issues.OrderByDescending(x => x.CreationDate);
 
-            if (_adapter == null)
-            {
-                _adapter = new IssueAdapter(this, issues);
-                this.IssueList.SetAdapter(_adapter);
-            }
-            else
-            {
-                _adapter.Refresh(issues);
-                this.IssueList.ReloadData();
-            }
+            _adapter.Refresh(issues);
+            this.IssueList.ReloadData();
         }
 
         private void HilightFilterButton(int filter)

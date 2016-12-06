@@ -63,7 +63,7 @@ namespace AdMaiora.Bugghy
             {
                 var cell = cellView as ChatViewCell;
                 cell.SelectionStyle = UITableViewCellSelectionStyle.None;
-                //cell.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.DarkLiver);
+                cell.ContentView.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.DarkLiver);
 
                 bool isYours = _currentUser == item.Sender;
                 bool isSending = item.PostDate == null;
@@ -372,16 +372,8 @@ namespace AdMaiora.Bugghy
             // Sort desc by creation date
             messages = messages.OrderBy(x => x.PostDate);
 
-            if (_source == null)
-            {
-                _source = new ChatViewSource(this, messages);
-                this.MessageList.Source = _source;
-            }
-            else
-            {
-                _source.Refresh(messages);
-                this.MessageList.ReloadData();
-            }
+            _source.Refresh(messages);
+            this.MessageList.ReloadData();
         }
 
         private void SetIssueTypeImage(IssueType type)
