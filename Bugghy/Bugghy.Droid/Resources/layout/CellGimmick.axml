@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:background="@color/DarkLiver">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"

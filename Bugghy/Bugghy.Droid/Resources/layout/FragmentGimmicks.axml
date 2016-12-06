@@ -6,12 +6,12 @@
         android:text="No available items"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/NoItemsLabel"        
+        android:id="@+id/NoItemsLabel"
         android:background="@color/DarkLiver"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:textSize="20dp"
-        android:textColor="@color/White" />  
+        android:textColor="@color/White" />
     <admaiora.appkit.ui.ItemRecyclerView
         android:id="@+id/GimmickList"
         android:layout_width="match_parent"
@@ -19,5 +19,5 @@
         android:choiceMode="singleChoice"
         android:divider="#00000000"
         android:dividerHeight="0dp"
-        android:background="@color/Jet" />
+        android:background="@color/DarkLiver" />
 </RelativeLayout>

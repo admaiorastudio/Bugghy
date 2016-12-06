@@ -44,7 +44,7 @@
         android:layout_height="match_parent"
         android:id="@+id/NoItemsLabel"
         android:layout_below="@+id/FilterLayout"
-        android:background="#515151"
+        android:background="@color/DarkLiver"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:textSize="20dp"

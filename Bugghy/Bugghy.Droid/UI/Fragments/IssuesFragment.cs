@@ -82,7 +82,7 @@ namespace AdMaiora.Bugghy
                 holder.TitleLabel.Text = item.Title;
                 holder.SenderLabel.Text = item.Sender.Split('@')[0];
                 holder.DescriptionLabel.Text = item.Description;
-                holder.CreatedDateLabel.Text = item.CreationDate?.ToString("g");
+                holder.CreatedDateLabel.Text = item.CreationDate?.ToString("d");
                 holder.StatusDescriptionLabel.Text = item.Status.ToString();
             }
 
