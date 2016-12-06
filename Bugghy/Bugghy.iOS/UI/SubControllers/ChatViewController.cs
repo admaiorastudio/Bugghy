@@ -63,6 +63,7 @@ namespace AdMaiora.Bugghy
             {
                 var cell = cellView as ChatViewCell;
                 cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+                //cell.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.DarkLiver);
 
                 bool isYours = _currentUser == item.Sender;
                 bool isSending = item.PostDate == null;
