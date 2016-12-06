@@ -75,12 +75,12 @@
                         <constraint firstItem="ZTa-wV-HGP" firstAttribute="centerY" secondItem="WmR-sf-Ji9" secondAttribute="centerY" id="08u-SV-87I"/>
                         <constraint firstAttribute="trailing" secondItem="LgR-1g-W3A" secondAttribute="trailing" constant="3" id="3MO-H6-TFE"/>
                         <constraint firstItem="OX3-sr-WEq" firstAttribute="leading" secondItem="ZTa-wV-HGP" secondAttribute="trailing" constant="4" id="Kka-Ku-gx0"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="LNs-U9-U2r"/>
                         <constraint firstAttribute="bottom" secondItem="OX3-sr-WEq" secondAttribute="bottom" constant="5" id="Pz5-Qp-p2l"/>
                         <constraint firstItem="LgR-1g-W3A" firstAttribute="centerY" secondItem="WmR-sf-Ji9" secondAttribute="centerY" id="Rit-Gq-K2C"/>
                         <constraint firstItem="ZTa-wV-HGP" firstAttribute="leading" secondItem="WmR-sf-Ji9" secondAttribute="leading" constant="8" id="Xzn-4b-NFc"/>
                         <constraint firstItem="OX3-sr-WEq" firstAttribute="top" secondItem="WmR-sf-Ji9" secondAttribute="top" constant="8" id="d9s-uh-yiS"/>
                         <constraint firstItem="LgR-1g-W3A" firstAttribute="leading" secondItem="OX3-sr-WEq" secondAttribute="trailing" id="kR7-5z-Pqv"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" priority="250" constant="48" id="pcU-f5-Jxa"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No available items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAP-hg-2MI">
@@ -91,10 +91,6 @@
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1EF-gN-YXe" customClass="UIItemListView">
                     <color key="backgroundColor" red="0.31764706969261169" green="0.31764706969261169" blue="0.31764706969261169" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" priority="750" constant="492" id="OL1-Gp-ZdF"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="492" id="Wrt-cz-SAZ"/>
-                    </constraints>
                 </tableView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAE-3X-1sQ">
                     <subviews>
