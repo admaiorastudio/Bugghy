@@ -119,7 +119,7 @@
             this.GimmickList.RowHeight = UITableView.AutomaticDimension;
             this.GimmickList.EstimatedRowHeight = 88;
             this.GimmickList.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-            this.GimmickList.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.Jet);
+            this.GimmickList.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.DarkLiver);
             this.GimmickList.TableFooterView = new UIView(CoreGraphics.CGRect.Empty);
             this.GimmickList.ItemSelected += GimmickList_ItemSelected;
 

@@ -53,7 +53,7 @@
                 cell.TitleLabel.Text = item.Title;
                 cell.SenderLabel.Text = item.Sender.Split('@')[0];
                 cell.DescriptionLabel.Text = item.Description;
-                cell.CreatedDateLabel.Text = item.CreationDate?.ToString("g");
+                cell.CreatedDateLabel.Text = item.CreationDate?.ToString("d");
                 cell.StatusDescriptionLabel.Text = item.Status.ToString();
 
                 return cell;
@@ -140,7 +140,7 @@
             this.IssueList.RowHeight = UITableView.AutomaticDimension;
             this.IssueList.EstimatedRowHeight = 130;
             this.IssueList.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-            this.IssueList.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.Jet);
+            this.IssueList.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.DarkLiver);
             this.IssueList.TableFooterView = new UIView(CoreGraphics.CGRect.Empty);
             this.IssueList.ItemSelected += IssueList_ItemSelected;
 

@@ -67,6 +67,8 @@
 
             #region Designer Stuff
 
+            this.TitleText.SetPlaceholderColor(ViewBuilder.ColorFromARGB("FFd1d1d1"));
+
             SlideUpToShowKeyboard();
 
             this.HasBarButtonItems = true;
@@ -75,7 +77,7 @@
 
             this.Title = _currentIssueType.ToString();
 
-            this.TypeImage.UserInteractionEnabled = true;
+            this.TypeImage.UserInteractionEnabled = _issue == null;
             this.TypeImage.AddGestureRecognizer(new UITapGestureRecognizer(
                 () =>
                 {

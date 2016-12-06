@@ -310,6 +310,7 @@
     <BundleResource Include="Resources\image_right_arrow.png" />
     <BundleResource Include="Resources\image_shadowDown.png" />
     <BundleResource Include="Resources\image_shadowTop.png" />
+    <BundleResource Include="Resources\Layouts\.DS_Store" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

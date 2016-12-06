@@ -90,7 +90,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="vwP-v4-JsR" secondAttribute="bottom" constant="-8" id="pEW-hh-b5a"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.2274509804" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.31764706969261169" green="0.31764706969261169" blue="0.31764706969261169" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="CalloutLayout" destination="vwP-v4-JsR" id="S9N-AZ-Ijn"/>
                 <outlet property="ContentLayout" destination="kHX-MR-tS3" id="EI6-Nr-dXG"/>

@@ -104,7 +104,6 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.2274509804" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="Jqs-AY-Yxy" secondAttribute="bottom" constant="-9" id="VC4-sb-y1M"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Jqs-AY-Yxy" secondAttribute="trailing" id="WNK-s4-HFO"/>
@@ -112,6 +111,7 @@
                     <constraint firstAttribute="leadingMargin" secondItem="Jqs-AY-Yxy" secondAttribute="leading" id="rSd-I2-ijf"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.31764706969261169" green="0.31764706969261169" blue="0.31764706969261169" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="CalloutLayout" destination="Jqs-AY-Yxy" id="d7H-jG-6lK"/>
                 <outlet property="ContentLayout" destination="jCS-mC-Gji" id="oM1-C3-5gK"/>

@@ -113,7 +113,7 @@
                                             <frame key="frameInset" width="110" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                            <state key="normal" title="OPENED">
+                                            <state key="normal" title="WORKING">
                                                 <color key="titleColor" red="0.60784313729999995" green="0.7725490196" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                         </button>
@@ -134,7 +134,7 @@
                                             <frame key="frameInset" width="110" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                            <state key="normal" title="OPENED">
+                                            <state key="normal" title="CLOSED">
                                                 <color key="titleColor" red="0.60784313729999995" green="0.7725490196" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                         </button>

@@ -155,7 +155,7 @@ namespace AdMaiora.Bugghy
             this.HeaderLayout.AddGestureRecognizer(new UITapGestureRecognizer(
                 () =>
                 {
-                    var c = new IssuesViewController();
+                    var c = new IssueViewController();
                     c.Arguments = new UIBundle();
                     c.Arguments.PutInt("GimmickId", _gimmickId);
                     c.Arguments.PutObject<Issue>("Issue", _issue);
@@ -166,7 +166,7 @@ namespace AdMaiora.Bugghy
             this.MessageList.RowHeight = UITableView.AutomaticDimension;
             this.MessageList.EstimatedRowHeight = 74;            
             this.MessageList.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-            this.MessageList.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.Jet);
+            this.MessageList.BackgroundColor = ViewBuilder.ColorFromARGB(AppController.Colors.DarkLiver);
             this.MessageList.TableFooterView = new UIView(CoreGraphics.CGRect.Empty);
 
             this.SendButton.TouchUpInside += SendButton_TouchUpInside;
