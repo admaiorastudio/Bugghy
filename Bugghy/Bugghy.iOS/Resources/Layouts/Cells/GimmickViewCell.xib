@@ -104,6 +104,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
+                <color key="backgroundColor" red="0.31764706969261169" green="0.31764706969261169" blue="0.31764706969261169" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="Jqs-AY-Yxy" secondAttribute="bottom" constant="-9" id="VC4-sb-y1M"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Jqs-AY-Yxy" secondAttribute="trailing" id="WNK-s4-HFO"/>
