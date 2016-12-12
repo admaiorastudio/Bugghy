@@ -21,11 +21,14 @@ namespace AdMaiora.Bugghy
 
     using AdMaiora.AppKit.UI;
 
-    using Android.Graphics;
-    using Android.Graphics.Drawables;
+    //using Xamarin.Auth;
+    using Android.Gms.Common.Apis;
+    using Android.Gms.Auth.Api.SignIn;
+    using Android.Gms.Common;
+    using Android.Gms.Auth.Api;
 
-#pragma warning disable CS4014
-    public class LoginFragment : AdMaiora.AppKit.UI.App.Fragment
+    #pragma warning disable CS4014
+    public class LoginFragment : AdMaiora.AppKit.UI.App.Fragment, GoogleApiClient.IOnConnectionFailedListener
     {
         #region Inner Classes
         #endregion
@@ -34,6 +37,10 @@ namespace AdMaiora.Bugghy
 
         private string _email;
         private string _password;
+
+        // Google+ API for signing in
+        private GoogleSignInOptions _gso;
+        private GoogleApiClient _gapi;
 
         // This flag check if we are already calling the login REST service
         private bool _isLogginUser;
@@ -63,7 +70,10 @@ namespace AdMaiora.Bugghy
 
         [Widget]
         private Button LoginButton;
-    
+
+        [Widget]
+        private Button GoogleLoginButton;
+
         [Widget]
         private Button RegisterButton;
 
@@ -89,6 +99,17 @@ namespace AdMaiora.Bugghy
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            _gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DefaultSignIn)
+                .RequestIdToken(AppController.Globals.GoogleClientId_Android)
+                .RequestEmail()                
+                .Build();
+
+            _gapi = new GoogleApiClient.Builder(this.Context)
+                .EnableAutoManage(this.Activity, this)                
+                .AddApi(Android.Gms.Auth.Api.Auth.GOOGLE_SIGN_IN_API, _gso)
+                .AddScope(new Scope(Scopes.Profile))
+                .Build();
         }
 
         public override void OnCreateView(LayoutInflater inflater, ViewGroup container)
@@ -100,8 +121,8 @@ namespace AdMaiora.Bugghy
             SetContentView(Resource.Layout.FragmentLogin, inflater, container);
 
             SlideUpToShowKeyboard();
-            
-            #endregion            
+
+            #endregion
 
             this.ActionBar.Hide();
 
@@ -112,10 +133,73 @@ namespace AdMaiora.Bugghy
 
             this.LoginButton.Click += LoginButton_Click;
 
+            this.GoogleLoginButton.Click += GoogleLoginButton_Click;
+
             this.RegisterButton.Click += RegisterButton_Click;
 
             this.VerifyButton.Visibility = ViewStates.Gone;
             this.VerifyButton.Click += VerifyButton_Click;
+        }
+
+        public override void OnActivityResult(int requestCode, int resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+
+            try
+            {
+                if (requestCode == 1)
+                {                                        
+                    GoogleSignInResult result = Auth.GoogleSignInApi.GetSignInResultFromIntent(data);
+                    if (result.IsSuccess)
+                    {
+                        GoogleSignInAccount account = result.SignInAccount;
+                        string gClientId = AppController.Globals.GoogleClientId_Android;
+                        string gEmail = account.Email;
+                        string gToken = account.IdToken;
+
+                        _cts0 = new CancellationTokenSource();
+                        AppController.LoginUser(_cts0, gClientId, gEmail, gToken,
+                            (d) =>
+                            {
+                                AppController.Settings.LastLoginUserIdUsed = d.UserId;
+                                AppController.Settings.LastLoginUsernameUsed = _email;
+                                AppController.Settings.AuthAccessToken = d.AuthAccessToken;
+                                AppController.Settings.AuthExpirationDate = d.AuthExpirationDate.GetValueOrDefault().ToLocalTime();
+                                AppController.Settings.GoogleSignedIn = true;
+
+                                var f = new GimmicksFragment();
+                                this.FragmentManager.BeginTransaction()
+                                    .AddToBackStack("BeforeGimmicksFragment")
+                                    .Replace(Resource.Id.ContentLayout, f, "GimmicksFragment")
+                                    .Commit();
+                            },
+                            (error) =>
+                            {
+                                Toast.MakeText(this.Activity.Application, error, ToastLength.Long).Show();
+                            },
+                            () =>
+                            {                                
+                                ((MainActivity)this.Activity).UnblockUI();
+                            });
+                    }
+                    else
+                    {
+                        ((MainActivity)this.Activity).UnblockUI();
+
+                        Toast.MakeText(this.Activity.Application, "Unable to login with Google!", ToastLength.Long).Show();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                ((MainActivity)this.Activity).UnblockUI();
+
+                Toast.MakeText(this.Activity.ApplicationContext, "Error logging with Google!", ToastLength.Long).Show();
+            }
+            finally
+            {
+                // Nothing to do
+            }
         }
 
         public override void OnDestroyView()
@@ -127,11 +211,20 @@ namespace AdMaiora.Bugghy
 
             if (_cts1 != null)
                 _cts1.Cancel();
-            
+
             this.PasswordText.EditorAction -= PasswordText_EditorAction;
-            this.LoginButton.Click -= LoginButton_Click;            
+            this.LoginButton.Click -= LoginButton_Click;
+            this.GoogleLoginButton.Click -= GoogleLoginButton_Click;
             this.RegisterButton.Click -= RegisterButton_Click;
             this.VerifyButton.Click -= VerifyButton_Click;
+        }
+
+        #endregion
+
+        #region Google API Methods
+
+        public void OnConnectionFailed(ConnectionResult result)
+        {            
         }
 
         #endregion
@@ -166,6 +259,7 @@ namespace AdMaiora.Bugghy
                         AppController.Settings.LastLoginUsernameUsed = _email;
                         AppController.Settings.AuthAccessToken = data.AuthAccessToken;
                         AppController.Settings.AuthExpirationDate = data.AuthExpirationDate.GetValueOrDefault().ToLocalTime();
+                        AppController.Settings.GoogleSignedIn = false;
 
                         var f = new GimmicksFragment();
                         this.FragmentManager.BeginTransaction()
@@ -252,6 +346,28 @@ namespace AdMaiora.Bugghy
             return true;
         }
 
+        private async void LoginInGoogle()
+        {
+            ((MainActivity)this.Activity).BlockUI();
+
+            if (AppController.Settings.GoogleSignedIn)
+            {
+                var r = await Auth.GoogleSignInApi.SignOut(_gapi);
+                if (r.Status.IsSuccess)
+                {
+                    AppController.Settings.GoogleSignedIn = false;
+                }
+                else
+                {
+                    Toast.MakeText(this.Activity.Application, "Unable to login with Google!", ToastLength.Long).Show();
+                    return;
+                }
+            }
+            
+            Intent intent = Auth.GoogleSignInApi.GetSignInIntent(_gapi);
+            StartActivityForResult(intent, 1);            
+        }
+
         #endregion
 
         #region Event Handlers     
@@ -273,6 +389,11 @@ namespace AdMaiora.Bugghy
             LoginUser();
 
             DismissKeyboard();            
+        }
+
+        private void GoogleLoginButton_Click(object sender, EventArgs e)
+        {
+            LoginInGoogle();   
         }
 
         private void RegisterButton_Click(object sender, EventArgs e)

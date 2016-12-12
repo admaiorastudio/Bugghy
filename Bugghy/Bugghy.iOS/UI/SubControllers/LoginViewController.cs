@@ -13,8 +13,11 @@
 
     using AdMaiora.AppKit.UI;
 
+    using Google.Core;
+    using Google.SignIn;
+
     #pragma warning disable CS4014
-    public partial class LoginViewController : AdMaiora.AppKit.UI.App.UISubViewController
+    public partial class LoginViewController : AdMaiora.AppKit.UI.App.UISubViewController, ISignInDelegate, ISignInUIDelegate
     {
         #region Inner Classes
         #endregion
@@ -54,6 +57,15 @@
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            // Setup Google API for SignIn
+            NSError error;
+            Context.SharedInstance.Configure(out error);
+            if (error != null)
+                SignIn.SharedInstance.ClientID = AppController.Globals.GoogleClientId_iOS;
+
+            SignIn.SharedInstance.Delegate = this;
+            SignIn.SharedInstance.UIDelegate = this;          
         }
 
         public override void ViewWillAppear(bool animated)
@@ -76,6 +88,8 @@
             this.PasswordText.ShouldReturn += PasswordText_ShouldReturn;
 
             this.LoginButton.TouchUpInside += LoginButton_TouchUpInside;
+
+            this.GoogleLoginButton.TouchUpInside += GoogleLoginButton_TouchUpInside;
                    
             this.RegisterButton.TouchUpInside += RegisterButton_TouchUpInside;
 
@@ -95,8 +109,55 @@
                        
             this.PasswordText.ShouldReturn -= PasswordText_ShouldReturn;
             this.LoginButton.TouchUpInside -= LoginButton_TouchUpInside;
+            this.GoogleLoginButton.TouchUpInside -= GoogleLoginButton_TouchUpInside;
             this.RegisterButton.TouchUpInside -= RegisterButton_TouchUpInside;                       
             this.VerifyButton.TouchUpInside -= VerifyButton_TouchUpInside;
+        }
+
+        #endregion
+
+        #region Google API Methods
+
+        public void DidSignIn(SignIn signIn, GoogleUser user, NSError error)
+        {
+            try
+            {
+                string gClientId = AppController.Globals.GoogleClientId_iOS;
+                string gEmail = user.Profile.Email;
+                string gToken = user.Authentication.IdToken;
+
+                _cts0 = new CancellationTokenSource();
+                AppController.LoginUser(_cts0, gClientId, gEmail, gToken,
+                    (d) =>
+                    {
+                        AppController.Settings.LastLoginUserIdUsed = d.UserId;
+                        AppController.Settings.LastLoginUsernameUsed = _email;
+                        AppController.Settings.AuthAccessToken = d.AuthAccessToken;
+                        AppController.Settings.AuthExpirationDate = d.AuthExpirationDate.GetValueOrDefault().ToLocalTime();
+                        AppController.Settings.GoogleSignedIn = true;
+
+                        var c = new GimmicksViewController();
+                        this.NavigationController.PushViewController(c, true);
+                    },
+                    (err) =>
+                    {
+                        UIToast.MakeText(err, UIToastLength.Long).Show();
+                    },
+                    () =>
+                    {
+                        ((MainViewController)this.MainViewController).UnblockUI();
+                    });
+            }
+            catch (Exception ex)
+            {
+                ((MainViewController)this.MainViewController).UnblockUI();
+
+                UIToast.MakeText("Error logging with Google!", UIToastLength.Long).Show();
+            }
+            finally
+            {
+                // Do nothing...
+            }
         }
 
         #endregion
@@ -131,6 +192,7 @@
                         AppController.Settings.LastLoginUsernameUsed = _email;                        
                         AppController.Settings.AuthAccessToken = data.AuthAccessToken;
                         AppController.Settings.AuthExpirationDate = data.AuthExpirationDate.GetValueOrDefault().ToLocalTime();
+                        AppController.Settings.GoogleSignedIn = false;
 
                         var c = new GimmicksViewController();
                         this.NavigationController.PushViewController(c, true);
@@ -214,6 +276,19 @@
             return true;
         }
 
+        private void LoginInGoogle()
+        {
+            ((MainViewController)this.MainViewController).BlockUI();
+
+            if (AppController.Settings.GoogleSignedIn)
+            {
+                SignIn.SharedInstance.SignOutUser();
+                AppController.Settings.GoogleSignedIn = false;
+            }
+
+            SignIn.SharedInstance.SignInUser();            
+        }
+
         #endregion
 
         #region Event Handlers
@@ -230,6 +305,13 @@
         private void LoginButton_TouchUpInside(object sender, EventArgs e)
         {
             LoginUser();
+            
+            DismissKeyboard();
+        }
+
+        private void GoogleLoginButton_TouchUpInside(object sender, EventArgs e)
+        {
+            LoginInGoogle();
 
             DismissKeyboard();
         }

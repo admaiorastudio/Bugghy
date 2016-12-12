@@ -129,6 +129,18 @@
             }
         }
 
+        public bool GoogleSignedIn
+        {
+            get
+            {
+                return _settings.GetBoolValue("GoogleSignedIn");
+            }
+            set
+            {
+                _settings.SetBoolValue("GoogleSignedIn", value);
+            }
+        }
+
         #endregion
     }
 
@@ -148,6 +160,7 @@
         #endregion
 
         #region Constants and Fields
+
         public static class Globals
         {
             // Splash screen timeout (milliseconds)
@@ -163,6 +176,9 @@
             public const string ServicesBaseUrl = "https://bugghy-api.azurewebsites.net/";            
             // Default service client timeout in seconds
             public const int ServicesDefaultRequestTimeout = 60;
+            
+            public const string GoogleClientId_Android = "500870460475-uni4l3u7f05k2joam4ktf26bm4clo65u.apps.googleusercontent.com";
+            public const string GoogleClientId_iOS = "500870460475-hklvs4nk960kit0vennb85fjn90k01qf.apps.googleusercontent.com";
         }
 
         public static class Colors
@@ -376,6 +392,64 @@
             finally
             {                
                 finished?.Invoke();
+            }
+        }
+
+        public static async Task LoginUser(CancellationTokenSource cts,            
+            string gClientId,
+            string gEmail,
+            string gToken,
+            Action<Poco.User> success,
+            Action<string> error,
+            Action finished)
+        {
+            try
+            {
+                var response = await _services.Request<Dto.Response<Poco.User>>(
+                    // Resource to call
+                    "users/login/google",
+                    // HTTP method
+                    Method.POST,
+                    // Cancellation token
+                    cts.Token,
+                    // Parameters handling
+                    ParametersHandling.Body,
+                    // Parameters
+                    new
+                    {         
+                        ClientId = gClientId,               
+                        Email = gEmail,
+                        Token = gToken
+                    });
+
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    string accessToken = response.Data.Content.AuthAccessToken;
+                    DateTime accessExpirationDate = response.Data.Content.AuthExpirationDate.GetValueOrDefault().ToLocalTime();
+
+                    // Refresh access token for further service calls
+                    _services.RefreshAccessToken(accessToken, accessExpirationDate);
+
+                    if (success != null)
+                        success(response.Data.Content);
+                }
+                else
+                {
+                    if (error != null)
+                        error(response.Data.ExceptionMessage ?? response.Data.Message ?? response.StatusDescription);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+
+                if (error != null)
+                    error("Internal error :(");
+            }
+            finally
+            {
+                if (finished != null)
+                    finished();
             }
         }
 

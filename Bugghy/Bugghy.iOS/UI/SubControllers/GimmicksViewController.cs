@@ -238,7 +238,7 @@
             (new UIAlertViewBuilder(new UIAlertView()))
                 .SetTitle("Do you want to logout now?")
                 .SetMessage("")
-                .AddButton("Ok",
+                .AddButton("Yes please!",
                     (s, ea) =>
                     {
                         AppController.Settings.AuthAccessToken = null;

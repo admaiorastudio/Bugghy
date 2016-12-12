@@ -84,7 +84,7 @@
                 android:imeOptions="actionDone"
                 android:saveEnabled="false" />
             <Button
-                android:text="L O G I N"
+                android:text="LOGIN"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:id="@+id/LoginButton"
@@ -95,6 +95,18 @@
                 android:textSize="20dp"
                 android:fontFamily="sans-serif-light"
                 android:background="@color/AndroidGreen" />
+            <Button
+                android:text="LOGIN WITH GOOGLE"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:id="@+id/GoogleLoginButton"
+                android:layout_below="@+id/LoginButton"
+                android:layout_marginTop="8dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/White"
+                android:textSize="20dp"
+                android:fontFamily="sans-serif-light"
+                android:background="@color/TartOrange" />
             <Button
                 android:text="I'm not registered!"
                 android:layout_width="300dp"

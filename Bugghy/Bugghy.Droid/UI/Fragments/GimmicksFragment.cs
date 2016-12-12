@@ -93,6 +93,8 @@ namespace AdMaiora.Bugghy
 
         private GimmickAdapter _adapter;
 
+        private bool _signOut;
+
         // This flag check if we are already calling the login REST service
         private bool _isRefreshingGimmicks;
         // This cancellation token is used to cancel the rest send message request

@@ -99,6 +99,10 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SendGrid, Version=8.0.5.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\packages\Sendgrid.8.0.5\lib\SendGrid.dll</HintPath>
       <Private>True</Private>
@@ -197,6 +201,10 @@
     <Compile Include="Migrations\201611181523110_VariousChanges.Designer.cs">
       <DependentUpon>201611181523110_VariousChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612091503339_VariousChanges1.cs" />
+    <Compile Include="Migrations\201612091503339_VariousChanges1.Designer.cs">
+      <DependentUpon>201612091503339_VariousChanges1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BugghyDbContext.cs" />
     <Compile Include="Startup.cs" />
@@ -230,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611181523110_VariousChanges.resx">
       <DependentUpon>201611181523110_VariousChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612091503339_VariousChanges1.resx">
+      <DependentUpon>201612091503339_VariousChanges1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

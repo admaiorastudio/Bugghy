@@ -20,13 +20,16 @@
     using AdMaiora.Bugghy.Api.Models;
     using AdMaiora.Bugghy.Api.DataObjects;
 
+    using RestSharp;
+
     using Microsoft.Azure.Mobile.Server;
     using Microsoft.Azure.Mobile.Server.Config;
     using Microsoft.Azure.Mobile.Server.Login;
     using Microsoft.Azure.NotificationHubs;
 
     using SendGrid;
-    using SendGrid.Helpers.Mail;    
+    using SendGrid.Helpers.Mail;
+    using System.Configuration;
 
     public class UsersController : ApiController
     {
@@ -206,6 +209,9 @@
                     if (!user.IsConfirmed)
                         return InternalServerError(new InvalidOperationException("You must confirm your email first!"));
 
+                    if (!String.IsNullOrWhiteSpace(user.GoogleId) && user.Password == null)
+                        return InternalServerError(new InvalidOperationException("You must login via Google!"));
+
                     string p1 = FormsAuthentication.HashPasswordForStoringInConfigFile(user.Password, "MD5");
                     string p2 = FormsAuthentication.HashPasswordForStoringInConfigFile(credentials.Password, "MD5");
                     if (p1 != p2)
@@ -233,6 +239,91 @@
                 return InternalServerError(ex);
             }
         }
+
+        [HttpPost, Route("users/login/google")]
+        public async Task<IHttpActionResult> LoginUser(Google.Credentials credentials)
+        {
+            if (string.IsNullOrWhiteSpace(credentials.ClientID))
+                return BadRequest("The Google client ID is not valid!");
+
+            if (string.IsNullOrWhiteSpace(credentials.Email))
+                return BadRequest("The email is not valid!");
+
+            if (string.IsNullOrWhiteSpace(credentials.Token))
+                return BadRequest("The Google token is not valid!");
+
+            try
+            {
+                RestClient c = new RestClient(new Uri("https://www.googleapis.com"));
+
+                // To login via google token, we need first to validate the token passed
+                // To validate the token we must check if it belongs to our Google application
+                // Reference: https://developers.google.com/identity/sign-in/android/backend-auth
+
+                // Validation request
+                RestRequest vr = new RestRequest("oauth2/v3/tokeninfo", Method.GET);
+                vr.AddParameter("id_token", credentials.Token);
+                var r = await c.ExecuteTaskAsync<Google.TokenClaims>(vr);
+
+                if (r.StatusCode != HttpStatusCode.OK)
+                    return InternalServerError(new InvalidOperationException("Unable to login via Google"));
+
+                if (r.Data.aud != credentials.ClientID
+                    || r.Data.email != credentials.Email
+                    || r.Data.email_verified == false)
+                {
+                    return InternalServerError(new InvalidOperationException("Unable to login via Google"));
+                }
+
+                using (var ctx = new BugghyDbContext())
+                {
+                    // Check if we have already registered the user, if not this login method will take care of it
+                    User user = ctx.Users.SingleOrDefault(x => x.Email == credentials.Email);
+                    if (user == null)
+                    {
+                        user = new User
+                        {
+                            GoogleId = r.Data.sub,
+                            Email = credentials.Email,
+                            Password = null,
+                            Ticket = Guid.NewGuid().ToString(),
+                            IsConfirmed = true
+                        };
+
+                        ctx.Users.Add(user);
+                        ctx.SaveChanges();
+                    }
+                    else
+                    {
+                        user.GoogleId = r.Data.sub;
+                        user.IsConfirmed = true;
+
+                        ctx.SaveChanges();
+                    }
+
+                    var token = GetAuthenticationTokenForUser(user.Email);
+                    user.LoginDate = DateTime.Now.ToUniversalTime();
+                    user.LastActiveDate = user.LoginDate;
+                    user.AuthAccessToken = token.RawData;
+                    user.AuthExpirationDate = token.ValidTo;
+                    ctx.SaveChanges();
+
+                    return Ok(Dto.Wrap(new Poco.User
+                    {
+                        UserId = user.UserId,
+                        Email = user.Email,
+                        LoginDate = user.LoginDate,
+                        AuthAccessToken = user.AuthAccessToken,
+                        AuthExpirationDate = user.AuthExpirationDate
+                    }));
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
 
         [HttpGet, Route("users/restore")]
         public IHttpActionResult RestoreUser(string accessToken)

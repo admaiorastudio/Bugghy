@@ -11,8 +11,7 @@
     using Android.Runtime;
     using Android.Widget;
     using Android.OS;
-    using Android.Gms.Common;
-    using Android.Gms.Gcm.Iid;
+    using Android.Gms.Common;    
     using Android.Gms.Gcm;
     using Android.Support.V4.App;
     

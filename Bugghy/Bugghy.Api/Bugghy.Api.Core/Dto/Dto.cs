@@ -1,12 +1,13 @@
 ﻿namespace AdMaiora.Bugghy.Api
 {
     using System;
-    
+
     public static class Poco
     {
         public class User
         {
-            public int UserId;            
+            public int UserId;
+            public string GoogleId;
             public string Email;
             public string Password;
             public DateTime? LoginDate;
@@ -37,7 +38,7 @@
             public int GimmickId;
             public int UserId;
             public string Sender;
-            public string Code;        
+            public string Code;
             public string Title;
             public string Description;
             public IssueType Type;
@@ -53,16 +54,16 @@
             public int MessageId;
             public int IssueId;
             public int UserId;
-            public string Sender;      
+            public string Sender;
             public string Content;
-            public DateTime? PostDate;            
+            public DateTime? PostDate;
         }
 
         public class Attachment
         {
             public int AttachmentId;
             public int MessageId;
-            public int UserId;            
+            public int UserId;
             public string FileName;
             public string FileUrl;
             public DateTime? CreationDate;
@@ -70,7 +71,34 @@
 
         public class DataBundle<T>
         {
-            public T[] Items;            
+            public T[] Items;
+        }
+    }
+
+    public static class Google
+    {
+        public class Credentials
+        {
+            public string ClientID;
+            public string Email;
+            public string Token;
+        }
+
+        public class TokenClaims
+        {
+            public string iss { get; set; }
+            public string sub { get; set; }
+            public string azp { get; set; }
+            public string aud { get; set; }
+            public string iat { get; set; }
+            public string exp { get; set; }
+            public string email { get; set; }
+            public Boolean email_verified { get; set; }
+            public string name { get; set; }
+            public string picture { get; set; }
+            public string given_name { get; set; }
+            public string family_name { get; set; }
+            public string locale { get; set; }
         }
     }
 

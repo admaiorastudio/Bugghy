@@ -1316,6 +1316,8 @@ namespace AdMaiora.Bugghy
 			global::AdMaiora.AppKit.UI.Resource.Styleable.ViewStubCompat_android_id = global::AdMaiora.Bugghy.Resource.Styleable.ViewStubCompat_android_id;
 			global::AdMaiora.AppKit.UI.Resource.Styleable.ViewStubCompat_android_inflatedId = global::AdMaiora.Bugghy.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::AdMaiora.AppKit.UI.Resource.Styleable.ViewStubCompat_android_layout = global::AdMaiora.Bugghy.Resource.Styleable.ViewStubCompat_android_layout;
+			global::PCLCrypto.Resource.String.ApplicationName = global::AdMaiora.Bugghy.Resource.String.ApplicationName;
+			global::PCLCrypto.Resource.String.Hello = global::AdMaiora.Bugghy.Resource.String.Hello;
 		}
 		
 		public partial class Animation
@@ -3160,8 +3162,8 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b0064
 			public const int CalloutLayout = 2131427428;
 			
-			// aapt resource value: 0x7f0b00ac
-			public const int CatImage = 2131427500;
+			// aapt resource value: 0x7f0b00ad
+			public const int CatImage = 2131427501;
 			
 			// aapt resource value: 0x7f0b008f
 			public const int ClosedLayout = 2131427471;
@@ -3199,8 +3201,8 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b009b
 			public const int EditButton = 2131427483;
 			
-			// aapt resource value: 0x7f0b00a7
-			public const int EmailLabel = 2131427495;
+			// aapt resource value: 0x7f0b00a8
+			public const int EmailLabel = 2131427496;
 			
 			// aapt resource value: 0x7f0b00a2
 			public const int EmailText = 2131427490;
@@ -3220,11 +3222,14 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b0093
 			public const int GimmickList = 2131427475;
 			
-			// aapt resource value: 0x7f0b00ad
-			public const int GoToLoginButton = 2131427501;
+			// aapt resource value: 0x7f0b00ae
+			public const int GoToLoginButton = 2131427502;
 			
-			// aapt resource value: 0x7f0b00a8
-			public const int HeadImage = 2131427496;
+			// aapt resource value: 0x7f0b00a5
+			public const int GoogleLoginButton = 2131427493;
+			
+			// aapt resource value: 0x7f0b00a9
+			public const int HeadImage = 2131427497;
 			
 			// aapt resource value: 0x7f0b0074
 			public const int HeaderLayout = 2131427444;
@@ -3232,8 +3237,8 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b0078
 			public const int InputLayout = 2131427448;
 			
-			// aapt resource value: 0x7f0b00ae
-			public const int InputText = 2131427502;
+			// aapt resource value: 0x7f0b00af
+			public const int InputText = 2131427503;
 			
 			// aapt resource value: 0x7f0b00a0
 			public const int IssueList = 2131427488;
@@ -3286,14 +3291,14 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b006c
 			public const int OwnerLabel = 2131427436;
 			
-			// aapt resource value: 0x7f0b00a9
-			public const int PasswordLabel = 2131427497;
+			// aapt resource value: 0x7f0b00aa
+			public const int PasswordLabel = 2131427498;
 			
 			// aapt resource value: 0x7f0b00a3
 			public const int PasswordText = 2131427491;
 			
-			// aapt resource value: 0x7f0b00a5
-			public const int RegisterButton = 2131427493;
+			// aapt resource value: 0x7f0b00a6
+			public const int RegisterButton = 2131427494;
 			
 			// aapt resource value: 0x7f0b0085
 			public const int SendButton = 2131427461;
@@ -3337,8 +3342,8 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b006d
 			public const int TypeImage = 2131427437;
 			
-			// aapt resource value: 0x7f0b00a6
-			public const int VerifyButton = 2131427494;
+			// aapt resource value: 0x7f0b00a7
+			public const int VerifyButton = 2131427495;
 			
 			// aapt resource value: 0x7f0b0063
 			public const int VersionLabel = 2131427427;
@@ -3352,11 +3357,11 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b008e
 			public const int ViewWorkingButton = 2131427470;
 			
-			// aapt resource value: 0x7f0b00ab
-			public const int WelcomeLabel = 2131427499;
+			// aapt resource value: 0x7f0b00ac
+			public const int WelcomeLabel = 2131427500;
 			
-			// aapt resource value: 0x7f0b00aa
-			public const int WelcomeLayout = 2131427498;
+			// aapt resource value: 0x7f0b00ab
+			public const int WelcomeLayout = 2131427499;
 			
 			// aapt resource value: 0x7f0b008c
 			public const int WorkingLayout = 2131427468;
@@ -3364,8 +3369,8 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b008d
 			public const int WorkingNumberLabel = 2131427469;
 			
-			// aapt resource value: 0x7f0b00af
-			public const int action0 = 2131427503;
+			// aapt resource value: 0x7f0b00b0
+			public const int action0 = 2131427504;
 			
 			// aapt resource value: 0x7f0b004d
 			public const int action_bar = 2131427405;
@@ -3391,8 +3396,8 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b004e
 			public const int action_context_bar = 2131427406;
 			
-			// aapt resource value: 0x7f0b00b3
-			public const int action_divider = 2131427507;
+			// aapt resource value: 0x7f0b00b4
+			public const int action_divider = 2131427508;
 			
 			// aapt resource value: 0x7f0b0003
 			public const int action_menu_divider = 2131427331;
@@ -3433,14 +3438,14 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b0037
 			public const int buttonPanel = 2131427383;
 			
-			// aapt resource value: 0x7f0b00b0
-			public const int cancel_action = 2131427504;
+			// aapt resource value: 0x7f0b00b1
+			public const int cancel_action = 2131427505;
 			
 			// aapt resource value: 0x7f0b0045
 			public const int checkbox = 2131427397;
 			
-			// aapt resource value: 0x7f0b00b6
-			public const int chronometer = 2131427510;
+			// aapt resource value: 0x7f0b00b7
+			public const int chronometer = 2131427511;
 			
 			// aapt resource value: 0x7f0b002a
 			public const int clamp = 2131427370;
@@ -3475,8 +3480,8 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b0023
 			public const int end = 2131427363;
 			
-			// aapt resource value: 0x7f0b00bb
-			public const int end_padder = 2131427515;
+			// aapt resource value: 0x7f0b00bc
+			public const int end_padder = 2131427516;
 			
 			// aapt resource value: 0x7f0b0031
 			public const int expand_activities_button = 2131427377;
@@ -3502,8 +3507,8 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b0032
 			public const int image = 2131427378;
 			
-			// aapt resource value: 0x7f0b00ba
-			public const int info = 2131427514;
+			// aapt resource value: 0x7f0b00bb
+			public const int info = 2131427515;
 			
 			// aapt resource value: 0x7f0b0000
 			public const int item_touch_helper_previous_elevation = 2131427328;
@@ -3511,11 +3516,11 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b0012
 			public const int light = 2131427346;
 			
-			// aapt resource value: 0x7f0b00b4
-			public const int line1 = 2131427508;
+			// aapt resource value: 0x7f0b00b5
+			public const int line1 = 2131427509;
 			
-			// aapt resource value: 0x7f0b00b8
-			public const int line3 = 2131427512;
+			// aapt resource value: 0x7f0b00b9
+			public const int line3 = 2131427513;
 			
 			// aapt resource value: 0x7f0b0013
 			public const int listMode = 2131427347;
@@ -3523,8 +3528,8 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b0034
 			public const int list_item = 2131427380;
 			
-			// aapt resource value: 0x7f0b00b2
-			public const int media_actions = 2131427506;
+			// aapt resource value: 0x7f0b00b3
+			public const int media_actions = 2131427507;
 			
 			// aapt resource value: 0x7f0b0024
 			public const int middle = 2131427364;
@@ -3634,8 +3639,8 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b000e
 			public const int standard = 2131427342;
 			
-			// aapt resource value: 0x7f0b00b1
-			public const int status_bar_latest_event_content = 2131427505;
+			// aapt resource value: 0x7f0b00b2
+			public const int status_bar_latest_event_content = 2131427506;
 			
 			// aapt resource value: 0x7f0b0058
 			public const int submit_area = 2131427416;
@@ -3643,17 +3648,17 @@ namespace AdMaiora.Bugghy
 			// aapt resource value: 0x7f0b0015
 			public const int tabMode = 2131427349;
 			
-			// aapt resource value: 0x7f0b00b9
-			public const int text = 2131427513;
+			// aapt resource value: 0x7f0b00ba
+			public const int text = 2131427514;
 			
-			// aapt resource value: 0x7f0b00b7
-			public const int text2 = 2131427511;
+			// aapt resource value: 0x7f0b00b8
+			public const int text2 = 2131427512;
 			
 			// aapt resource value: 0x7f0b0040
 			public const int textSpacerNoButtons = 2131427392;
 			
-			// aapt resource value: 0x7f0b00b5
-			public const int time = 2131427509;
+			// aapt resource value: 0x7f0b00b6
+			public const int time = 2131427510;
 			
 			// aapt resource value: 0x7f0b0036
 			public const int title = 2131427382;
@@ -3923,6 +3928,12 @@ namespace AdMaiora.Bugghy
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f070034
+			public const int ApplicationName = 2131165236;
+			
+			// aapt resource value: 0x7f070033
+			public const int Hello = 2131165235;
 			
 			// aapt resource value: 0x7f07001f
 			public const int abc_action_bar_home_description = 2131165215;

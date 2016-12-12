@@ -14,6 +14,12 @@
             set;
         }
 
+        public string GoogleId
+        {
+            get;
+            set;
+        }
+
         public string Email
         {
             get;
