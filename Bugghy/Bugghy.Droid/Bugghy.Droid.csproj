@@ -43,7 +43,7 @@
     <AndroidSigningKeyStore>bugghy.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>AdM@ior@2016!</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>bugghy</AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass>AdM@ior@2016!</AndroidSigningKeyPass>	
+    <AndroidSigningKeyPass>AdM@ior@2016!</AndroidSigningKeyPass>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -57,7 +57,7 @@
     <AndroidSigningKeyStore>bugghy.keystore</AndroidSigningKeyStore>
     <AndroidSigningStorePass>AdM@ior@2016!</AndroidSigningStorePass>
     <AndroidSigningKeyAlias>bugghy</AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass>AdM@ior@2016!</AndroidSigningKeyPass>		
+    <AndroidSigningKeyPass>AdM@ior@2016!</AndroidSigningKeyPass>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdMaiora.AppKit.Core, Version=1.0.6170.30919, Culture=neutral, processorArchitecture=MSIL">
@@ -68,7 +68,7 @@
       <HintPath>..\..\packages\AdMaiora.AppKit.1.0.8\lib\MonoAndroid10\AdMaiora.AppKit.Core.Android.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AdMaiora.AppKit.UI, Version=1.0.6177.19543, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="AdMaiora.AppKit.UI, Version=1.0.6190.26530, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.10\lib\MonoAndroid10\AdMaiora.AppKit.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>

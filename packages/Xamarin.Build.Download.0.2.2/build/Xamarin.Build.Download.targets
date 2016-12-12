@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<UsingTask TaskName="Xamarin.Build.Download.XamarinDownloadArchives" AssemblyFile="Xamarin.Build.Download.dll" />
+	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildiOSResourceRestore" AssemblyFile="Xamarin.Build.Download.dll" />
+
+	<PropertyGroup>
+		<XamarinBuildDownloadDir Condition="'$(XamarinBuildDownloadDir)' != '' and !HasTrailingSlash('$(XamarinBuildDownloadDir)')">$(XamarinBuildDownloadDir)\</XamarinBuildDownloadDir>
+	</PropertyGroup>
+
+	<!--
+	In XS, props files are not inserted in the correct place (https://bugzilla.xamarin.com/show_bug.cgi?id=19054)
+	so targets files cannot reference $(XamarinBuildDownloadDir) when registering items.
+	This is a workaround: it provides a point to register targets that can insert the items.
+	-->
+	<Target Name="_XamarinBuildAddDownloadedItems" DependsOnTargets="@(XamarinBuildRestoreResources)" />
+
+	<Target
+			Name="_XamarinBuildDownload"
+			DependsOnTargets="_XamarinBuildDownloadCore;_XamarinBuildAddDownloadedItems"
+			Condition="'@(XamarinBuildDownload)'!=''"
+		/>
+
+	<Target Name="_XamarinBuildDownloadCore">
+		<Error Text="XamarinBuildDownloadDir property is not set" Condition="'$(XamarinBuildDownloadDir)'==''" />
+		<XamarinDownloadArchives
+			Archives="@(XamarinBuildDownload)"
+			DestinationBase="$(XamarinBuildDownloadDir)"
+			CacheDirectory="$(XamarinBuildDownloadCacheDir)"
+			/>
+	</Target>
+
+	<Target Name="_XamariniOSBuildResourceRestore"
+			DependsOnTargets="_XamarinBuildDownload"
+			Condition="'@(RestoreAssemblyResource)'!=''"
+			>
+		<XamarinBuildiOSResourceRestore
+			IntermediateOutputPath="$(IntermediateOutputPath)"
+			InputReferencePaths="@(ReferencePath)"
+			RestoreAssemblyResources="@(RestoreAssemblyResource)">
+			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
+			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
+			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
+		</XamarinBuildiOSResourceRestore>
+		<ItemGroup>
+			<ReferencePath Remove="@(_ResourceRestoreRemovedReferencePaths)" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="_XamarinBuildDownloadMasterTarget"
+			BeforeTargets="_UnpackLibraryResources"
+			DependsOnTargets="_XamarinBuildDownload;_XamariniOSBuildResourceRestore"
+			Condition="'$(TargetFrameworkIdentifier)'=='Xamarin.iOS' And ('$(OutputType)' != 'Library' OR '$(IsAppExtension)'=='True')"
+			>
+	</Target>
+</Project>

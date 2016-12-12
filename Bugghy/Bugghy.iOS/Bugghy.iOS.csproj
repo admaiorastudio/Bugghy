@@ -85,7 +85,7 @@
       <HintPath>..\..\packages\AdMaiora.AppKit.1.0.8\lib\Xamarin.iOS10\AdMaiora.AppKit.Core.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AdMaiora.AppKit.UI, Version=1.0.6177.19543, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="AdMaiora.AppKit.UI, Version=1.0.6190.26530, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AdMaiora.AppKit.UI.1.0.10\lib\Xamarin.iOS10\AdMaiora.AppKit.UI.dll</HintPath>
       <Private>True</Private>
     </Reference>
