@@ -19,6 +19,9 @@ namespace AdMaiora.Bugghy
 		UIKit.UITextField EmailText { get; set; }
 
 		[Outlet]
+		UIKit.UIButton GoogleLoginButton { get; set; }
+
+		[Outlet]
 		UIKit.UIView InputLayout { get; set; }
 
 		[Outlet]
@@ -44,6 +47,11 @@ namespace AdMaiora.Bugghy
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (BackImage != null) {
+				BackImage.Dispose ();
+				BackImage = null;
+			}
+
 			if (EmailText != null) {
 				EmailText.Dispose ();
 				EmailText = null;
@@ -79,19 +87,19 @@ namespace AdMaiora.Bugghy
 				RegisterButton = null;
 			}
 
+			if (TitleLabel != null) {
+				TitleLabel.Dispose ();
+				TitleLabel = null;
+			}
+
 			if (VerifyButton != null) {
 				VerifyButton.Dispose ();
 				VerifyButton = null;
 			}
 
-			if (BackImage != null) {
-				BackImage.Dispose ();
-				BackImage = null;
-			}
-
-			if (TitleLabel != null) {
-				TitleLabel.Dispose ();
-				TitleLabel = null;
+			if (GoogleLoginButton != null) {
+				GoogleLoginButton.Dispose ();
+				GoogleLoginButton = null;
 			}
 		}
 	}
