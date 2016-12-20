@@ -87,7 +87,13 @@ namespace AdMaiora.Bugghy
 
             this.Title = "Description";
 
-            this.InputText.Text = this.ContentText;
+            this.InputText.Text = this.ContentText;            
+        }
+
+        public override void OnStart()
+        {
+            base.OnStart();
+
             this.InputText.RequestUserInput();
         }
 

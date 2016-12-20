@@ -71,7 +71,13 @@
 
             this.Title = "Description"; 
             
-            this.InputText.Text = this.ContentText;
+            this.InputText.Text = this.ContentText;            
+        }
+
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+
             this.InputText.RequestUserInput();
         }
 
