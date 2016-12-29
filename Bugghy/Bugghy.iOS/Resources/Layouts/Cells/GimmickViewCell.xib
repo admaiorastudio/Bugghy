@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -21,6 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCS-mC-Gji">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_gear.png" translatesAutoresizingMaskIntoConstraints="NO" id="yzd-Ue-J3F">
+                                        <accessibility key="accessibilityConfiguration" identifier="ThumbImage"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="56u-B4-Dsp"/>
                                             <constraint firstAttribute="height" constant="48" id="6mf-iH-0lq"/>
@@ -35,6 +36,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d35-E4-fKX">
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEi-PE-ddI">
+                                                <accessibility key="accessibilityConfiguration" identifier="NameLabel"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="bKk-Qw-lme"/>
                                                 </constraints>
@@ -43,6 +45,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="owner:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69c-ls-S5e">
+                                                <accessibility key="accessibilityConfiguration" identifier="OfLabel"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="HtI-j9-EgT"/>
                                                     <constraint firstAttribute="width" constant="46" id="w20-cf-nhz"/>
@@ -52,6 +55,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of the owner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1FB-Fw-9u7">
+                                                <accessibility key="accessibilityConfiguration" identifier="OwnerLabel"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="17" id="WY4-Gd-0T4"/>
                                                 </constraints>
@@ -60,6 +64,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <accessibility key="accessibilityConfiguration" identifier="DetailsLayout"/>
                                         <constraints>
                                             <constraint firstItem="eEi-PE-ddI" firstAttribute="leading" secondItem="d35-E4-fKX" secondAttribute="leading" id="4qE-Nm-s0v"/>
                                             <constraint firstItem="1FB-Fw-9u7" firstAttribute="leading" secondItem="69c-ls-S5e" secondAttribute="trailing" constant="3" id="6wK-p3-Jmu"/>
@@ -75,6 +80,7 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.2274509804" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <accessibility key="accessibilityConfiguration" identifier="ContentLayout"/>
                                 <constraints>
                                     <constraint firstItem="d35-E4-fKX" firstAttribute="top" secondItem="jCS-mC-Gji" secondAttribute="top" constant="8" id="6eD-8e-KuL"/>
                                     <constraint firstItem="yzd-Ue-J3F" firstAttribute="centerY" secondItem="jCS-mC-Gji" secondAttribute="centerY" id="BpP-Mp-N63"/>
@@ -88,6 +94,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" identifier="CalloutLayout"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="jCS-mC-Gji" secondAttribute="trailing" constant="8" id="CNv-Jb-Pi9"/>
                             <constraint firstItem="jCS-mC-Gji" firstAttribute="leading" secondItem="Jqs-AY-Yxy" secondAttribute="leading" constant="8" id="Ma0-JZ-TAv"/>
@@ -113,15 +120,6 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.31764706969261169" green="0.31764706969261169" blue="0.31764706969261169" alpha="1" colorSpace="calibratedRGB"/>
-            <connections>
-                <outlet property="CalloutLayout" destination="Jqs-AY-Yxy" id="d7H-jG-6lK"/>
-                <outlet property="ContentLayout" destination="jCS-mC-Gji" id="oM1-C3-5gK"/>
-                <outlet property="DetailsLayout" destination="d35-E4-fKX" id="3ux-Gf-UKW"/>
-                <outlet property="NameLabel" destination="eEi-PE-ddI" id="fZ3-Z3-10y"/>
-                <outlet property="OfLabel" destination="69c-ls-S5e" id="4Ma-51-Mqo"/>
-                <outlet property="OwnerLabel" destination="1FB-Fw-9u7" id="lGN-Aq-cjP"/>
-                <outlet property="ThumbImage" destination="yzd-Ue-J3F" id="gxO-5l-IAg"/>
-            </connections>
             <point key="canvasLocation" x="34" y="80"/>
         </tableViewCell>
     </objects>

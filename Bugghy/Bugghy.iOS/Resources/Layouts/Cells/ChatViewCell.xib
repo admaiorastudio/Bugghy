@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -24,6 +24,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HrI-QW-r3D">
                                         <frame key="frameInset" minX="-1" minY="-1" width="159" height="15"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="SenderLabel"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="nYk-EA-mrS"/>
                                         </constraints>
@@ -33,12 +34,14 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" ambiguous="YES" text="Your message here..." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHv-ln-ASl">
                                         <frame key="frameInset" minY="14" width="159" height="17.5"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="MessageLabel"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="14/09/2016" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvZ-Po-sz8">
                                         <frame key="frameInset" minX="3" minY="33.5" width="53" height="13"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="DateLabel"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="13" id="2P6-p2-Vib"/>
                                         </constraints>
@@ -47,6 +50,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <accessibility key="accessibilityConfiguration" identifier="ContentLayout"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="cHv-ln-ASl" secondAttribute="trailing" constant="-1" id="6aV-ck-G59"/>
                                     <constraint firstAttribute="trailing" secondItem="HrI-QW-r3D" secondAttribute="trailing" id="8wF-Uq-xqf"/>
@@ -62,6 +66,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.60784313729999995" green="0.7725490196" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <accessibility key="accessibilityConfiguration" identifier="CalloutLayout"/>
                         <constraints>
                             <constraint firstItem="kHX-MR-tS3" firstAttribute="top" secondItem="vwP-v4-JsR" secondAttribute="top" constant="4" id="8Nd-0e-ihj"/>
                             <constraint firstItem="kHX-MR-tS3" firstAttribute="leading" secondItem="vwP-v4-JsR" secondAttribute="leading" constant="10" id="EIY-uU-aUd"/>
@@ -92,13 +97,6 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.31764705882352939" green="0.31764705882352939" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
-            <connections>
-                <outlet property="CalloutLayout" destination="vwP-v4-JsR" id="S9N-AZ-Ijn"/>
-                <outlet property="ContentLayout" destination="kHX-MR-tS3" id="EI6-Nr-dXG"/>
-                <outlet property="DateLabel" destination="CvZ-Po-sz8" id="pzY-7q-DZz"/>
-                <outlet property="MessageLabel" destination="cHv-ln-ASl" id="8ug-KG-D0b"/>
-                <outlet property="SenderLabel" destination="HrI-QW-r3D" id="eA2-e1-823"/>
-            </connections>
             <point key="canvasLocation" x="66" y="-58.5"/>
         </tableViewCell>
     </objects>
