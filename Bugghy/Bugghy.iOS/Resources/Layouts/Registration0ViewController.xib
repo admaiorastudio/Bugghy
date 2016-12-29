@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -8,10 +8,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Registration0ViewController">
             <connections>
-                <outlet property="EmailLabel" destination="kag-XH-aW4" id="0FQ-aC-Wmq"/>
-                <outlet property="EmailText" destination="rDy-UZ-odi" id="T2b-Wd-9DZ"/>
-                <outlet property="HeadImage" destination="Wie-oz-Wjq" id="6ms-em-tSe"/>
-                <outlet property="InputLayout" destination="vqW-HP-cYC" id="s7J-DL-CfY"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -23,6 +19,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqW-HP-cYC">
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. We need to identify you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kag-XH-aW4">
+                            <accessibility key="accessibilityConfiguration" identifier="EmailLabel"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="7CN-Zc-2Be"/>
                                 <constraint firstAttribute="width" constant="336" id="Ugh-KJ-QQ8"/>
@@ -33,6 +30,7 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_user.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wie-oz-Wjq">
                             <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration" identifier="HeadImage"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="VHC-rY-wBJ"/>
                                 <constraint firstAttribute="height" constant="40" id="dQk-8Y-SD8"/>
@@ -40,6 +38,7 @@
                         </imageView>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Insert your email..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rDy-UZ-odi">
                             <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration" identifier="EmailText"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="HVI-yL-U4n"/>
                             </constraints>
@@ -48,6 +47,7 @@
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                         </textField>
                     </subviews>
+                    <accessibility key="accessibilityConfiguration" identifier="InputLayout"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="72" id="GOh-Wr-bbK"/>
                         <constraint firstAttribute="trailing" secondItem="rDy-UZ-odi" secondAttribute="trailing" id="GSs-tU-YaU"/>

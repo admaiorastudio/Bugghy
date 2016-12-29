@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -8,10 +8,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegistrationDoneViewController">
             <connections>
-                <outlet property="GoToLoginButton" destination="ntF-Wl-0Ra" id="WcX-hv-mlh"/>
-                <outlet property="HeadImage" destination="yn2-Mq-eba" id="aDg-M2-T9T"/>
-                <outlet property="WelcomeLabel" destination="4VE-qq-eCs" id="Uxj-76-1sI"/>
-                <outlet property="WelcomeLayout" destination="CYy-bG-vdY" id="p0E-v1-HUv"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -22,6 +18,7 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntF-Wl-0Ra">
                     <color key="backgroundColor" red="0.2274509804" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <accessibility key="accessibilityConfiguration" identifier="GoToLoginButton"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="306" id="ZIT-sM-vNb"/>
                         <constraint firstAttribute="height" constant="40" id="pyk-I0-2q3"/>
@@ -36,6 +33,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Well done! You will receive a confirmation email." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VE-qq-eCs">
                             <frame key="frameInset" minY="112" width="254" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" identifier="WelcomeLabel"/>
                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -43,8 +41,10 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_bug1.png" translatesAutoresizingMaskIntoConstraints="NO" id="yn2-Mq-eba">
                             <frame key="frameInset" minX="82" minY="14" width="90" height="90"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" identifier="HeadImage"/>
                         </imageView>
                     </subviews>
+                    <accessibility key="accessibilityConfiguration" identifier="WelcomeLayout"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="216" id="GWd-s2-R8T"/>
                         <constraint firstAttribute="width" constant="254" id="R35-wc-AfL"/>

@@ -12,31 +12,9 @@ namespace AdMaiora.Bugghy
 	[Register ("MainViewController")]
 	partial class MainViewController
 	{
-		[Outlet]
-		UIKit.UIView ContentLayout { get; set; }
-
-		[Outlet]
-		UIKit.UIView LoadLayout { get; set; }
-
-		[Outlet]
-		UIKit.UIActivityIndicatorView LoadProgress { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ContentLayout != null) {
-				ContentLayout.Dispose ();
-				ContentLayout = null;
-			}
-
-			if (LoadLayout != null) {
-				LoadLayout.Dispose ();
-				LoadLayout = null;
-			}
-
-			if (LoadProgress != null) {
-				LoadProgress.Dispose ();
-				LoadProgress = null;
-			}
 		}
 	}
 }

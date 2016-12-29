@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -8,22 +8,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GimmickViewController">
             <connections>
-                <outlet property="AddButton" destination="cnQ-zW-U33" id="Cvq-d4-zIS"/>
-                <outlet property="ClosedLayout" destination="4U4-2b-6ed" id="zz3-je-H7l"/>
-                <outlet property="ClosedNumberLabel" destination="bcn-41-Yg7" id="emp-Uy-3SD"/>
-                <outlet property="DetailsLayout" destination="ucd-fN-J0X" id="8md-uw-ZoX"/>
-                <outlet property="IssuesLayout" destination="zDv-cj-UKx" id="GHT-0r-peM"/>
-                <outlet property="NameLabel" destination="LKB-4h-8z9" id="niF-eU-BeZ"/>
-                <outlet property="OpenedLayout" destination="R0E-Jt-klc" id="8SE-ii-P4d"/>
-                <outlet property="OpenedNumberLabel" destination="kgp-RX-0CZ" id="ALQ-UK-xye"/>
-                <outlet property="OwnerLabel" destination="PNy-rB-SFF" id="uyd-MI-Zxk"/>
-                <outlet property="ThumbImage" destination="pcx-aV-uDS" id="bId-8a-Aw9"/>
-                <outlet property="ThumbLayout" destination="iNf-yY-kml" id="xGa-mE-7yP"/>
-                <outlet property="ViewClosedButton" destination="ySc-DB-eoy" id="CXw-3q-t42"/>
-                <outlet property="ViewOpenedButton" destination="NqI-86-Gec" id="eea-MF-zex"/>
-                <outlet property="ViewWorkingButton" destination="4do-rw-aWm" id="st7-eF-NEy"/>
-                <outlet property="WorkingLayout" destination="qfH-50-yVV" id="XOC-cG-453"/>
-                <outlet property="WorkingNumberLabel" destination="ysV-Oo-XGK" id="ELF-V3-FXu"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -39,6 +23,7 @@
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_empty_thumb.png" translatesAutoresizingMaskIntoConstraints="NO" id="pcx-aV-uDS">
                                     <frame key="frameInset" width="128" height="128"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <accessibility key="accessibilityConfiguration" identifier="ThumbImage"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                             <integer key="value" value="64"/>
@@ -47,12 +32,14 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                             </subviews>
+                            <accessibility key="accessibilityConfiguration" identifier="ThumbLayout"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="128" id="jeQ-ye-dp5"/>
                                 <constraint firstAttribute="height" constant="128" id="zmg-6R-RTU"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gimmick Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LKB-4h-8z9">
+                            <accessibility key="accessibilityConfiguration" identifier="NameLabel"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="31" id="13f-gA-cs0"/>
                             </constraints>
@@ -61,6 +48,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(owner)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNy-rB-SFF">
+                            <accessibility key="accessibilityConfiguration" identifier="OwnerLabel"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="gbY-EA-T0o"/>
                             </constraints>
@@ -69,6 +57,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnQ-zW-U33">
+                            <accessibility key="accessibilityConfiguration" identifier="AddButton"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="64" id="UdI-c8-UnB"/>
                                 <constraint firstAttribute="height" constant="64" id="d8P-AY-6ts"/>
@@ -84,6 +73,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgp-RX-0CZ">
                                             <frame key="frameInset" width="110" height="64"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="OpenedNumberLabel"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="54"/>
                                             <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -91,12 +81,14 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NqI-86-Gec">
                                             <frame key="frameInset" width="110" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="ViewOpenedButton"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                             <state key="normal" title="OPENED">
                                                 <color key="titleColor" red="0.60784313729999995" green="0.7725490196" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                         </button>
                                     </subviews>
+                                    <accessibility key="accessibilityConfiguration" identifier="OpenedLayout"/>
                                 </view>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qfH-50-yVV">
                                     <frame key="frameInset" minX="110" width="110" height="90"/>
@@ -105,6 +97,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysV-Oo-XGK">
                                             <frame key="frameInset" width="110" height="64"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="WorkingNumberLabel"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="54"/>
                                             <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -112,12 +105,14 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4do-rw-aWm">
                                             <frame key="frameInset" width="110" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="ViewWorkingButton"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                             <state key="normal" title="WORKING">
                                                 <color key="titleColor" red="0.60784313729999995" green="0.7725490196" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                         </button>
                                     </subviews>
+                                    <accessibility key="accessibilityConfiguration" identifier="WorkingLayout"/>
                                 </view>
                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4U4-2b-6ed">
                                     <frame key="frameInset" minX="220" width="110" height="90"/>
@@ -126,6 +121,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcn-41-Yg7">
                                             <frame key="frameInset" width="110" height="64"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="ClosedNumberLabel"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="54"/>
                                             <color key="textColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -133,20 +129,24 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySc-DB-eoy">
                                             <frame key="frameInset" width="110" height="90"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="ViewClosedButton"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                             <state key="normal" title="CLOSED">
                                                 <color key="titleColor" red="0.60784313729999995" green="0.7725490196" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                         </button>
                                     </subviews>
+                                    <accessibility key="accessibilityConfiguration" identifier="ClosedLayout"/>
                                 </view>
                             </subviews>
+                            <accessibility key="accessibilityConfiguration" identifier="IssuesLayout"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="330" id="be3-5N-kI7"/>
                                 <constraint firstAttribute="height" constant="90" id="mhp-Ti-BDB"/>
                             </constraints>
                         </view>
                     </subviews>
+                    <accessibility key="accessibilityConfiguration" identifier="DetailsLayout"/>
                     <constraints>
                         <constraint firstItem="LKB-4h-8z9" firstAttribute="top" secondItem="iNf-yY-kml" secondAttribute="bottom" constant="7" id="631-5M-FDY"/>
                         <constraint firstItem="zDv-cj-UKx" firstAttribute="top" secondItem="cnQ-zW-U33" secondAttribute="bottom" constant="33" id="7OR-LE-Gbo"/>

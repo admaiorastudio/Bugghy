@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -8,19 +8,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController">
             <connections>
-                <outlet property="ArrowImage" destination="LgR-1g-W3A" id="q41-q6-3gS"/>
-                <outlet property="BackLayout" destination="qVc-I0-NPN" id="yy0-x9-a7S"/>
-                <outlet property="CalloutImage" destination="CIu-aO-sWE" id="PdE-px-wLB"/>
-                <outlet property="DetailsLayout" destination="OX3-sr-WEq" id="dAo-rb-JgH"/>
-                <outlet property="HeaderLayout" destination="WmR-sf-Ji9" id="JQS-7t-rLC"/>
-                <outlet property="InputLayout" destination="gAE-3X-1sQ" id="jAf-On-KYE"/>
-                <outlet property="MessageList" destination="1EF-gN-YXe" id="UdQ-ed-N4P"/>
-                <outlet property="MessageText" destination="MSS-9f-ffW" id="ouM-rV-uMi"/>
-                <outlet property="NoMessagesLabel" destination="lAP-hg-2MI" id="CRk-Rq-mie"/>
-                <outlet property="SendButton" destination="HR0-12-ilF" id="JEA-X1-R1v"/>
-                <outlet property="StatusLabel" destination="PLe-Ln-ZHL" id="IPb-Ef-cYv"/>
-                <outlet property="TitleLabel" destination="cuj-Z1-Qfg" id="eU8-fA-Oxe"/>
-                <outlet property="TypeImage" destination="ZTa-wV-HGP" id="3Vf-vD-nL4"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -32,6 +19,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WmR-sf-Ji9">
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_issue_blocking.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZTa-wV-HGP">
+                            <accessibility key="accessibilityConfiguration" identifier="TypeImage"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="CXQ-Cv-Qrq"/>
                                 <constraint firstAttribute="width" constant="32" id="jU2-g3-fY1"/>
@@ -40,11 +28,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OX3-sr-WEq">
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Issue title will be shown here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuj-Z1-Qfg">
+                                    <accessibility key="accessibilityConfiguration" identifier="TitleLabel"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                     <color key="textColor" red="0.60784313729999995" green="0.7725490196" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created @ 01/01/2016 00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLe-Ln-ZHL">
+                                    <accessibility key="accessibilityConfiguration" identifier="StatusLabel"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="13" id="kSH-IJ-mFz"/>
                                     </constraints>
@@ -53,6 +43,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <accessibility key="accessibilityConfiguration" identifier="DetailsLayout"/>
                             <constraints>
                                 <constraint firstItem="PLe-Ln-ZHL" firstAttribute="top" secondItem="cuj-Z1-Qfg" secondAttribute="bottom" constant="2" id="CLW-cK-ebw"/>
                                 <constraint firstItem="PLe-Ln-ZHL" firstAttribute="leading" secondItem="OX3-sr-WEq" secondAttribute="leading" id="PtS-CQ-40d"/>
@@ -64,6 +55,7 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_right_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="LgR-1g-W3A">
+                            <accessibility key="accessibilityConfiguration" identifier="ArrowImage"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="18" id="BZs-Li-Hoa"/>
                                 <constraint firstAttribute="width" constant="12" id="Bh1-Ov-GKT"/>
@@ -71,6 +63,7 @@
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.22745098173618317" green="0.20000000298023224" blue="0.20784313976764679" alpha="1" colorSpace="calibratedRGB"/>
+                    <accessibility key="accessibilityConfiguration" identifier="HeaderLayout"/>
                     <constraints>
                         <constraint firstItem="ZTa-wV-HGP" firstAttribute="centerY" secondItem="WmR-sf-Ji9" secondAttribute="centerY" id="08u-SV-87I"/>
                         <constraint firstAttribute="trailing" secondItem="LgR-1g-W3A" secondAttribute="trailing" constant="3" id="3MO-H6-TFE"/>
@@ -85,12 +78,18 @@
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No available items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAP-hg-2MI">
                     <color key="backgroundColor" red="0.31764705879999999" green="0.31764705879999999" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <accessibility key="accessibilityConfiguration" identifier="NoMessagesLabel">
+                        <bool key="isElement" value="NO"/>
+                    </accessibility>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1EF-gN-YXe" customClass="UIItemListView">
                     <color key="backgroundColor" red="0.31764706969261169" green="0.31764706969261169" blue="0.31764706969261169" alpha="1" colorSpace="calibratedRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="MessageList"/>
+                    </userDefinedRuntimeAttributes>
                 </tableView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAE-3X-1sQ">
                     <subviews>
@@ -142,6 +141,7 @@
                                     </constraints>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HR0-12-ilF">
+                                    <accessibility key="accessibilityConfiguration" identifier="SendButton"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="40" id="i7Y-U1-bd8"/>
                                         <constraint firstAttribute="height" constant="40" id="zak-0S-Jk7"/>
@@ -150,6 +150,7 @@
                                     <state key="normal" image="button_send.png"/>
                                 </button>
                             </subviews>
+                            <accessibility key="accessibilityConfiguration" identifier="BackLayout"/>
                             <constraints>
                                 <constraint firstItem="Qxo-33-myN" firstAttribute="top" secondItem="B7j-9A-Qgc" secondAttribute="bottom" id="14k-uk-8Gx"/>
                                 <constraint firstItem="7cn-Ls-7cu" firstAttribute="leading" secondItem="MgG-xn-duZ" secondAttribute="trailing" id="3Gg-Il-wcK"/>
@@ -180,12 +181,14 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_callout_v.png" translatesAutoresizingMaskIntoConstraints="NO" id="CIu-aO-sWE">
+                            <accessibility key="accessibilityConfiguration" identifier="CalloutImage"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="8" id="2qL-5a-hzM"/>
                                 <constraint firstAttribute="height" constant="21" id="atl-xG-RaR"/>
                             </constraints>
                         </imageView>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MSS-9f-ffW">
+                            <accessibility key="accessibilityConfiguration" identifier="MessageText"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="52" id="vVc-Qz-Pv1">
                                     <userDefinedRuntimeAttributes>
@@ -198,6 +201,7 @@
                         </textView>
                     </subviews>
                     <color key="backgroundColor" red="0.2274509804" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <accessibility key="accessibilityConfiguration" identifier="InputLayout"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="qVc-I0-NPN" secondAttribute="bottom" id="2PF-qW-tRV"/>
                         <constraint firstItem="qVc-I0-NPN" firstAttribute="leading" secondItem="gAE-3X-1sQ" secondAttribute="leading" constant="5" id="6bE-Cm-onF"/>

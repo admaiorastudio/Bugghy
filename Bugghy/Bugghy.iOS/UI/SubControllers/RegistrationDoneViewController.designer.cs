@@ -12,39 +12,9 @@ namespace AdMaiora.Bugghy
 	[Register ("RegistrationDoneViewController")]
 	partial class RegistrationDoneViewController
 	{
-		[Outlet]
-		UIKit.UIButton GoToLoginButton { get; set; }
-
-		[Outlet]
-		UIKit.UIImageView HeadImage { get; set; }
-
-		[Outlet]
-		UIKit.UILabel WelcomeLabel { get; set; }
-
-		[Outlet]
-		UIKit.UIView WelcomeLayout { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (GoToLoginButton != null) {
-				GoToLoginButton.Dispose ();
-				GoToLoginButton = null;
-			}
-
-			if (HeadImage != null) {
-				HeadImage.Dispose ();
-				HeadImage = null;
-			}
-
-			if (WelcomeLabel != null) {
-				WelcomeLabel.Dispose ();
-				WelcomeLabel = null;
-			}
-
-			if (WelcomeLayout != null) {
-				WelcomeLayout.Dispose ();
-				WelcomeLayout = null;
-			}
 		}
 	}
 }

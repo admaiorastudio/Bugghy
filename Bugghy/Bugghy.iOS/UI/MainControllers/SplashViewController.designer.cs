@@ -12,31 +12,9 @@ namespace AdMaiora.Bugghy
 	[Register ("SplashViewController")]
 	partial class SplashViewController
 	{
-		[Outlet]
-		UIKit.UIImageView LogoImage { get; set; }
-
-		[Outlet]
-		UIKit.UILabel TitleLabel { get; set; }
-
-		[Outlet]
-		UIKit.UILabel VersionLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (LogoImage != null) {
-				LogoImage.Dispose ();
-				LogoImage = null;
-			}
-
-			if (TitleLabel != null) {
-				TitleLabel.Dispose ();
-				TitleLabel = null;
-			}
-
-			if (VersionLabel != null) {
-				VersionLabel.Dispose ();
-				VersionLabel = null;
-			}
 		}
 	}
 }

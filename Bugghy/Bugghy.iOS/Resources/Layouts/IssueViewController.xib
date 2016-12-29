@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -8,17 +8,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IssueViewController">
             <connections>
-                <outlet property="CodeLabel" destination="M7g-4Q-qZm" id="TxS-9P-15P"/>
-                <outlet property="DescriptionLayout" destination="pUB-Iw-Wm5" id="v4M-sY-PBG"/>
-                <outlet property="DescriptionText" destination="pg1-O2-Lmr" id="HeV-2j-kw7"/>
-                <outlet property="EditButton" destination="FLe-Qe-eee" id="VZM-Iw-tYM"/>
-                <outlet property="HeaderLayout" destination="TgP-GP-mnF" id="QWr-lF-QFa"/>
-                <outlet property="ShadowBottomImage" destination="I3k-uI-Vc9" id="ovw-Re-Fgk"/>
-                <outlet property="ShadowTopImage" destination="wOB-Wf-Oq8" id="jS8-y0-52q"/>
-                <outlet property="TapToChangeTypeLabel" destination="vxx-dq-FzG" id="fJI-cd-qyi"/>
-                <outlet property="TitleLineView" destination="8It-pX-7r6" id="GgU-0c-8YK"/>
-                <outlet property="TitleText" destination="hkG-Mk-N8K" id="Fmz-oj-cMJ"/>
-                <outlet property="TypeImage" destination="fZf-HE-V7l" id="Cne-ds-bpH"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
         </placeholder>
@@ -30,12 +19,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgP-GP-mnF">
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_issue_nblocking.png" translatesAutoresizingMaskIntoConstraints="NO" id="fZf-HE-V7l">
+                            <accessibility key="accessibilityConfiguration" identifier="TypeImage"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="72" id="NF7-Dd-SnU"/>
                                 <constraint firstAttribute="width" constant="72" id="R5g-fU-ClB"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAP TO CHANGE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxx-dq-FzG">
+                            <accessibility key="accessibilityConfiguration" identifier="TapToChangeTypeLabel"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="116" id="V33-t1-ull"/>
                             </constraints>
@@ -44,6 +35,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#no_code_assigned" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7g-4Q-qZm">
+                            <accessibility key="accessibilityConfiguration" identifier="CodeLabel"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="3av-Xw-HAP"/>
                                 <constraint firstAttribute="width" constant="177" id="klU-hd-j98"/>
@@ -53,6 +45,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="short describe the issue here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hkG-Mk-N8K">
+                            <accessibility key="accessibilityConfiguration" identifier="TitleText"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="300" id="62H-1j-VX1"/>
                                 <constraint firstAttribute="height" constant="33" id="Zh8-5a-YF8"/>
@@ -63,11 +56,13 @@
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8It-pX-7r6">
                             <color key="backgroundColor" red="0.60784313729999995" green="0.7725490196" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration" identifier="TitleLineView"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="uux-9v-5VC"/>
                             </constraints>
                         </view>
                     </subviews>
+                    <accessibility key="accessibilityConfiguration" identifier="HeaderLayout"/>
                     <constraints>
                         <constraint firstItem="vxx-dq-FzG" firstAttribute="bottom" secondItem="fZf-HE-V7l" secondAttribute="bottom" id="3p5-sr-tTF"/>
                         <constraint firstItem="8It-pX-7r6" firstAttribute="leading" secondItem="hkG-Mk-N8K" secondAttribute="leading" id="4eg-i2-Gd0"/>
@@ -89,21 +84,25 @@
                     <subviews>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pg1-O2-Lmr">
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <accessibility key="accessibilityConfiguration" identifier="DescriptionText"/>
                             <color key="textColor" red="0.2274509804" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_shadowTop.png" translatesAutoresizingMaskIntoConstraints="NO" id="wOB-Wf-Oq8">
+                            <accessibility key="accessibilityConfiguration" identifier="ShadowTopImage"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="J7f-UV-EeP"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_shadowDown.png" translatesAutoresizingMaskIntoConstraints="NO" id="I3k-uI-Vc9">
+                            <accessibility key="accessibilityConfiguration" identifier="ShadowBottomImage"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="Ngw-S7-EXF"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLe-Qe-eee">
+                            <accessibility key="accessibilityConfiguration" identifier="EditButton"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="54" id="WuW-P3-dp7"/>
                                 <constraint firstAttribute="height" constant="54" id="gos-NJ-5BZ"/>
@@ -112,6 +111,7 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <accessibility key="accessibilityConfiguration" identifier="DescriptionLayout"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="FLe-Qe-eee" secondAttribute="trailing" constant="8" id="2Pg-I7-jUh"/>
                         <constraint firstAttribute="trailing" secondItem="wOB-Wf-Oq8" secondAttribute="trailing" id="EWs-xt-IG7"/>

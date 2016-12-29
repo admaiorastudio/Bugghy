@@ -12,23 +12,9 @@ namespace AdMaiora.Bugghy
 	[Register ("GimmicksViewController")]
 	partial class GimmicksViewController
 	{
-		[Outlet]
-		AdMaiora.AppKit.UI.UIItemListView GimmickList { get; set; }
-
-		[Outlet]
-		UIKit.UILabel NoItemsLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (NoItemsLabel != null) {
-				NoItemsLabel.Dispose ();
-				NoItemsLabel = null;
-			}
-
-			if (GimmickList != null) {
-				GimmickList.Dispose ();
-				GimmickList = null;
-			}
 		}
 	}
 }

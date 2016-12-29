@@ -12,31 +12,9 @@ namespace AdMaiora.Bugghy
 	[Register ("TextInputViewController")]
 	partial class TextInputViewController
 	{
-		[Outlet]
-		UIKit.UITextView InputText { get; set; }
-
-		[Outlet]
-		UIKit.UIImageView TitleImage { get; set; }
-
-		[Outlet]
-		UIKit.UILabel TitleLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (InputText != null) {
-				InputText.Dispose ();
-				InputText = null;
-			}
-
-			if (TitleLabel != null) {
-				TitleLabel.Dispose ();
-				TitleLabel = null;
-			}
-
-			if (TitleImage != null) {
-				TitleImage.Dispose ();
-				TitleImage = null;
-			}
 		}
 	}
 }
