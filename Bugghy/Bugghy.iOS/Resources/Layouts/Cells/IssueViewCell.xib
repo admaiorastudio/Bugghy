@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -21,6 +21,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSc-m4-ykc">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_gear.png" translatesAutoresizingMaskIntoConstraints="NO" id="YNb-T2-KUL">
+                                        <accessibility key="accessibilityConfiguration" identifier="TypeImage"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="Q5u-zP-hoD"/>
                                             <constraint firstAttribute="height" constant="48" id="vqg-5f-yGj"/>
@@ -29,6 +30,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZwL-Bb-fFR">
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="code: #00000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74f-Fz-Or0">
+                                                <accessibility key="accessibilityConfiguration" identifier="CodeLabel"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="243" id="NvY-HY-zAE"/>
                                                     <constraint firstAttribute="height" constant="17" id="cT3-jH-256"/>
@@ -38,6 +40,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the issue" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOB-eE-fvc">
+                                                <accessibility key="accessibilityConfiguration" identifier="TitleLabel"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="243" id="bAW-q0-7AH"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="lIu-mP-LhV"/>
@@ -47,6 +50,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sender:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qq4-U5-4TI">
+                                                <accessibility key="accessibilityConfiguration" identifier="OfLabel"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="44" id="7jf-OZ-pE8"/>
                                                     <constraint firstAttribute="height" constant="15" id="eci-TR-tmR"/>
@@ -56,11 +60,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of the sender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4Z-GX-rRl">
+                                                <accessibility key="accessibilityConfiguration" identifier="SenderLabel"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                 <color key="textColor" red="0.2274509804" green="0.20000000000000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <accessibility key="accessibilityConfiguration" identifier="DetailsLayout"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="j4Z-GX-rRl" secondAttribute="trailing" constant="8" id="AU2-2F-Wac"/>
                                             <constraint firstAttribute="trailing" secondItem="74f-Fz-Or0" secondAttribute="trailing" constant="8" id="CH7-E6-UZh"/>
@@ -78,6 +84,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jtv-E2-54i">
+                                        <accessibility key="accessibilityConfiguration" identifier="DescriptionLabel"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="5xM-5H-sKa"/>
                                         </constraints>
@@ -87,6 +94,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="created:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mrj-Cw-c4N">
+                                        <accessibility key="accessibilityConfiguration" identifier="CreatedLabel"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="41" id="23S-dr-BMc"/>
                                             <constraint firstAttribute="height" constant="17" id="zrC-h8-rvE"/>
@@ -96,6 +104,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01/01/2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4m-Qm-tRz">
+                                        <accessibility key="accessibilityConfiguration" identifier="CreatedDateLabel"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="LRx-4m-1Hg"/>
                                             <constraint firstAttribute="width" constant="78" id="mst-CJ-viY"/>
@@ -105,6 +114,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hp3-l3-1GL">
+                                        <accessibility key="accessibilityConfiguration" identifier="StatusLabel"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="brS-xo-qp8"/>
                                             <constraint firstAttribute="width" constant="34" id="lkk-Zw-Km8"/>
@@ -114,6 +124,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opened" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADS-iO-Q8Q">
+                                        <accessibility key="accessibilityConfiguration" identifier="StatusDescriptionLabel"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="17" id="sAQ-Xn-daN"/>
                                         </constraints>
@@ -122,6 +133,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <accessibility key="accessibilityConfiguration" identifier="ContentLayout"/>
                                 <constraints>
                                     <constraint firstItem="ZwL-Bb-fFR" firstAttribute="top" secondItem="jSc-m4-ykc" secondAttribute="top" id="2BK-de-5Yj"/>
                                     <constraint firstAttribute="trailing" secondItem="ADS-iO-Q8Q" secondAttribute="trailing" id="4MG-9k-glJ"/>
@@ -145,6 +157,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration" identifier="CalloutLayout"/>
                         <constraints>
                             <constraint firstItem="jSc-m4-ykc" firstAttribute="top" secondItem="ZXT-mt-bkj" secondAttribute="top" constant="4" id="9ul-Qx-nQ0"/>
                             <constraint firstAttribute="bottom" secondItem="jSc-m4-ykc" secondAttribute="bottom" id="9us-JM-2rS"/>
@@ -173,21 +186,6 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.31764706969261169" green="0.31764706969261169" blue="0.31764706969261169" alpha="1" colorSpace="calibratedRGB"/>
-            <connections>
-                <outlet property="CalloutLayout" destination="ZXT-mt-bkj" id="DSQ-3h-TQ9"/>
-                <outlet property="CodeLabel" destination="74f-Fz-Or0" id="66H-xz-5A8"/>
-                <outlet property="ContentLayout" destination="jSc-m4-ykc" id="HL6-tw-Io3"/>
-                <outlet property="CreatedDateLabel" destination="H4m-Qm-tRz" id="mue-H0-3SF"/>
-                <outlet property="CreatedLabel" destination="Mrj-Cw-c4N" id="uzH-De-qNW"/>
-                <outlet property="DescriptionLabel" destination="jtv-E2-54i" id="42X-Me-ole"/>
-                <outlet property="DetailsLayout" destination="ZwL-Bb-fFR" id="he9-eG-pfu"/>
-                <outlet property="OfLabel" destination="qq4-U5-4TI" id="bB1-Pj-Ny5"/>
-                <outlet property="SenderLabel" destination="j4Z-GX-rRl" id="Ofe-6L-bIr"/>
-                <outlet property="StatusDescriptionLabel" destination="ADS-iO-Q8Q" id="LA0-N5-2Nf"/>
-                <outlet property="StatusLabel" destination="Hp3-l3-1GL" id="xBg-8M-8Vx"/>
-                <outlet property="TitleLabel" destination="UOB-eE-fvc" id="RpJ-FG-3B7"/>
-                <outlet property="TypeImage" destination="YNb-T2-KUL" id="5PO-Gq-Oew"/>
-            </connections>
             <point key="canvasLocation" x="-111" y="35"/>
         </tableViewCell>
     </objects>
